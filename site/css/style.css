@@ -482,7 +482,7 @@ a.shade-tab:focus-visible .shade-tab__tooth { outline: 2px solid var(--c-mint); 
 }
 .steps > li:last-child { padding-bottom: 0; }
 .steps > li:last-child::before { display: none; }
-.steps__num { position: absolute; left: 0; top: -6px; font-size: 34px; font-weight: 700; color: var(--c-mint); letter-spacing: -0.03em; line-height: 1; }
+.steps__num { position: absolute; left: 0; top: -6px; font-size: 34px; font-weight: 700; color: var(--c-teal); letter-spacing: -0.03em; line-height: 1; }
 .steps h3 { font-size: 19px; margin-bottom: 6px; }
 .steps p { color: var(--c-muted); margin: 0; }
 .steps .steps__solo { color: var(--c-text); font-size: 18px; font-weight: 500; padding-top: 4px; }
