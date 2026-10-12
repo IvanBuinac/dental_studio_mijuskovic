@@ -1,10 +1,18 @@
 <?php
 /**
- * Logout endpoint za admin portal.
+ * Odjava (samo POST sa CSRF tokenom). GET samo vraća na listu.
  */
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/auth.php';
+require dirname(__DIR__) . '/lib/admin.php';
+fk_admin_boot();
 
-logout();
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    fk_redirect('index.php');
+}
+fk_require_csrf();
+
+fk_session_reset();          // briše prijavu i menja ID sesije
+fk_flash('success', 'Odjavljeni ste.');
+fk_redirect('login.php');

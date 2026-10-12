@@ -1,58 +1,152 @@
 /* ==========================================================================
-   dr Filip Katanić — tokens.css
-   CSS custom properties izvedene doslovno iz brand.md (odeljci 1-2).
-   Ne menjati boje/fontove ovde bez potvrde u brand.md.
+   dr Filip Katanić — tokens.css (v2, 2026-10-12)
+   Izvor: brand.md § v2. Ne menjati boje/fontove bez izmene brand.md.
    ========================================================================== */
 :root {
-  /* Primarna paleta */
-  --color-primary: #10284A;       /* deep navy — strucnost, poverenje */
-  --color-primary-light: #2C4B78; /* hover/active varijanta */
-  --color-primary-tint: #E7ECF2;  /* svetla pozadina sekcija, badge-ovi */
+  /* ---- Boje: brend ---- */
+  --c-navy:          #12223D;  /* primarna: naslovi, puno dugme, trake */
+  --c-navy-deep:     #0D2444;  /* = pozadina Logo.PNG; footer, površine sa logom */
+  --c-navy-700:      #1E3254;  /* hover punog dugmeta */
+  --c-gold:          #B8955A;  /* dekor: 1px linije, okviri — NE tekst na svetlom */
+  --c-gold-icon:     #A3824A;  /* linijske ikone, outline dugme na svetlom (>=3:1) */
+  --c-gold-text:     #82632F;  /* zlatni tekst na svetlom: eyebrow, podnaslov (5.25:1) */
+  --c-gold-light:    #D4B068;  /* zlato na navy: tekst, ikone, linije (7.7:1) */
+  --c-gold-tint:     #F3EBDD;  /* pozadina ikone/bedža, hover kartice */
 
-  --color-secondary: #4E6B54;     /* salvija zelena — nada, smirenost */
-  --color-secondary-light: #7A9885;
-  --color-secondary-tint: #E9F0EA;
+  /* ---- Boje: površine ---- */
+  --c-cream:         #FBF8F3;  /* glavna pozadina */
+  --c-cream-2:       #F6F1E9;  /* hero gradient, CTA traka, inputi */
+  --c-white:         #FFFFFF;  /* kartice, forme, header */
 
-  --color-accent: #8C7355;            /* sampanj zlato — tekst-bezbedna varijanta */
-  --color-accent-decorative: #C9AD87; /* svetlija, samo za dekor/tamne pozadine */
-  --color-accent-tint: #F3EAD9;
+  /* ---- Boje: tekst ---- */
+  --c-text:          #33302C;  /* 12.4:1 na kremu */
+  --c-text-muted:    #6A645C;  /* 5.5:1 na kremu */
+  --c-heading:       var(--c-navy);
+  --c-on-navy:       #FBF8F3;
+  --c-on-navy-muted: #C9BFB0;
 
-  --color-bg: #FBF7F0;            /* topao krem — glavna pozadina */
-  --color-surface: #FFFFFF;       /* kartice, forme */
-  --color-surface-dark: #10284A;  /* "premium" kartice / istaknuti citati */
+  /* ---- Boje: linije i stanja ---- */
+  --c-border:        #E8E0D4;
+  --c-border-gold:   rgba(184, 149, 90, .38);
+  --c-border-on-navy: rgba(212, 176, 104, .28);
+  --c-focus:         #A3824A;
+  --c-success:       #4E6B54;  /* šalvija — SAMO status "potvrđeno/poslato" */
+  --c-success-tint:  #E9F0EA;
+  --c-error:         #9B2C2C;
+  --c-error-tint:    #F8E9E7;
 
-  --color-text: #2E2A26;          /* topao ugljen — telo teksta */
-  --color-text-muted: #6B655D;    /* sekundarni tekst, meta info */
-  --color-text-on-dark: #FBF7F0;  /* tekst na tamnoj povrsini */
-  --color-text-on-primary: #FFFFFF;
+  /* ---- Gradijenti ---- */
+  --grad-hero-photo: linear-gradient(90deg, var(--c-cream-2) 0%, rgba(246,241,233,.85) 18%, rgba(246,241,233,0) 45%);
+  --grad-hero-photo-mobile: linear-gradient(0deg, var(--c-cream) 0%, rgba(251,248,243,.9) 14%, rgba(251,248,243,0) 42%);
+  --grad-cta:        linear-gradient(90deg, var(--c-cream-2) 0%, #EFE7DA 100%);
 
-  --color-border: #E3DCD1;            /* suptilne linije, razdelnici (na kremu) */
-  --color-border-on-dark: rgba(251, 247, 240, .16); /* suptilne linije na navy */
+  /* ---- Fontovi ---- */
+  --ff-serif: 'Cormorant Garamond', 'EB Garamond', Garamond, 'Times New Roman', serif;
+  --ff-sans:  'Mulish', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fw-regular: 400;
+  --fw-medium:  500;
+  --fw-semi:    600;
+  --fw-bold:    700;
 
-  /* Zaobljenja i senke — "mek" osecaj, ne ostar/klinicki */
-  --radius-sm: 10px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-pill: 999px;
-  --shadow-soft: 0 8px 24px rgba(16, 40, 74, 0.08);
-  --shadow-card: 0 4px 16px rgba(46, 42, 38, 0.06);
+  /* ---- Tipografska skala (fluid, 360px -> 1280px) ---- */
+  --fs-h1:   clamp(2.5rem,  1.72rem + 3.48vw, 4.5rem);    /* 40 -> 72 */
+  --fs-h2:   clamp(2rem,    1.61rem + 1.74vw, 3rem);      /* 32 -> 48 */
+  --fs-h3:   clamp(1.625rem,1.38rem + 1.09vw, 2.25rem);   /* 26 -> 36 */
+  --fs-h4:   clamp(1.375rem,1.23rem + 0.65vw, 1.75rem);   /* 22 -> 28 */
+  --fs-h5:   clamp(1.25rem, 1.15rem + 0.43vw, 1.5rem);    /* 20 -> 24 (naslov kartice) */
+  --fs-h6:   clamp(1.125rem,1.08rem + 0.22vw, 1.25rem);   /* 18 -> 20 */
+  --fs-lead: clamp(1.0625rem,1rem + 0.27vw, 1.25rem);     /* 17 -> 20 */
+  --fs-body: 1rem;                                        /* 16 */
+  --fs-sm:   0.875rem;                                    /* 14 */
+  --fs-xs:   0.8125rem;                                   /* 13 */
+  --fs-eyebrow: 0.75rem;                                  /* 12, verzal */
+  --fs-num:  clamp(2rem, 1.6rem + 1.7vw, 3rem);           /* "01–05" u koracima */
 
-  /* Tipografija (brand.md 4, opcija A) */
-  --font-heading: 'Fraunces', Georgia, 'Times New Roman', serif;
-  --font-body: 'Karla', -apple-system, 'Segoe UI', sans-serif;
+  --lh-tight:   1.1;    /* H1–H2 */
+  --lh-heading: 1.2;    /* H3–H6 */
+  --lh-body:    1.65;
+  --ls-heading: -0.005em;
+  --ls-eyebrow: 0.18em;
+  --ls-button:  0.02em;
 
-  /* Layout */
+  /* Eyebrow: Mulish 600, 12px, VERZAL, zlatni tekst */
+  --eyebrow-font: var(--fw-semi) var(--fs-eyebrow)/1.4 var(--ff-sans);
+  --eyebrow-color: var(--c-gold-text);
+  --eyebrow-color-on-navy: var(--c-gold-light);
+
+  /* ---- Razmaci (osnova 4px) ---- */
+  --sp-1: 4px;   --sp-2: 8px;   --sp-3: 12px;  --sp-4: 16px;
+  --sp-5: 24px;  --sp-6: 32px;  --sp-7: 48px;  --sp-8: 64px;
+  --sp-9: 96px;  --sp-10: 128px;
+  --sec:  clamp(56px, 3rem + 4vw, 104px);   /* vertikalni ritam sekcija */
+  --card-pad: clamp(20px, 1rem + 1vw, 32px);
+
+  /* ---- Layout ---- */
   --container: 1200px;
-  --gutter: 16px;
+  --container-narrow: 760px;   /* centrirani tekst ("Moj pristup") */
+  --gutter: 20px;
   --hdr: 64px;
   --sticky-h: 64px;
-  --sec: 56px;
 
-  /* Animacije (brand.md 5: suptilne, spore, bez bouncy) */
+  /* ---- Radijusi (referenca: blago, 4–8px) ---- */
+  --r-xs: 2px;     /* inputi u tabelama, bedževi */
+  --r-sm: 4px;     /* dugmad, inputi */
+  --r-md: 6px;     /* kartice, pločice */
+  --r-lg: 8px;     /* fotografije, veliki blokovi */
+  --r-round: 999px;/* samo kružne ikone/avatar — NE dugmad */
+
+  /* ---- Linije ---- */
+  --line: 1px solid var(--c-border);
+  --line-gold: 1px solid var(--c-border-gold);
+  --line-gold-solid: 1px solid var(--c-gold);
+  --line-on-navy: 1px solid var(--c-border-on-navy);
+  --icon-stroke: 1.4px;            /* 1.25–1.5 */
+  --underline-active: 2px;         /* zlatna podvlaka aktivnog menija */
+
+  /* ---- Senke (vrlo meke, topla navy) ---- */
+  --sh-xs:   0 1px 2px rgba(18, 34, 61, .04);
+  --sh-card: 0 2px 6px rgba(18, 34, 61, .04), 0 10px 28px rgba(18, 34, 61, .05);
+  --sh-hover:0 4px 10px rgba(18, 34, 61, .06), 0 18px 40px rgba(18, 34, 61, .08);
+  --sh-header: 0 1px 0 var(--c-border), 0 6px 20px rgba(18, 34, 61, .05);
+
+  /* ---- Animacije (mirno, bez bounce) ---- */
   --ease: cubic-bezier(.4, 0, .2, 1);
-  --dur: 500ms;
+  --dur-fast: 180ms;
+  --dur: 400ms;
+  --dur-slow: 700ms;
+
+  /* ---- Alijasi v1 (kompatibilnost sa postojećim CSS-om) ---- */
+  --color-primary: var(--c-navy);
+  --color-primary-light: var(--c-navy-700);
+  --color-primary-tint: #E7EAF0;
+  --color-secondary: var(--c-gold-text);        /* šalvija više nije sekundarna */
+  --color-secondary-light: var(--c-gold-icon);
+  --color-secondary-tint: var(--c-gold-tint);
+  --color-accent: var(--c-gold-text);
+  --color-accent-decorative: var(--c-gold);
+  --color-accent-tint: var(--c-gold-tint);
+  --color-bg: var(--c-cream);
+  --color-surface: var(--c-white);
+  --color-surface-dark: var(--c-navy);
+  --color-text: var(--c-text);
+  --color-text-muted: var(--c-text-muted);
+  --color-text-on-dark: var(--c-on-navy);
+  --color-text-on-primary: #FFFFFF;
+  --color-border: var(--c-border);
+  --color-border-on-dark: var(--c-border-on-navy);
+  --radius-sm: var(--r-sm);
+  --radius-md: var(--r-md);
+  --radius-lg: var(--r-lg);
+  --radius-pill: var(--r-sm);   /* v2: nema pill dugmadi */
+  --shadow-soft: var(--sh-hover);
+  --shadow-card: var(--sh-card);
+  --font-heading: var(--ff-serif);
+  --font-body: var(--ff-sans);
 }
 
-@media (min-width: 768px)  { :root { --gutter: 24px; --sec: 72px; } }
-@media (min-width: 1024px) { :root { --hdr: 76px; --sec: 96px; } }
-@media (min-width: 1280px) { :root { --gutter: 40px; --sec: 120px; } }
+@media (max-width: 359px) { :root { --gutter: 16px; } }
+@media (min-width: 768px)  { :root { --gutter: 24px; } }
+@media (min-width: 1024px) and (max-width: 1279px) { :root { --gutter: 32px; } }
+@media (min-width: 1024px) { :root { --hdr: 84px; } }
+@media (min-width: 1280px) { :root { --gutter: 40px; } }
+@media (prefers-reduced-motion: reduce) { :root { --dur-fast: 0ms; --dur: 0ms; --dur-slow: 0ms; } }

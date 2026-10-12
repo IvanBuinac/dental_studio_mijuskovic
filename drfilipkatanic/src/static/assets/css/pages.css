@@ -66,7 +66,7 @@
 }
 
 /* ============================ MOJ PRISTUP ============================ */
-.approach { padding-bottom: calc(var(--sec) * .8); }
+.approach { padding-top: calc(var(--sec) * .85); padding-bottom: calc(var(--sec) * .8); }
 .approach__head { text-align: center; max-width: 780px; margin-inline: auto; }
 .approach__head h2 { font-size: clamp(2rem, 1.5rem + 2vw, 3rem); }
 .approach__txt { margin-top: 18px; font-size: clamp(1rem, .96rem + .2vw, 1.0625rem); line-height: 1.75; color: var(--c-text-muted); }
@@ -80,7 +80,7 @@
   padding: 32px 22px 26px; box-shadow: var(--sh-card);
 }
 .when-card > .i { font-size: 44px; color: var(--c-gold-icon); margin-bottom: 18px; }
-.when-card h3 { font-size: 1.35rem; line-height: 1.22; max-width: 15ch; }
+.when-card h3 { font-size: 1.35rem; line-height: 1.22; max-width: 18ch; }
 .when-card p { margin-top: 10px; font-size: .9rem; line-height: 1.55; color: var(--c-text-muted); max-width: 26ch; }
 .when-card__go { margin-top: auto; padding-top: 16px; display: inline-flex; align-items: center; gap: 6px; font-size: .8125rem; font-weight: 700; letter-spacing: .04em; color: var(--c-gold-text); transition: opacity var(--dur) var(--ease); }
 .when-card__go .i { font-size: 16px; }
@@ -125,7 +125,7 @@
 .process-sec { padding-top: 0; }
 .process-sec__h { margin-bottom: 36px; font-size: .75rem; }
 .process { position: relative; display: grid; gap: 0; }
-.process > li { position: relative; display: grid; grid-template-columns: 46px 1fr; gap: 16px; padding-bottom: 26px; }
+.process > li { position: relative; display: grid; grid-template-columns: 46px 1fr; gap: 16px; padding-bottom: 26px; align-content: start; }
 .process > li:last-child { padding-bottom: 0; }
 .process::before { content: ""; position: absolute; left: 22px; top: 23px; bottom: 23px; width: 1px; background: var(--c-gold); transform-origin: top; }
 .process__n {
@@ -153,7 +153,7 @@
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 16'%3E%3Cpath d='M1 8h45M40 2l6 6-6 6' fill='none' stroke='%23B8955A' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
   }
   .process__n { width: auto; height: auto; border: 0; border-radius: 0; background: none; justify-content: flex-start; font: 500 2.75rem/1 var(--ff-serif); color: var(--c-navy); }
-  .process h3 { font-size: 1.2rem; padding-top: 12px; max-width: 13ch; }
+  .process h3 { font-size: 1.2rem; padding-top: 12px; max-width: 16ch; }
   .process p { font-size: .85rem; }
   .process-sec__foot { grid-template-columns: 1fr auto; align-items: center; }
   .process-sec__act { grid-auto-flow: column; align-items: center; gap: 28px; }
@@ -219,7 +219,8 @@
 .science__more { text-align: center; margin-top: 22px; }
 @media (min-width: 1024px) {
   .science__grid { grid-template-columns: 210px 1fr; gap: 18px; align-items: stretch; }
-  .science__fig img { aspect-ratio: auto; height: 100%; min-height: 170px; object-position: 50% 18%; }
+  .science__fig { min-height: 170px; }
+  .science__fig img { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; object-position: 50% 18%; }
   .science .tiles { align-content: stretch; }
   .science .tile { height: 100%; }
 }
@@ -262,7 +263,7 @@
   margin-inline: calc(-1 * var(--gutter));
 }
 .booking__pre { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; align-items: center; margin-bottom: 22px; font-size: .8125rem; color: var(--c-text-muted); }
-.booking__picked { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; background: var(--c-gold-tint); color: var(--c-navy); font-weight: 600; }
+.booking__picked { display: block; padding: 6px 12px; background: var(--c-gold-tint); color: var(--c-navy); font-weight: 600; }
 .booking__picked[hidden] { display: none; }
 .booking__picked button { color: var(--c-gold-text); text-decoration: underline; text-underline-offset: 3px; font-weight: 600; }
 .booking__form { display: grid; gap: 22px; }
@@ -301,7 +302,7 @@
 
 .booking__side { display: grid; gap: 16px; align-content: start; }
 .side-doc { display: flex; align-items: center; gap: 16px; padding: 20px; background: var(--c-white); border: 1px solid var(--c-border); }
-.side-doc img { width: 76px; height: 92px; object-fit: cover; object-position: 50% 15%; border-radius: 999px 999px 999px 999px / 55% 55% 45% 45%; border: 1px solid var(--c-gold); padding: 3px; background: var(--c-white); }
+.side-doc img { width: 80px; height: 80px; object-fit: cover; object-position: 50% 12%; border-radius: 50%; border: 1px solid var(--c-gold); padding: 3px; background: var(--c-white); }
 .side-doc strong { display: block; font: 600 1.35rem/1.15 var(--ff-serif); color: var(--c-navy); }
 .side-doc span { font-size: .8125rem; color: var(--c-text-muted); }
 .side-card { padding: 22px 20px; background: var(--c-white); border: 1px solid var(--c-border); }
@@ -310,7 +311,7 @@
 .side-steps li:last-child { border-bottom: 0; }
 .side-steps b { font: 600 1rem/1 var(--ff-serif); color: var(--c-gold-text); min-width: 22px; }
 .side-card .link-arrow { margin-top: 10px; font-size: .875rem; }
-.side-loc p { color: var(--c-text); font-size: .9375rem; }
+.side-loc p:not(.eyebrow) { color: var(--c-text); font-size: .9375rem; }
 .side-loc strong { font: 600 1.25rem/1.2 var(--ff-serif); color: var(--c-navy); display: block; }
 .side-info { display: flex; gap: 12px; padding: 16px 18px; background: var(--c-gold-tint); font-size: .875rem; color: var(--c-navy); line-height: 1.5; }
 .side-info .i { font-size: 22px; color: var(--c-gold-text); margin-top: 1px; }
@@ -333,6 +334,7 @@
 @media (min-width: 600px) {
   .booking__card { margin-inline: 0; border: 1px solid var(--c-border); border-top: 2px solid var(--c-gold); padding: 36px 32px 32px; }
   .booking__row--2 { grid-template-columns: 1fr 1fr; }
+  .booking__row--date { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); }
 }
 @media (max-width: 1023px) { .booking__side .side-hide-m { display: none; } }
 @media (min-width: 1024px) {
@@ -360,7 +362,7 @@ a.channel:hover { border-color: var(--c-border-gold); box-shadow: var(--sh-card)
 .channel .icon-ring { width: 48px; height: 48px; }
 .channel .icon-ring .i { font-size: 24px; }
 .channel strong { display: block; font: 600 1.25rem/1.2 var(--ff-serif); color: var(--c-navy); }
-.channel span span { font-size: .8125rem; color: var(--c-text-muted); }
+.channel span span { display: block; margin-top: 3px; font-size: .8125rem; line-height: 1.45; color: var(--c-text-muted); }
 .channel > .i:last-child { margin-left: auto; font-size: 20px; color: var(--c-gold-icon); }
 .loc-grid { display: grid; gap: 16px; }
 .loc-card { padding: 28px 24px; background: var(--c-white); border: 1px solid var(--c-border); border-top: 2px solid var(--c-gold); display: grid; gap: 10px; align-content: start; }
@@ -426,3 +428,19 @@ a.channel:hover { border-color: var(--c-border-gold); box-shadow: var(--sh-card)
 .nf .mono { width: 64px; height: 64px; margin: 0 auto 24px; }
 .nf p:not(.eyebrow) { margin: 16px auto 0; max-width: 52ch; color: var(--c-text-muted); }
 .nf__act { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 28px; }
+
+/* lining brojevi (Cormorant podrazumevano ima old-style cifre; font shorthand ih resetuje) */
+.process__n, .timeline__n, .side-steps b, .success__id { font-variant-numeric: lining-nums; }
+
+/* naslovi kartica kao h2 (hub, blog lista) */
+.area-card h2.area-card__h { font-size: 1.35rem; font-weight: 600; line-height: 1.2; }
+.post-card h2.post-card__h { font-size: 1.4rem; font-weight: 500; line-height: 1.22; }
+.page-hero__fig--illo { background: var(--c-white); border: 1px solid var(--c-border); padding: 32px; display: flex; align-items: center; justify-content: center; }
+.page-hero__fig--illo .illo { max-width: 200px; }
+.page-hero__fig img { box-shadow: var(--sh-card); }
+a.page-hero__fig { display: block; }
+.nf h1 { font-size: clamp(2.4rem, 1.6rem + 3vw, 3.75rem); }
+@media (max-width: 899px) { .page-hero__fig { max-width: 420px; } .page-hero__fig--illo { display: none; } }
+.booking__form[hidden] { display: none; }
+#booking-card, .booking__card { scroll-margin-top: calc(var(--hdr) + 16px); }
+@media (max-width: 599px) { .success__act .btn { flex: 1 1 100%; } }

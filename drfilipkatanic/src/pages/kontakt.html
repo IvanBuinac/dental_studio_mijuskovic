@@ -1,57 +1,70 @@
 ---
-title: Kontakt i zakazivanje – dr Filip Katanić, SB Ferona
-description: Zakazivanje pregleda kod dr Filipa Katanića u SB Ferona, Šarplaninska 19, Novi Sad. Telefon +381 21 3000 220, office@ferona.rs.
+title: Kontakt – dr Filip Katanić | Novi Sad
+description: Zakažite konsultaciju kod dr Filipa Katanića online ili preko Instagrama. Ordinira u SB Ferona, Šarplaninska 19, Novi Sad.
 cta: none
-body_class: force-sticky
 scripts: map
 nav: kontakt
 ---
-<section class="section on-dark reveal" aria-labelledby="hero-h1" id="zakazivanje">
-  <div class="container">
-    <h1 id="hero-h1">Kontakt i zakazivanje</h1>
-    <div class="contact-tiles" style="margin-top:32px;max-width:680px">
-      <a class="contact-tile contact-tile--primary" href="{{g.tel_href}}">
-        <strong>Zakažite u SB Feroni</strong>
-        <span>{{g.tel}} · kontakt centar ustanove</span>
-      </a>
-      <a class="contact-tile" href="{{g.ig_url}}" rel="noopener" target="_blank">
-        <strong>Poruka na Instagramu</strong>
-        <span>Za pitanje pre zakazivanja — neformalni kanal zakazivanja</span>
-      </a>
-    </div>
-    <p class="prose" style="margin-top:28px;color:rgba(251,247,240,.8)">Kontakt centar SB Ferona — za zakazivanje pregleda kod dr Filipa Katanića. Telefon i email pripadaju ustanovi.</p>
-  </div>
-</section>
-
-<section class="section reveal" aria-labelledby="venue-h2">
-  <div class="container" style="display:grid;gap:32px;align-items:start">
+<section class="page-hero" aria-labelledby="hero-h1">
+  <div class="container page-hero__in" style="border-bottom:0;padding-bottom:0">
     <div>
-      <h2 id="venue-h2" class="visually-hidden">SB Ferona</h2>
-      {{> venue-card}}
-    </div>
-    <div class="prose">
-      <p><strong>{{g.ferona}}</strong><br>{{g.adresa}}</p>
-      <p><a class="link" href="{{g.tel_href}}">{{g.tel}}</a><br><a class="link" href="mailto:{{g.email}}">{{g.email}}</a></p>
-      <p style="color:var(--color-text-muted);font-size:.9rem">Za pitanja možete pisati i na {{g.email}} (email ustanove).</p>
+      <nav class="breadcrumb" aria-label="Putanja"><ol>
+        <li><a href="{{root}}">Početna</a></li>
+        <li aria-current="page">Kontakt</li>
+      </ol></nav>
+      <p class="eyebrow eyebrow--line">Kontakt</p>
+      <h1 id="hero-h1">Kontakt</h1>
+      <p class="lead">Najbrži put do termina je online zahtev. Za kratko pitanje pre zakazivanja možete mi pisati i na Instagramu.</p>
     </div>
   </div>
 </section>
 
-<section class="section section--surface reveal" aria-label="Mapa">
+<div class="container contact-grid">
+  <div class="contact-main on-navy">
+    <p class="eyebrow">Zakazivanje</p>
+    <h2>Zakažite konsultaciju online</h2>
+    <p>Popunite kratak zahtev — potvrdu ili predlog termina dobijate mejlom.</p>
+    <a class="btn btn--gold" href="{{root}}zakazivanje/">Zakaži konsultaciju <svg class="i i--arr" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  </div>
+  <ul class="contact-channels" role="list" aria-label="Kanali">
+    <li><a class="channel" href="{{g.ig_url}}" rel="noopener" target="_blank"><span class="icon-ring"><svg class="i" aria-hidden="true"><use href="#i-instagram"/></svg></span><span><strong>Instagram</strong><span>{{g.ig_handle}} — za kratka pitanja pre zakazivanja.</span></span><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+    {{if HAS_TEL}}<li><a class="channel" href="{{g.tel_href}}"><span class="icon-ring"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg></span><span><strong>Telefon</strong><span>{{g.tel}}</span></span><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>{{/if}}
+    {{if HAS_EMAIL}}<li><a class="channel" href="mailto:{{g.email}}"><span class="icon-ring"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg></span><span><strong>E-mail</strong><span>{{g.email}}</span></span><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>{{/if}}
+    <!-- [POTVRDITI SA KLIJENTOM: lični telefon i mejl — upisati u src/data/site.json (tel, tel_href, email); dok su prazni, ne prikazuju se] -->
+    <li><a class="channel" href="{{root}}zakazivanje/?usluga=drugo-misljenje"><span class="icon-ring"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg></span><span><strong>Drugo mišljenje</strong><span>Zatražite drugo mišljenje kroz formu za zakazivanje.</span></span><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+  </ul>
+</div>
+
+<section class="section" aria-labelledby="venue-h2">
   <div class="container">
-    <div class="map-embed" data-src="https://www.google.com/maps?q=SB+Ferona+Sarplaninska+19+Novi+Sad&output=embed">
-      <button type="button" class="map-embed__btn" data-map-load
-              data-src="https://www.google.com/maps?q=SB+Ferona+Sarplaninska+19+Novi+Sad&output=embed"
-              data-title="Mapa: SB Ferona, Šarplaninska 19, Novi Sad">Učitaj mapu</button>
+    <p class="eyebrow eyebrow--line">Mesto ordiniranja</p>
+    <h2 id="venue-h2" class="visually-hidden">Mesto ordiniranja</h2>
+    <div class="loc-grid">
+      <div class="loc-card">
+        <svg class="i" aria-hidden="true" style="font-size:30px;color:var(--c-gold-icon)"><use href="#i-pin"/></svg>
+        <strong>SB Ferona</strong>
+        <p>Šarplaninska 19<br>21000 Novi Sad</p>
+        <p>Konsultacije i postupci obavljaju se u SB Ferona.</p>
+        <!-- [POTVRDITI SA KLIJENTOM: da li želi sekundarnu napomenu "Termin možete zakazati i preko kontakt centra SB Ferona" — do potvrde se ne prikazuje] -->
+        <a class="link-arrow" href="{{g.maps_url}}" rel="noopener" target="_blank">Otvori u Google mapama <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="map-embed">
+        <svg class="i" aria-hidden="true" style="font-size:40px;color:var(--c-gold-icon)"><use href="#i-pin"/></svg>
+        <button type="button" class="btn btn--outline" data-map-load
+                data-src="https://www.google.com/maps?q=SB+Ferona+Sarplaninska+19+Novi+Sad&amp;output=embed"
+                data-title="Mapa: SB Ferona, Šarplaninska 19, Novi Sad">Učitaj mapu</button>
+        <p class="map-embed__note">Mapa se učitava sa Google servisa tek kada kliknete.</p>
+      </div>
     </div>
+    <p class="urgent"><svg class="i" aria-hidden="true"><use href="#i-info"/></svg>Za hitna stanja obratite se najbližoj hitnoj službi — forma i poruke nisu namenjene hitnim slučajevima.</p>
   </div>
 </section>
 
 {{if RADNO_VREME}}
-<section class="section reveal" aria-labelledby="radno-h2">
+<section class="section" aria-labelledby="radno-h2">
   <div class="container">
     <h2 id="radno-h2">Radno vreme</h2>
-    <p data-flag="radno_vreme"><!-- [POTVRDITI SA KLIJENTOM: radno vreme SB Ferona i/ili termini kod dr Filipa Katanića] --></p>
+    <p data-flag="radno_vreme"><!-- [POTVRDITI SA KLIJENTOM: termini kod dr Filipa Katanića] --></p>
   </div>
 </section>
 {{/if}}

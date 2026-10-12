@@ -26,13 +26,14 @@ img { height: auto; }
 a { color: inherit; text-decoration: none; }
 button, input, select, textarea { font: inherit; color: inherit; }
 button { cursor: pointer; background: none; border: 0; padding: 0; }
-ul[class], ol[class] { list-style: none; margin: 0; padding: 0; }
+:where(ul[class], ol[class]) { list-style: none; margin: 0; padding: 0; }
 p, h1, h2, h3, h4, h5, h6, figure, blockquote, dl, dd { margin: 0; }
 address { font-style: normal; }
 hr { border: 0; border-top: var(--line); margin: 0; }
 ::selection { background: var(--c-gold-tint); color: var(--c-navy); }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, .process__n, .timeline__n {
+  font-variant-numeric: lining-nums;
   font-family: var(--ff-serif);
   color: var(--c-heading);
   font-weight: 500;

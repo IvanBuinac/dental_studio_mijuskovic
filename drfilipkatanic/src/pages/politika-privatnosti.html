@@ -1,24 +1,45 @@
 ---
 title: Politika privatnosti | dr Filip Katanić
-description: Kako se štite podaci posetilaca sajta i pacijenata. Testimonijali se objavljuju isključivo uz saglasnost pacijentkinje.
+description: Kako se obrađuju podaci iz forme za zakazivanje i podaci posetilaca sajta dr Filipa Katanića.
 ---
-<section class="section reveal">
-  <div class="container prose">
-    <h1>Politika privatnosti</h1>
-    <p>Ova stranica objašnjava kako se sajt dr Filipa Katanića odnosi prema podacima posetilaca i pacijenata.</p>
-
-    <h2>Kolačići i analitika</h2>
-    <p>Sajt može koristiti osnovnu analitiku posete radi razumevanja kako se sadržaj koristi. Ne prikupljamo medicinske podatke putem sajta.
-      <!-- [POTVRDITI SA KLIJENTOM: tačan alat za analitiku, ako se koristi] --></p>
-
-    <h2>Kontakt i poruke</h2>
-    <p>Poruke poslate putem Instagrama ili telefonskog poziva ka kontakt centru SB Ferona obrađuju se u skladu sa praksom te ustanove. Ovaj sajt trenutno ne sadrži kontakt formular sa ličnim/medicinskim podacima.
-      <!-- [POTVRDITI SA KLIJENTOM: da li se kontakt formular dodaje u narednoj fazi] --></p>
-
-    <h2>Testimonijali i iskustva pacijentkinja</h2>
-    <p>Testimonijali i iskustva pacijentkinja objavljuju se isključivo uz pisanu saglasnost, sa napomenom „Objavljeno uz saglasnost pacijentkinje", u skladu sa praksom koju autor već primenjuje na svojim društvenim mrežama. Sajt trenutno ne sadrži testimonijale.</p>
-
-    <h2>Čuvanje podataka</h2>
-    <p>Ovaj sajt je informativnog karaktera i ne predstavlja elektronski karton pacijenta. Za pitanja o čuvanju medicinskih podataka obratite se direktno SB Feroni.</p>
+<section class="page-hero" aria-labelledby="hero-h1">
+  <div class="container page-hero__in">
+    <div>
+      <nav class="breadcrumb" aria-label="Putanja"><ol>
+        <li><a href="{{root}}">Početna</a></li>
+        <li aria-current="page">Politika privatnosti</li>
+      </ol></nav>
+      <p class="eyebrow eyebrow--line">Privatnost</p>
+      <h1 id="hero-h1">Politika privatnosti</h1>
+      <p class="lead">Ova stranica objašnjava kako sajt dr Filipa Katanića postupa sa podacima posetilaca i podacima iz forme za zakazivanje.</p>
+    </div>
   </div>
 </section>
+
+<div class="container page-grid">
+  <div class="page-grid__main prose">
+    <h2 id="forma">Forma za zakazivanje</h2>
+    <p>Kada pošaljete zahtev za konsultaciju, prikupljamo podatke koje unesete: ime i prezime, e-mail, telefon, razlog konsultacije, željeni datum i doba dana, i — ako je navedete — napomenu.</p>
+    <p>Podaci se koriste isključivo za obradu Vašeg zahteva: potvrdu ili predlog termina i kontakt u vezi sa zakazivanjem. Ne koriste se za marketing i ne dele se sa trećim licima, osim sa ustanovom u kojoj se konsultacija obavlja, u meri potrebnoj za termin.
+      <!-- [POTVRDITI SA KLIJENTOM: da li se podaci prosleđuju SB Feroni] --></p>
+    <p>Rukovalac podacima je dr Filip Katanić. Podaci se čuvaju samo onoliko koliko je potrebno za zakazivanje i praćenje termina, a zatim se brišu.
+      <!-- [POTVRDITI SA KLIJENTOM: pravni oblik / ko je rukovalac; tačan rok čuvanja podataka, npr. 12 meseci od poslednjeg kontakta] --></p>
+    <p>U napomeni ne morate navoditi detaljne medicinske podatke — o tome razgovaramo na konsultaciji.</p>
+    <p>Imate pravo da zatražite uvid, ispravku ili brisanje svojih podataka i da povučete saglasnost. Zahtev možete poslati porukom na Instagramu <a href="{{g.ig_url}}" rel="noopener" target="_blank">@drfilipkatanic</a>.
+      <!-- [POTVRDITI SA KLIJENTOM: mejl za zahteve u vezi sa podacima] --></p>
+    <p>Poruke poslate preko Instagrama obrađuju se u okviru te platforme, prema njenim pravilima.</p>
+
+    <h2 id="analitika">Kolačići i analitika</h2>
+    <p>Sajt može koristiti osnovnu analitiku posete radi razumevanja kako se sadržaj koristi. Analitika ne prikuplja Vaše ime, kontakt ni medicinske podatke.
+      <!-- [POTVRDITI SA KLIJENTOM: tačan alat za analitiku, ako se koristi] --></p>
+
+    <h2 id="iskustva">Iskustva pacijentkinja</h2>
+    <p>Testimonijali i iskustva pacijentkinja objavljuju se isključivo uz pisanu saglasnost, sa napomenom „Objavljeno uz saglasnost pacijentkinje“, u skladu sa praksom koju autor već primenjuje na svojim društvenim mrežama. Sajt trenutno ne sadrži testimonijale.</p>
+
+    <h2 id="cuvanje">Čuvanje podataka</h2>
+    <p>Sajt ne predstavlja elektronski karton pacijenta. Podaci iz forme čuvaju se samo onoliko koliko je potrebno za zakazivanje (vidi gore). Medicinska dokumentacija nastala tokom lečenja vodi se u ustanovi u kojoj se lečenje obavlja, u skladu sa propisima.</p>
+  </div>
+  <aside class="page-grid__aside" aria-label="Zakazivanje">
+    <div class="aside-sticky">{{> aside-cta}}</div>
+  </aside>
+</div>

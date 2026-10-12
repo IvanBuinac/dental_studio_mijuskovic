@@ -190,10 +190,9 @@ body.menu-open { overflow: hidden; }
 .cta-band__mark {
   width: 88px; height: 88px; padding: 10px; flex: none;
   border: 1px solid var(--c-gold); position: relative; background: rgba(255,255,255,.5);
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
 }
 .cta-band__mark img { width: 100%; height: 100%; object-fit: contain; }
-.cta-band h2 { font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem); line-height: 1.12; max-width: 22ch; margin-inline: auto; }
+.cta-band h2 { font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem); line-height: 1.12; max-width: 26ch; margin-inline: auto; }
 .cta-band__txt p { margin-top: 10px; color: var(--c-text-muted); max-width: 56ch; margin-inline: auto; }
 .cta-band__act { display: grid; gap: 12px; justify-items: center; width: 100%; }
 .cta-band__ig { font-size: .875rem; color: var(--c-text-muted); }
@@ -242,7 +241,7 @@ body.menu-open { overflow: hidden; }
 .fcol__h::-webkit-details-marker { display: none; }
 .fcol__h .i { font-size: 16px; transition: transform var(--dur-fast) var(--ease); }
 .fcol[open] .fcol__h .i { transform: rotate(45deg); }
-.fcol ul { padding-bottom: 14px; }
+.fcol ul { padding: 0 0 14px; margin: 0; list-style: none; }
 .fcol li a { display: inline-block; padding: 6px 0; color: var(--c-on-navy-muted); transition: color var(--dur-fast) var(--ease); }
 .fcol li a:hover { color: var(--c-on-navy); }
 .fcol--book { padding-bottom: 20px; }
@@ -258,7 +257,7 @@ body.menu-open { overflow: hidden; }
 .totop { display: inline-flex; align-items: center; gap: 8px; }
 .totop .i { font-size: 16px; color: var(--c-gold-light); }
 .site-footer__wm {
-  position: absolute; right: -2vw; bottom: 40px; z-index: 0; pointer-events: none;
+  position: absolute; right: 0; bottom: 40px; z-index: 0; pointer-events: none;
   font: 500 clamp(80px, 16vw, 230px)/1 var(--ff-serif); letter-spacing: .04em; color: rgba(212, 176, 104, .045);
   white-space: nowrap;
 }
@@ -316,7 +315,7 @@ body.menu-open { overflow: hidden; }
 }
 
 /* ---------- breadcrumb + page hero (podstranice) ---------- */
-.breadcrumb ol { display: flex; flex-wrap: wrap; gap: 4px 0; font-size: .8125rem; color: var(--c-text-muted); }
+.breadcrumb ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 0; font-size: .8125rem; color: var(--c-text-muted); }
 .breadcrumb li + li::before { content: "/"; margin: 0 10px; color: var(--c-gold); }
 .breadcrumb a { color: var(--c-text-muted); transition: color var(--dur-fast) var(--ease); }
 .breadcrumb a:hover { color: var(--c-navy); }
@@ -446,8 +445,9 @@ body.menu-open { overflow: hidden; }
 
 /* credential + venue */
 .credential { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; font: 600 1.1rem/1.4 var(--ff-serif); color: var(--c-navy); }
-.venue { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; font-size: .9rem; color: var(--c-text-muted); }
-.venue .i { font-size: 18px; color: var(--c-gold-icon); }
+.venue { display: grid; grid-template-columns: auto 1fr; align-items: start; gap: 4px 10px; font-size: .9rem; color: var(--c-text-muted); }
+.venue .i { font-size: 18px; color: var(--c-gold-icon); margin-top: 2px; }
+.venue .link { grid-column: 2; justify-self: start; }
 .venue-card {
   position: relative; display: grid; grid-template-columns: 1fr; overflow: hidden;
   background: var(--c-navy); color: var(--c-on-navy); padding: 28px; border-radius: var(--r-xs);
@@ -517,13 +517,14 @@ textarea.input { min-height: 132px; resize: vertical; line-height: 1.55; }
 .seg input { position: absolute; opacity: 0; width: 1px; height: 1px; }
 .seg label {
   display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 6px 8px;
-  border-radius: 2px; font-size: .9rem; font-weight: 500; color: var(--c-text-muted); cursor: pointer; text-align: center; line-height: 1.2;
+  border-radius: 2px; font-size: .875rem; font-weight: 500; color: var(--c-text-muted); cursor: pointer; text-align: center; line-height: 1.2; white-space: nowrap;
   transition: background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
 }
 .seg label .i { font-size: 18px; }
 .seg input:checked + label { background: var(--c-white); color: var(--c-navy); font-weight: 600; box-shadow: 0 1px 2px rgba(18,34,61,.08), inset 0 0 0 1px var(--c-gold); }
 .seg input:focus-visible + label { outline: 2px solid var(--c-focus); outline-offset: 2px; }
 fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+legend { padding: 0; margin-bottom: 8px; }
 
 .check { display: flex; gap: 14px; align-items: flex-start; cursor: pointer; font-size: .9375rem; line-height: 1.5; }
 .check input {

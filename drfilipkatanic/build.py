@@ -424,7 +424,7 @@ def make_sitemap_robots():
         + '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + NL + body + "</urlset>" + NL,
         encoding="utf-8", newline=NL)
     (OUT / "robots.txt").write_text(
-        "User-agent: *" + NL + ("Disallow: /" if DEMO else "Allow: /" + NL + "Disallow: /admin/" + NL + "Disallow: /api/") + NL + NL
+        "User-agent: *" + NL + ("Disallow: /" if DEMO else "Allow: /") + NL + "Disallow: /admin/" + NL + "Disallow: /api/" + NL + NL
         + "Sitemap: " + SITE_URL + "/sitemap.xml" + NL,
         encoding="utf-8", newline=NL)
     print(f"  sitemap.xml ({len(urls)} URL), robots.txt ({'Disallow' if DEMO else 'Allow'})")

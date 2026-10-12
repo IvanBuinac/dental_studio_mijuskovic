@@ -1,97 +1,114 @@
 ---
-title: O meni – dr Filip Katanić, doktor medicine | SB Ferona, Novi Sad
-description: Doktor medicine, master reproduktivne embriologije, član tima Specijalne bolnice Ferona u Novom Sadu. Obrazovanje, afilijacije i pristup radu.
-preload: assets/img/portret-01.webp
+title: O meni – dr Filip Katanić | Reproduktivna medicina, Novi Sad
+description: dr Filip Katanić — specijalista ginekologije i akušerstva, master reproduktivni embriolog. Klinički rad, istraživanje i edukacija. Ordinira u SB Ferona u Novom Sadu.
+preload: assets/img/portret-mantil.webp
 jsonld: person
 nav: o-meni
 ---
-<section class="hero on-dark" aria-labelledby="hero-h1">
-  <div class="container hero__grid">
-    <div class="hero__copy">
+<!-- [POTVRDITI SA KLIJENTOM: pismena potvrda titule pre objave — titula se pojavljuje u meta opisu i hero podnaslovu ove stranice] -->
+<section class="page-hero page-hero--about" aria-labelledby="hero-h1">
+  <div class="container page-hero__in page-hero__in--split">
+    <div>
+      <nav class="breadcrumb" aria-label="Putanja"><ol>
+        <li><a href="{{root}}">Početna</a></li>
+        <li aria-current="page">O meni</li>
+      </ol></nav>
+      <p class="eyebrow eyebrow--line">O meni</p>
       <h1 id="hero-h1">dr Filip Katanić</h1>
-      {{> credential}}
-      <p class="hero__lead">Ginekologija i vantelesna oplodnja zahtevaju strpljenje, jasnoću i razumevanje. Ovde možete pročitati nešto više o tome kako radim i gde.</p>
-      <div class="hero__actions">
-        <a class="btn btn--gold" href="{{root}}kontakt/#zakazivanje">Zakažite u SB Feroni</a>
+      <p class="page-hero__sub">Specijalista ginekologije i akušerstva · Master reproduktivni embriolog</p>
+      <!-- [POTVRDITI SA KLIJENTOM: pismena potvrda titule i naziv mastera] -->
+      <p class="lead">Reproduktivna medicina traži strpljenje, jasnoću i razumevanje. Ovde možete pročitati ko sam, kako radim i zašto verujem da je dobar plan važniji od obećanja.</p>
+      <div class="page-hero__act">
+        <a class="btn" href="{{root}}zakazivanje/">Zakaži konsultaciju <svg class="i i--arr" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
-    <div class="hero__media">
-      <div class="frame frame--halo frame--portrait">
-        <img src="{{root}}assets/img/portret-01.webp" width="900" height="1200"
-             alt="dr Filip Katanić, portret" fetchpriority="high">
-      </div>
+    <div class="page-hero__fig frame-offset">
+      <img src="{{root}}assets/img/portret-mantil.webp" width="1000" height="1250" fetchpriority="high"
+           alt="dr Filip Katanić u belom mantilu, portret">
+      <!-- [POTVRDITI SA KLIJENTOM: odobrenje kropa/retuša portreta (Ferona logo na majici)] -->
     </div>
   </div>
 </section>
 
-<section class="section reveal" aria-labelledby="who-h2">
-  <div class="container">
-    <p class="eyebrow">Ko sam ja</p>
-    <h2 id="who-h2">Ko sam ja</h2>
-    <div class="prose">
-      <p>Ja sam Filip Katanić, doktor medicine. Bavim se ginekologijom, sa fokusom na dijagnostiku i lečenje steriliteta i vantelesnu oplodnju, u okviru tima SB Ferona u Novom Sadu.</p>
-      <p>Deo mog rada odvija se i kroz projekat "Moj ginekolog" Doma zdravlja Novi Sad — verujem da informisanost i dostupnost idu zajedno.</p>
-      <p>Sterilitet je za mnoge parove tema koja nosi tišinu, pa i stid. U razgovorima trudim se da to ne bude tako — informacije treba da budu jasne, a briga ljudska.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section section--surface reveal" aria-labelledby="edu-h2">
-  <div class="container">
-    <h2 id="edu-h2">Obrazovanje i afilijacije</h2>
-    <ol class="steps" style="max-width:560px">
-      <li class="steps__item"><h3>Master reproduktivne embriologije</h3></li>
-      <li class="steps__item"><h3>Član tima SB Ferona, Novi Sad</h3></li>
-      <li class="steps__item"><h3>Projekat „Moj ginekolog", Dom zdravlja Novi Sad</h3></li>
-    </ol>
-    <p class="prose" style="margin-top:24px;color:var(--color-text-muted)">
-      Prema javno dostupnim izvorima, obrazovanje je povezano sa Medicinskim fakultetom u Novom Sadu — ova informacija je u postupku potvrde.
-      <!-- [POTVRDITI SA KLIJENTOM: tačna ustanova i godina diplomiranja, radi bezbednog dodavanja u tekst i u alumniOf shemu] -->
-    </p>
-  </div>
-</section>
-
-<section class="section on-dark reveal" aria-labelledby="approach-h2">
-  <div class="container about-teaser">
-    <div class="frame frame--halo frame--portrait">
-      <img src="{{root}}assets/img/brend-vizual-01.webp" width="900" height="1125" loading="lazy"
-           alt="dr Filip Katanić, portret">
+<section class="section" aria-labelledby="who-h2">
+  <div class="container who">
+    <div class="who__fig frame-offset reveal">
+      <img src="{{root}}assets/img/o-meni-kvadrat.webp" width="1000" height="1000" loading="lazy"
+           alt="dr Filip Katanić za radnim stolom u ordinaciji">
     </div>
     <div>
-      <p class="eyebrow">Pristup radu</p>
-      <h2 id="approach-h2">Kako pristupam radu</h2>
-      <p class="philosophy__quote" style="text-align:left;margin:0 0 20px;font-size:clamp(1.35rem,2.6vw,1.9rem)">„Nije garancija trudnoće, ali može sačuvati važnu šansu za budućnost."</p>
-      <div class="prose">
-        <p>Infertilitet nije samo stres, i niko ne treba da nosi osećaj krivice zbog toga. Stres može uticati na hormone i ciklus, ali uzroci steriliteta su po pravilu složeniji i zaslužuju ozbiljnu medicinsku procenu.</p>
-        <p>Ne pobeđuje onaj ko uradi najviše analiza — pobeđuje onaj ko uradi prave. Zato svaki plan počinje razgovorom, a ne šablonom.</p>
+      <p class="eyebrow eyebrow--line">Ko sam ja</p>
+      <h2 id="who-h2">Lekar koji razume da je put do roditeljstva retko pravolinijski.</h2>
+      <div class="prose" style="margin-top:20px">
+        <p>Ja sam Filip Katanić. Bavim se reproduktivnom medicinom — dijagnostikom i lečenjem steriliteta, vantelesnom oplodnjom i ginekologijom. Ordiniram u SB Ferona u Novom Sadu.</p>
+        <p>Kao master reproduktivni embriolog, IVF posmatram i iz ugla laboratorije: šta se dešava sa svakom ćelijom i embrionom, i zašto se brojevi kroz postupak prirodno menjaju. To mi pomaže da pacijentima objasnim ne samo šta radimo, već i zašto.</p>
+        <p>Sterilitet je za mnoge parove tema koja nosi tišinu, pa i krivicu. Infertilitet nije „samo stres“ i niko ne treba da nosi osećaj krivice jer „nije bio dovoljno opušten“. Moj posao je da informacije budu jasne, a briga ljudska.</p>
+        <p>Deo mog rada odvija se i kroz projekat „Moj ginekolog“ Doma zdravlja Novi Sad — verujem da informisanost i dostupnost idu zajedno.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section reveal" aria-labelledby="talks-h2">
-  <div class="container">
-    <div class="section__head section__head--left">
-      <p class="eyebrow">Konferencije i predavanja</p>
+<section class="section section--white section--line" aria-labelledby="edu-h2">
+  <div class="container edu-grid">
+    <div>
+      <p class="eyebrow eyebrow--line">Obrazovanje i afilijacije</p>
+      <h2 id="edu-h2">Obrazovanje i rad</h2>
+    </div>
+    <ol class="timeline" role="list">
+      <li><span class="timeline__n">01</span><div><h3>Doktor medicine</h3><!-- [POTVRDITI SA KLIJENTOM: ustanova i godina — do potvrde vidljivo samo "Doktor medicine"] --></div></li>
+      <li><span class="timeline__n">02</span><div><h3>Specijalista ginekologije i akušerstva</h3><!-- [POTVRDITI SA KLIJENTOM: pismena potvrda titule; javni akademski profili navode status specijalizanta] --></div></li>
+      <li><span class="timeline__n">03</span><div><h3>Master reproduktivne embriologije</h3><p>MSc in Reproductive Embryology</p><!-- [POTVRDITI SA KLIJENTOM: tačan naziv i ustanova] --></div></li>
+      <li><span class="timeline__n">04</span><div><h3>Doktorske studije</h3><p>Medicinski fakultet Univerziteta u Novom Sadu; istraživanje u oblasti prediktivnog modelovanja ovarijalnog odgovora.</p><!-- [POTVRDITI SA KLIJENTOM: doktorske studije] --></div></li>
+      <li><span class="timeline__n">05</span><div><h3>Ordinira u SB Ferona, Novi Sad</h3><p>Reproduktivna medicina i IVF.</p><!-- [POTVRDITI SA KLIJENTOM: status — zaposlen / saradnik; vidljiva formulacija "ordinira" je neutralna] --></div></li>
+      <li><span class="timeline__n">06</span><div><h3>Projekat „Moj ginekolog“</h3><p>Dom zdravlja Novi Sad</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="approach-h2">
+  <div class="container--narrow">
+    <p class="eyebrow eyebrow--center">Pristup</p>
+    <h2 id="approach-h2" class="text-center">IVF se ne radi po šablonu. IVF se radi po Vama.</h2>
+    <p class="quote" style="margin:28px auto 0;max-width:34ch">„Ne možemo kontrolisati baš sve, ali možemo napraviti najbolji plan.“</p>
+    <div class="prose" style="margin:28px auto 0">
+      <p>Svaki plan počinje razgovorom, ne protokolom. Ovarijalna rezerva, prethodni odgovor na terapiju, nalazi partnera i Vaša očekivanja — sve to ulazi u odluku.</p>
+      <p>Ne pobeđuje onaj ko uradi najviše analiza. Pobeđuje onaj ko uradi prave. Zato predlažem samo ono što ima smisla za Vašu situaciju — i objašnjavam zašto.</p>
+      <p>Nijedan medicinski postupak ne može garantovati ishod. Ono što mogu da obećam jeste jasan plan, iskrene informacije i vreme za Vaša pitanja.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--cream2 section--line" aria-labelledby="talks-h2">
+  <div class="container talks">
+    <figure class="talks__fig frame-offset reveal">
+      <img src="{{root}}assets/img/konferencija-panel.webp" width="1000" height="1250" loading="lazy"
+           alt="dr Filip Katanić kao panelista na skupu Bio Save — Bebologijini krugovi">
+      <!-- [POTVRDITI SA KLIJENTOM: titula na bedžu na fotografiji] -->
+    </figure>
+    <div>
+      <p class="eyebrow eyebrow--line">Nauka i edukacija</p>
       <h2 id="talks-h2">Van ordinacije</h2>
-      <p class="prose">Predavanja i učešća na stručnim skupovima — Thrombosis Days (Švajcarska), ESHRE, GIGANODE (Švajcarska), Divčibare, Bio Save i SPRING Fertility — deo su kontinuiranog praćenja struke.</p>
+      <p class="lead" style="margin-top:14px">Predavanja i učešće na stručnim skupovima deo su stalnog praćenja struke — od međunarodnih kongresa do edukacije budućih mama.</p>
+      <ul class="talk-list" role="list" style="margin-top:20px">
+        <li><strong>Thrombosis Days, Švajcarska</strong> — predavanje iz ugla IVF-a</li>
+        <li><strong>GIGANODE International Panel, Švajcarska</strong> — „Infertility and Indications for Assisted Reproduction“</li>
+        <li><strong>ESHRE</strong> — kongres Evropskog udruženja za humanu reprodukciju i embriologiju</li>
+        <li><strong>Stručni seminar, Divčibare</strong> — predavanje o peripartalnom krvarenju iz akušerske perspektive</li>
+        <li><strong>Bio Save</strong> — serija predavanja za buduće mame (Bebologijini krugovi)</li>
+        <li><strong>SPRING Fertility</strong><!-- [POTVRDITI SA KLIJENTOM: status i datum] --></li>
+      </ul>
+      <p style="margin-top:20px;color:var(--c-text-muted)">Na Instagramu <a class="link" href="{{g.ig_url}}" rel="noopener" target="_blank">@drfilipkatanic</a> redovno objavljujem edukativni sadržaj — o IVF-u, PCOS-u, zamrzavanju jajnih ćelija i muškom faktoru — jer verujem da informisan pacijent donosi mirnije i sigurnije odluke.</p>
+      <p style="margin-top:16px"><a class="link-arrow" href="{{root}}mediji-i-predavanja/">Mediji i predavanja <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
     </div>
-    <div class="grid-2" style="max-width:640px">
-      <a class="pair" href="{{root}}mediji-i-predavanja/">
-        <div class="frame frame--halo frame--wide">
-          <img src="{{root}}assets/img/konferencija-01.webp" width="480" height="563" loading="lazy"
-               alt="dr Filip Katanić sa kolegama na ESHRE kongresu">
-        </div>
-        <span class="pair__lbl">Iz konferencija</span>
-      </a>
-      <a class="pair" href="{{root}}mediji-i-predavanja/">
-        <div class="frame frame--halo">
-          <img class="crop-konferencija02" src="{{root}}assets/img/konferencija-02.webp" width="900" height="1187" loading="lazy"
-               alt="dr Filip Katanić kao predavač na stručnom skupu u Divčibarama">
-        </div>
-        <span class="pair__lbl">Iz konferencija</span>
-      </a>
-    </div>
-    <p style="margin-top:24px"><a class="link" href="{{root}}mediji-i-predavanja/">Sve konferencije i mediji →</a></p>
+  </div>
+</section>
+
+<section class="section personal" aria-labelledby="personal-h2">
+  <div class="container--narrow">
+    <p class="eyebrow eyebrow--center">Ja sam i…</p>
+    <h2 id="personal-h2">Iza mantila</h2>
+    <p>Van ordinacije sam suprug, otac i neko ko rado uzme gitaru u ruke. Možda baš zato dobro razumem koliko porodica znači — i koliko je važno da put do nje bude vođen sa pažnjom.</p>
+    <!-- [POTVRDITI SA KLIJENTOM: da li želi lični deo na sajtu] -->
   </div>
 </section>

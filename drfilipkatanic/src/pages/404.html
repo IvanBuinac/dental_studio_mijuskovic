@@ -5,14 +5,15 @@ robots: noindex, nofollow
 cta: none
 root: /
 ---
-<section class="section text-center">
+<section class="nf" aria-labelledby="hero-h1">
   <div class="container">
-    <p class="eyebrow">Greška 404</p>
-    <h1>Stranica nije pronađena</h1>
-    <p class="prose" style="margin-inline:auto">Stranica koju tražite ne postoji ili je premeštena. Vratite se na početnu ili pogledajte oblasti rada.</p>
-    <div class="hero__actions" style="justify-content:center;margin-top:24px">
-      <a class="btn" href="{{root}}">Na početnu</a>
-      <a class="link" href="{{root}}oblasti-rada/">Oblasti rada</a>
+    {{> seal}}
+    <p class="eyebrow eyebrow--center">Greška 404</p>
+    <h1 id="hero-h1">Stranica nije pronađena</h1>
+    <p>Stranica koju tražite ne postoji ili je premeštena. Vratite se na početnu ili zakažite konsultaciju.</p>
+    <div class="nf__act">
+      <a class="btn btn--outline" href="{{root}}">Na početnu</a>
+      <a class="btn" href="{{root}}zakazivanje/">Zakaži konsultaciju <svg class="i i--arr" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>

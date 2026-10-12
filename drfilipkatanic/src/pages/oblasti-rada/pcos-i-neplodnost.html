@@ -2,87 +2,73 @@
 title: PCOS i neplodnost – dijagnostika i praćenje | dr Filip Katanić
 description: Šta je PCOS, kako se dijagnostikuje i kako se prati ovulacija. Edukativan sadržaj i najčešće zablude o PCOS-u.
 jsonld: breadcrumb-pcos,auto-faq
+usluga: pcos
+cta_title: IVF se ne radi po šablonu. IVF se radi po Vama.
+cta_text: Zakažite konsultaciju — prvo razumemo Vašu situaciju, pa pravimo plan.
 ---
-<nav class="breadcrumb" aria-label="Putanja"><div class="container breadcrumb__in"><ol>
-  <li><a href="{{root}}">Početna</a></li>
-  <li><a href="{{root}}oblasti-rada/">Oblasti rada</a></li>
-  <li aria-current="page">PCOS i neplodnost</li>
-</ol></div></nav>
-
-<section class="section reveal" aria-labelledby="hero-h1">
-  <div class="container hero__grid">
+<section class="page-hero" aria-labelledby="hero-h1">
+  <div class="container page-hero__in page-hero__in--split">
     <div>
-      <p style="margin-bottom:16px"><span class="badge">PCOS</span></p>
+      <nav class="breadcrumb" aria-label="Putanja"><ol>
+        <li><a href="{{root}}">Početna</a></li>
+        <li><a href="{{root}}oblasti-rada/">Oblasti rada</a></li>
+        <li aria-current="page">PCOS i neplodnost</li>
+      </ol></nav>
+      <p class="eyebrow eyebrow--line">Oblasti rada · PCOS</p>
       <h1 id="hero-h1">PCOS i neplodnost</h1>
-      <p class="hero__lead" style="color:var(--color-text-muted)">PCOS (sindrom policističnih jajnika) jedan je od čestih uzroka nepravilnog ciklusa i oteženog začeća. Dijagnostika i praćenje pomažu da se razume šta se zapravo dešava u organizmu.</p>
-      <div class="hero__actions">
-        <a class="btn" href="{{root}}kontakt/#zakazivanje">Zakažite u SB Feroni</a>
+      <p class="lead">PCOS (sindrom policističnih jajnika) jedan je od čestih uzroka nepravilnog ciklusa i oteženog začeća. Dijagnostika i praćenje pomažu da se razume šta se zapravo dešava u organizmu.</p>
+      <div class="page-hero__act">
+        <a class="btn" href="{{root}}zakazivanje/?usluga=pcos">Zakaži konsultaciju <svg class="i i--arr" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--outline" href="{{root}}pitanja-i-odgovori/">Pitanja i odgovori</a>
       </div>
     </div>
-    <a class="pair" href="{{root}}pitanja-i-odgovori/">
-      <div class="frame frame--halo frame--square" style="max-width:360px">
-        <img src="{{root}}assets/img/edukacija-pcos-01.webp" width="480" height="600" loading="lazy"
-             alt="infografika o PCOS-u">
-      </div>
-      <span class="pair__lbl">Iz edukacije</span>
-    </a>
-  </div>
-</section>
-{{> venue}}
-
-<section class="section reveal">
-  <div class="container prose">
-    <h2>Šta je PCOS</h2>
-    <p>PCOS je hormonski poremećaj koji može uticati na ovulaciju, ciklus i, kod nekih žena, na plodnost. Simptomi i njihova izraženost razlikuju se od osobe do osobe, pa se i dijagnoza postavlja individualno.</p>
+    <div class="page-hero__fig frame-offset">
+      <img src="{{root}}assets/img/edukacija-pcos-01.webp" width="480" height="600" fetchpriority="high"
+           alt="Infografika: PCOS — imate ciklus, ali da li imate ovulaciju?">
+    </div>
   </div>
 </section>
 
-<section class="section section--surface reveal">
-  <div class="container prose">
-    <h2>Dijagnostika i hormonske analize</h2>
-    <p>Dijagnostika obično obuhvata razgovor o ciklusu i simptomima, hormonske analize i, po potrebi, ultrazvučni pregled. Cilj je da se dobije jasna slika pre nego što se razgovara o daljim koracima.</p>
+<div class="container page-grid">
+  <div class="page-grid__main">
+    <section class="block prose" id="sta-je" aria-labelledby="h2a">
+      <h2 id="h2a">Šta je PCOS</h2>
+      <p>PCOS je hormonski poremećaj koji može uticati na ovulaciju, ciklus i, kod nekih žena, na plodnost. Simptomi i njihova izraženost razlikuju se od osobe do osobe, pa se i dijagnoza postavlja individualno.</p>
+    </section>
+    <section class="block prose" id="dijagnostika" aria-labelledby="h2b">
+      <h2 id="h2b">Dijagnostika i hormonske analize</h2>
+      <p>Dijagnostika obično obuhvata razgovor o ciklusu i simptomima, hormonske analize i, po potrebi, ultrazvučni pregled. Cilj je da se dobije jasna slika pre nego što se razgovara o daljim koracima.</p>
+    </section>
+    <section class="block prose" id="ovulacija" aria-labelledby="h2c">
+      <h2 id="h2c">Praćenje ovulacije</h2>
+      <p>Kod PCOS-a ovulacija često nije pravilna ili izostaje. Praćenje ciklusa i ovulacije pomaže da se proceni pravi trenutak za dalje korake, ako su potrebni.</p>
+    </section>
+    <section class="block prose" id="zablude" aria-labelledby="h2d">
+      <h2 id="h2d">Nekoliko zabluda o PCOS-u</h2>
+      <p><strong>„PCOS znači da ne mogu da zatrudnim.“</strong> — Ne nužno. PCOS otežava, ali ne isključuje trudnoću kod svih žena; mnogo zavisi od individualne slike.</p>
+      <p><strong>„Ako imam PCOS, kriva sam što nisam smršala.“</strong> — Telesna težina može biti povezana sa simptomima, ali PCOS nije posledica ličnog propusta.</p>
+    </section>
+    <section class="block" id="pitanja" aria-labelledby="h2e">
+      <h2 id="h2e">Najčešća pitanja o PCOS-u</h2>
+      {{faq}}
+      P: Šta je PCOS i kako se dijagnostikuje?
+      O: PCOS je hormonski poremećaj koji može uticati na ciklus, ovulaciju i plodnost. Dijagnostika obično obuhvata razgovor o simptomima, hormonske analize i, po potrebi, ultrazvučni pregled.
+      {{/faq}}
+    </section>
+    <section class="block" aria-labelledby="h2f">
+      <h2 id="h2f">Povezano</h2>
+      <ul class="hub-grid" role="list" style="grid-template-columns:1fr">
+        <li><a class="card area-card" href="{{root}}oblasti-rada/vantelesna-oplodnja-ivf/"><span class="icon-ring"><svg class="i" aria-hidden="true"><use href="#i-target"/></svg></span><div class="area-card__txt"><h3>Vantelesna oplodnja (IVF/ICSI)</h3><p>Dijagnostika steriliteta i tok postupka vantelesne oplodnje.</p></div><svg class="i area-card__arr" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+      </ul>
+    </section>
+    <div class="block">{{> venue}}</div>
   </div>
-</section>
-
-<section class="section reveal">
-  <div class="container prose">
-    <h2>Praćenje ovulacije</h2>
-    <p>Kod PCOS-a ovulacija često nije pravilna ili izostaje. Praćenje ciklusa i ovulacije pomaže da se proceni pravi trenutak za dalje korake, ako su potrebni.</p>
-  </div>
-</section>
-
-<section class="section section--surface reveal">
-  <div class="container prose">
-    <h2>Nekoliko zabluda o PCOS-u</h2>
-    <p><strong>„PCOS znači da ne mogu da zatrudnim."</strong> — Ne nužno. PCOS otežava, ali ne isključuje trudnoću kod svih žena; mnogo zavisi od individualne slike.</p>
-    <p><strong>„Ako imam PCOS, kriva sam što nisam smršala."</strong> — Telesna težina može biti povezana sa simptomima, ali PCOS nije posledica ličnog propusta.</p>
-    <p style="color:var(--color-text-muted);font-size:.9rem">Dodatne zablude i detaljnija objašnjenja pripremaju se za narednu fazu sadržaja.</p>
-  </div>
-</section>
-
-<section class="section reveal">
-  <div class="container" style="max-width:760px">
-    <h2>Najčešća pitanja o PCOS-u</h2>
-    {{faq}}
-    P: Šta je PCOS i kako se dijagnostikuje?
-    O: PCOS je hormonski poremećaj koji može uticati na ciklus, ovulaciju i plodnost. Dijagnostika obično obuhvata razgovor o simptomima, hormonske analize i, po potrebi, ultrazvučni pregled.
-    {{/faq}}
-  </div>
-</section>
-
-<section class="section section--surface reveal">
-  <div class="container">
-    {{> credential}}
-    <div style="margin-top:24px;max-width:520px">{{> venue-card}}</div>
-  </div>
-</section>
-
-<section class="section reveal">
-  <div class="container" style="max-width:560px">
-    <h2>Povezano</h2>
-    <a class="oblast-row" href="{{root}}oblasti-rada/vantelesna-oplodnja-ivf/">
-      <span class="oblast-row__top"><strong>IVF / ICSI</strong> →</span>
-      <p>Dijagnostika steriliteta i tok postupka vantelesne oplodnje.</p>
-    </a>
-  </div>
-</section>
+  <aside class="page-grid__aside" aria-label="Zakazivanje">
+    <div class="aside-sticky">
+      {{> aside-cta}}
+      <nav class="toc" aria-label="Na ovoj stranici"><p>Na ovoj stranici</p>
+        <a href="#sta-je">Šta je PCOS</a><a href="#dijagnostika">Dijagnostika</a><a href="#ovulacija">Praćenje ovulacije</a><a href="#zablude">Zablude</a><a href="#pitanja">Pitanja</a>
+      </nav>
+    </div>
+  </aside>
+</div>

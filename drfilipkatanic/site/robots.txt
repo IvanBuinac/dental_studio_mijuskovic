@@ -1,4 +1,6 @@
 User-agent: *
 Disallow: /
+Disallow: /admin/
+Disallow: /api/
 
 Sitemap: https://drfilipkatanic.cvijanovic-dent.workers.dev/sitemap.xml
