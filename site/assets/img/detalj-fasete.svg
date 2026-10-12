@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="t">
+  <title id="t">Ilustracija: tanka keramička faseta pre postavljanja na prednji zub</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#EEF7F6"/></linearGradient>
+    <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#2DD4BF" stop-opacity=".2"/><stop offset="1" stop-color="#2DD4BF" stop-opacity="0"/></radialGradient>
+    <linearGradient id="enamel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#F1F6F5"/></linearGradient>
+    <linearGradient id="veneer" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".95"/><stop offset="1" stop-color="#2DD4BF" stop-opacity=".3"/></linearGradient>
+    <path id="inc" d="M-78 0 C-86 110 -86 250 -76 340 C-68 405 -40 430 0 432 C40 430 68 405 76 340 C86 250 86 110 78 0 Z"/>
+  </defs>
+  <rect width="1200" height="1500" fill="url(#bg)"/>
+  <circle cx="600" cy="760" r="560" fill="url(#glow)"/>
+  <g fill="none" stroke="#D4E2E0" stroke-width="2">
+    <circle cx="600" cy="760" r="470"/>
+    <circle cx="600" cy="760" r="540" stroke-dasharray="2 14" stroke-linecap="round"/>
+  </g>
+  <!-- teeth (front view, upper central incisors) -->
+  <g stroke="#0B3B46" stroke-width="6" stroke-linejoin="round">
+    <use href="#inc" transform="translate(370 560)" fill="url(#enamel)"/>
+    <use href="#inc" transform="translate(545 560) scale(.9 .95)" fill="#F8F9FA" stroke-dasharray="14 12" stroke-linecap="round"/>
+  </g>
+  <path d="M330 640 C326 700 326 770 332 830" fill="none" stroke="#2DD4BF" stroke-width="8" stroke-linecap="round" opacity=".7"/>
+  <!-- gingiva -->
+  <path d="M230 510 Q230 470 270 470 L660 470 Q700 470 700 510 L700 560 C660 610 600 625 545 600 C500 625 460 625 457 600 C420 625 330 625 290 600 C265 590 245 575 230 560 Z" fill="#2DD4BF" fill-opacity=".14"/>
+  <path d="M230 560 C245 575 265 590 290 600 C330 625 420 625 457 600 C460 625 500 625 545 600 C600 625 660 610 700 560" fill="none" stroke="#0D9488" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- veneer shell, lifted -->
+  <g transform="translate(860 560) rotate(8)">
+    <use href="#inc" fill="url(#veneer)" stroke="#0D9488" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M-44 60 C-48 130 -48 210 -42 280" fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round"/>
+  </g>
+  <!-- placement arrow -->
+  <path d="M770 1060 C720 1110 660 1110 620 1060" fill="none" stroke="#0B3B46" stroke-width="5" stroke-dasharray="3 14" stroke-linecap="round"/>
+  <path d="M634 1046 L616 1064 L640 1074" fill="none" stroke="#0B3B46" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#2DD4BF"><circle cx="960" cy="380" r="7"/><circle cx="250" cy="1120" r="5"/><circle cx="930" cy="1210" r="4"/></g>
+</svg>

@@ -5,9 +5,9 @@
   var root = doc.documentElement;
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- Placeholder slike ----------
-     Ako fajl iz assets/img/ ne postoji, sliku sakrivamo i ostaje vidljiv
-     placeholder sa imenom fajla. Kada se fajl doda, slika se prikaže sama. */
+  /* ---------- Okviri slika (.ph) ----------
+     Rezerva: ako se slika ne učita, sakrivamo slomljenu ikonu i ostaje
+     neutralna podloga okvira (bez natpisa). */
   function markMissing(img) {
     var ph = img.closest('.ph');
     if (ph) ph.classList.add('is-missing');

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="t">
+  <title id="t">Ilustracija: ključ boja za određivanje nijanse zuba</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#EEF7F6"/></linearGradient>
+    <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#2DD4BF" stop-opacity=".2"/><stop offset="1" stop-color="#2DD4BF" stop-opacity="0"/></radialGradient>
+    <g id="tab">
+      <rect x="-42" y="0" width="84" height="150" rx="14" fill="#0B3B46"/>
+      <path d="M-70 150 L70 150 C82 230 80 330 60 400 C44 450 -44 450 -60 400 C-80 330 -82 230 -70 150 Z" stroke="#0B3B46" stroke-width="6" stroke-linejoin="round"/>
+    </g>
+  </defs>
+  <rect width="1200" height="1500" fill="url(#bg)"/>
+  <circle cx="600" cy="760" r="560" fill="url(#glow)"/>
+  <g fill="none" stroke="#D4E2E0" stroke-width="2">
+    <circle cx="600" cy="760" r="470"/>
+    <circle cx="600" cy="760" r="540" stroke-dasharray="2 14" stroke-linecap="round"/>
+  </g>
+  <!-- holder -->
+  <rect x="190" y="470" width="820" height="40" rx="20" fill="#FFFFFF" stroke="#0B3B46" stroke-width="6"/>
+  <g font-family="Plus Jakarta Sans, system-ui, sans-serif" font-weight="700" font-size="34" fill="#FFFFFF" text-anchor="middle">
+    <g transform="translate(270 500)"><use href="#tab" fill="#FFFFFF"/><text y="90">A1</text></g>
+    <g transform="translate(435 500)"><use href="#tab" fill="#FBF6EA"/><text y="90">A2</text></g>
+    <g transform="translate(600 500)"><use href="#tab" fill="#F5ECD6"/><text y="90">A3</text></g>
+    <g transform="translate(765 500)"><use href="#tab" fill="#EFE2C3"/><text y="90">B2</text></g>
+    <g transform="translate(930 500)"><use href="#tab" fill="#E7D6AF"/><text y="90">C1</text></g>
+  </g>
+  <!-- selected shade -->
+  <path d="M505 628 L695 628 C713 730 711 860 685 945 C667 1000 533 1000 515 945 C489 860 487 730 505 628 Z" fill="none" stroke="#2DD4BF" stroke-width="5" stroke-dasharray="4 12" stroke-linecap="round"/>
+  <path d="M560 700 C562 675 576 664 594 668" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round"/>
+  <g fill="#2DD4BF"><circle cx="980" cy="1180" r="7"/><circle cx="230" cy="330" r="5"/><circle cx="300" cy="1150" r="4"/></g>
+</svg>

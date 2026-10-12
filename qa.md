@@ -62,3 +62,28 @@
 
 Posle ispravki ponovo su snimljene sve stranice na sve tri širine. Pogođene sekcije su vizuelno proverene, i nema novih 404, console grešaka ni horizontalnog skrola.
 Reprezentativni snimci: `qa-screens/pocetna-1440.png`, `qa-screens/pocetna-375.png`, `qa-screens/usluga-lumineeri-1440.png`. Snimci su full-page; header i donja traka su za snimanje postavljeni kao statični, da se ne bi ponavljali usred stranice.
+
+
+## Ispravke 2026-10-12 — placeholderi
+
+**Povod:** klijent je poslao jednu fotografiju prostora (`assets/raw/images.jpg`, čekaonica) i potvrdio da fotografija implanata nema i neće ih biti. Cilj: nijedan vidljiv placeholder, a struktura sajta ostaje ista.
+
+| # | gde | izmena |
+|---|---|---|
+| P1 | `assets/build_images.py`, `site/assets/img/` | `images.jpg` → `ordinacija-prijem.webp` (387×516, 3:4, bez uvećanja, blago izoštreno, q86). |
+| P2 | `/` „Zašto Dental Studio Mijušković“, galerija | 4 polja (2 nepostojeće fotografije enterijera + fasete + boja) → 3: `ordinacija-prijem` (visoka, preko dva reda) + `tim` + `detalj-preciznost`. Novi `.gallery--stack`; na mobilnom velika slika 4:5 + dva kvadrata. |
+| P3 | `/o-nama/` galerija „Ordinacija“ | 4 placeholdera (2×2 / horizontalni skrol) → 3 slike u redu (`.gallery--row` 3fr/4.5fr/4.5fr): `ordinacija-prijem`, `usluga-izbeljivanje`, `hero`. Ništa se ne ponavlja u sekciji (`tim` je već u istoj sekciji, pa nije korišćen). |
+| P4 | `/kontakt/` hero | `ordinacija-prijem` u okviru 3:4, `max-width: 400px` (izvor je mali, pa nije razvučen preko pola ekrana). |
+| P5 | implanti (`/`, `/usluge/`, `/usluge/implanti/`) | `usluga-implanti.svg`: linijska ilustracija implanta u brend paleti. JSON-LD `image` → `og-cover.jpg`. Na mobilnom je bedž „I3 · Implanti“ pomeren ispod ilustracije, da je ne prekriva. |
+| P6 | `/usluge/lumineeri/`, `/usluge/protetika/`, `/usluge/izbeljivanje/` | `detalj-fasete.svg` i `detalj-boja.svg`, ilustracije u istom stilu (ključ boja se uklapa u potpisni element sajta). |
+| P7 | `/usluge/implanti/` „Pre i posle“ | Zamenjeno sekcijom „Konsultacija: prvi korak“ (lead, CTA „Zakažite konsultaciju“, kartica „Šta dobijate na konsultaciji“, link na radove iz protetike, napomena o individualnom planu). Link u završnom CTA `rezultati/#implanti` → `rezultati/`. |
+| P8 | `/usluge/izbeljivanje/` „Pre i posle“ | Sekcija uklonjena; smenjivanje pozadina sekcija ostaje pravilno. Link `rezultati/#izbeljivanje` → `rezultati/`. |
+| P9 | `/rezultati/` | Uklonjeni slučajevi `lumineeri-06`, `protetika-03/04`, `implanti-01/02`, `izbeljivanje-01` i tabovi „Implanti“ i „Izbeljivanje“. Filter: Sve 7, Lumineeri i fasete 5, Krunice i mostovi 2. „Ključ boja“ ostaje. |
+| P10 | sve stranice, CSS, JS | Uklonjeni `.ph__label` natpisi sa imenom fajla i `data-ph` atributi (ranije su bili u DOM-u i ispod učitanih slika), CSS za njih i šrafura okvira. |
+
+**Provera (posle izmena):**
+- Statička skripta nad svim `.html` u `site/`: proverila je 429 lokalnih `src`/`srcset`/`href`. Svi fajlovi postoje, nijedan `.ph__label`/`data-ph` nije ostao, svaki `rezultati/#…` hash ima tab, svaki tab ima slučajeve, svih 9 URL-ova iz `sitemap.xml` postoji, `url()` u CSS-u su ispravni. U HTML-u (ni u JSON-LD-u) se ne pominje nijedan nepostojeći fajl iz `assets/img/`.
+- Playwright (Chromium), 9 stranica × 1440 i 375 px: **0 console grešaka, 0 odgovora ≥ 400, 0 neuspelih zahteva, 0 slomljenih slika, bez horizontalnog skrola**. Pregledani su isečci full-page snimaka; jedina popravka posle pregleda bio je bedž na implantima (P5) i razmak liste u kartici konsultacije.
+- Ažurirani snimci: `qa-screens/pocetna-1440.png`, `qa-screens/pocetna-375.png`.
+
+**Otvoreno:** na `/kontakt/` i dalje stoje tekstualne oznake „Mapa lokacije biće dodata uskoro“ i „Radno vreme uskoro“. To nisu slike, nego čekaju podatke od klijenta (adresa, radno vreme). Stavka #7 iz tabele iznad je ovim rešena.

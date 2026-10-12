@@ -16,7 +16,7 @@ rezultati/index.html           Pre/posle galerija sa filterom (#lumineeri, #prot
 kontakt/index.html             Telefoni, Viber, WhatsApp, Instagram, dolazak iz drugih gradova
 404.html                       Samostalna stranica greške (inline stil)
 css/style.css                  Ceo stil (boje iz brand.md kao CSS varijable)
-js/main.js                     Meni, dropdown, pre/posle klizač, filter, placeholderi slika, animacije
+js/main.js                     Meni, dropdown, pre/posle klizač, filter, rezerva za neučitane slike, animacije
 assets/img/                    Slike (vidi assets/img/README.md)
 favicon.svg                    Monogram „M“ (petrolej + mint tačka)
 sitemap.xml, robots.txt
@@ -39,7 +39,7 @@ python3 -m http.server 8080
    - u svakom HTML-u obrisati `<meta name="robots" content="noindex, nofollow">`;
    - u `robots.txt` zameniti `Disallow: /` sa `Allow: /` i otkomentarisati `Sitemap:` liniju;
    - u footeru obrisati „Demo verzija sajta“.
-3. **Slike:** dodati fajlove koji nedostaju u `assets/img/` tačno pod imenima iz `assets/img/README.md`. HTML se ne menja. Slučajeve na `/rezultati/` za koje nema fotografija ukloniti (`<li class="case">`).
+3. **Slike:** sve slike na koje HTML upućuje postoje (stanje 12. 10. 2026, vidi `assets/img/README.md`). Implant, fasete i ključ boja su SVG ilustracije. Nove fotografije (enterijer, novi slučajevi) se dodaju kao fajl **i** kao element u HTML-u.
 4. Rešiti sve stavke `[POTVRDITI SA KLIJENTOM]` (pretraga po tom tekstu; sve su HTML komentari).
 5. Postaviti ceo sadržaj foldera `site/` na hosting.
 
@@ -66,7 +66,7 @@ Sve je u kodu označeno komentarom `<!-- [POTVRDITI SA KLIJENTOM: …] -->`. Na 
 ## Tehničke napomene
 
 - **Potpisni element „Ključ boja“:** pločice za usluge (`.shade-tab`), mini pločice za pod-navigaciju, tabove i filter (`.shade-mini`), eyebrow čip iznad naslova. Kodovi L1/P2/I3/B4 su oznake sajta, ne VITA nijanse.
-- **Placeholderi slika:** svaka slika je `<figure class="ph">` sa oznakom (ime fajla + opis) ispod `<img>`. Ako fajl ne postoji, JS sakriva `<img>`; kada fajl postoji, slika prekriva oznaku. Bez CLS-a (`aspect-ratio` + `width`/`height`).
+- **Okviri slika:** svaka slika je `<figure class="ph">` sa fiksnim `aspect-ratio` i `object-fit: cover` (bez CLS-a). Natpisa sa imenom fajla više nema; ako se slika ne učita, JS sakriva slomljenu ikonu i ostaje neutralna podloga.
 - **Pre/posle klizač:** `<input type="range">` preko slike (radi mišem, dodirom i tastaturom). Bez JS-a dve slike stoje jedna pored druge.
 - **Logo:** `assets/img/logo.webp` se prikazuje kada se učita; ako ga nema, ostaje tekstualni wordmark.
 - **Pristupačnost:** jedan H1 po stranici, skip-link, vidljiv mint fokus, `aria-expanded`/`aria-pressed`, `prefers-reduced-motion`. Dugmad i teal tekst koriste `#0F766E` (umesto `#0D9488`) zbog WCAG AA kontrasta belog teksta.

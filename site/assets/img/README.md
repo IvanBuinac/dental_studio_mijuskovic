@@ -1,58 +1,39 @@
 # Slike sajta (`site/assets/img/`)
 
-Sajt prikazuje placeholder (ime fajla + opis) na svakom mestu gde fajl ne postoji. Kada se ovde doda fajl **sa tačnim imenom**, slika se prikazuje sama, bez izmene HTML-a.
+**Stanje 12. 10. 2026. (ispravka placeholdera):** sajt više nema nijedan placeholder. Svaki `<img>` pokazuje na fajl koji postoji (provereno skriptom nad svim `.html` fajlovima). Natpisi sa imenom fajla (`.ph__label`, `data-ph`) uklonjeni su iz HTML-a i CSS-a. Okvir `.ph` ostaje samo kao omotač sa fiksnim odnosom stranica i `object-fit: cover`. Ako se slika ne učita, JS sakriva slomljenu ikonu i ostaje neutralna svetla podloga, bez teksta.
 
-- Format: WebP, kvalitet 80–85 (og-cover i kao `.jpg` za društvene mreže).
+- Format: WebP, kvalitet 80–86 (og-cover i kao `.jpg`). Ilustracije su SVG (vektorske, oko 3 KB, oštre na svakoj veličini).
 - Pre/posle se uvek isporučuje kao par `-pre` / `-posle` istog kadra, odnosa i veličine (3:2).
-- `width`/`height` u HTML-u su upisani prema stvarnim dimenzijama postojećih fajlova (vidi `assets/manifest.md`); za nove fajlove važe dimenzije iz tabele. Ako se doda fajl drugačijih dimenzija istog odnosa, prikaz je ispravan (CSS `aspect-ratio` + `object-fit: cover`).
-- Slučaj na `/rezultati/` za koji nema fotografija treba ukloniti iz HTML-a pre objave (u demu se prikazuje placeholder).
+- `width`/`height` u HTML-u odgovaraju stvarnim dimenzijama fajlova.
+- **Novi slučaj pre/posle** se dodaje kao `<li class="case" data-cat="…">` na `/rezultati/`. Ako je kategorija nova (npr. implanti), u filter se dodaje i dugme, pa i sekcija „Pre i posle“ na stranici usluge.
+- **Nova fotografija prostora:** zameniti `ordinacija-prijem.webp` istim imenom, ili dodati nove fajlove i ubaciti ih u galerije (`.gallery--stack` na početnoj, `.gallery--row` na `/o-nama/`).
 
-Stanje na dan izrade: 24 od 43 očekivanih fajlova postoji.
+## Fajlovi i gde se koriste
 
-| Fajl | Stranica | Dimenzije (Mapa slika) | Šta prikazuje | Stanje |
-|---|---|---|---|---|
-| `logo.webp` | sve (header, footer) | visina 48px, izvoz 2× (96px), providna pozadina | Logo „Dental Studio Mijušković“; bez njega ostaje tekstualni wordmark | ima (168×96) |
-| `og-cover.jpg (+ og-cover.webp)` | og:image / twitter:image, sve stranice | 1200×630 | Doktor ili osmeh + logo na #0B3B46 podlozi | ima (1200×630) |
-| `hero.webp` | / (hero) | 4:5, 1200×1500 | Dr Mijušković u ordinaciji: radni portret, mantil, svetao prostor | ima (1200×1500) |
-| `doctor-portrait.webp` | / (Specijalista), /o-nama/ (hero) | 4:5, 1000×1250 | Profesionalni portret u belom mantilu, svetla pozadina | ima (900×1125) |
-| `doctor-konsultacija.webp` | /o-nama/ (Kako radimo) | 16:9, 1920×1080 | Doktor u razgovoru sa pacijentom / pregled snimka | ima (1440×810) |
-| `tim.webp (opciono)` | /o-nama/ (Tim) | 3:2, 1600×1067 | Tim ordinacije | ima (900×600) |
-| `usluga-lumineeri.webp` | /, /usluge/, /usluge/lumineeri/ | 4:3, 1600×1200 (na početnoj isečeno 3:4) | Makro osmeh sa lumineerima (posle) | ima (956×717) |
-| `usluga-protetika.webp` | /, /usluge/, /usluge/protetika/ | 4:3, 1600×1200 | Bezmetalne krunice ili most, makro | ima (1600×1200) |
-| `usluga-implanti.webp` | /, /usluge/, /usluge/implanti/ | 4:3, 1600×1200 | Završen rad na implantu ili fiksni rad, makro | **nedostaje** |
-| `usluga-izbeljivanje.webp` | /, /usluge/, /usluge/izbeljivanje/ | 4:3, 1600×1200 | Svetao osmeh ili lampa za izbeljivanje | ima (1265×949) |
-| `detalj-fasete.webp` | / (galerija, 1:1), /usluge/lumineeri/ | 4:5, 1200×1500 | Gotove keramičke fasete na modelu, makro | **nedostaje** |
-| `detalj-boja.webp` | / (galerija, 1:1; skriveno na mobilnom), /usluge/protetika/, /usluge/izbeljivanje/ | 4:5, 1200×1500 | Ključ boja pored zuba pacijenta | **nedostaje** |
-| `detalj-preciznost.webp` | /o-nama/, /usluge/implanti/ | 4:5, 1200×1500 | Ruke doktora sa instrumentima ili lupama | ima (900×1125) |
-| `ordinacija-stolica.webp` | / (galerija), /o-nama/ | 3:2, 1600×1067 | Glavna stomatološka jedinica | **nedostaje** |
-| `ordinacija-prostor.webp` | / (galerija), /o-nama/ | 3:2, 1600×1067 | Širi kadar radnog prostora | **nedostaje** |
-| `ordinacija-prijem.webp` | /o-nama/, /kontakt/ (hero, 4:3) | 3:2, 1600×1067 | Prijemni pult ili čekaonica | **nedostaje** |
-| `ordinacija-sterilizacija.webp` | /o-nama/ | 3:2, 1600×1067 | Sterilizacija i sterilni instrumenti | **nedostaje** |
-| `ba-lumineeri-01-pre.webp` | /, /usluge/lumineeri/, /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | PRE: Lumineeri, slučaj 1; makro osmeha, bez očiju i lica | ima (796×531) |
-| `ba-lumineeri-01-posle.webp` | /, /usluge/lumineeri/, /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | POSLE: Lumineeri, slučaj 1; makro osmeha, bez očiju i lica | ima (796×531) |
-| `ba-lumineeri-02-pre.webp` | /usluge/lumineeri/, /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | PRE: Lumineeri, slučaj 2; makro osmeha, bez očiju i lica | ima (801×534) |
-| `ba-lumineeri-02-posle.webp` | /usluge/lumineeri/, /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | POSLE: Lumineeri, slučaj 2; makro osmeha, bez očiju i lica | ima (801×534) |
-| `ba-lumineeri-03-pre.webp` | /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | PRE: Lumineeri, slučaj 3; makro osmeha, bez očiju i lica | ima (900×600) |
-| `ba-lumineeri-03-posle.webp` | /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | POSLE: Lumineeri, slučaj 3; makro osmeha, bez očiju i lica | ima (900×600) |
-| `ba-lumineeri-04-pre.webp` | /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | PRE: Lumineeri, slučaj 4; makro osmeha, bez očiju i lica | ima (796×531) |
-| `ba-lumineeri-04-posle.webp` | /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | POSLE: Lumineeri, slučaj 4; makro osmeha, bez očiju i lica | ima (796×531) |
-| `ba-lumineeri-05-pre.webp` | /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | PRE: Lumineeri, slučaj 5; makro osmeha, bez očiju i lica | ima (796×531) |
-| `ba-lumineeri-05-posle.webp` | /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | POSLE: Lumineeri, slučaj 5; makro osmeha, bez očiju i lica | ima (796×531) |
-| `ba-lumineeri-06-pre.webp` | /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | PRE: Lumineeri, slučaj 6; makro osmeha, bez očiju i lica | **nedostaje** |
-| `ba-lumineeri-06-posle.webp` | /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | POSLE: Lumineeri, slučaj 6; makro osmeha, bez očiju i lica | **nedostaje** |
-| `ba-protetika-01-pre.webp` | /, /usluge/protetika/, /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | PRE: Cirkonijum krunice: stari metalokeramički rad → bezmetalna keramika; makro osmeha, bez očiju i lica | ima (801×534) |
-| `ba-protetika-01-posle.webp` | /, /usluge/protetika/, /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | POSLE: Cirkonijum krunice: stari metalokeramički rad → bezmetalna keramika; makro osmeha, bez očiju i lica | ima (801×534) |
-| `ba-protetika-02-pre.webp` | /usluge/protetika/, /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | PRE: Cirkonijum ili E.max, slučaj 2; makro osmeha, bez očiju i lica | ima (796×531) |
-| `ba-protetika-02-posle.webp` | /usluge/protetika/, /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | POSLE: Cirkonijum ili E.max, slučaj 2; makro osmeha, bez očiju i lica | ima (796×531) |
-| `ba-protetika-03-pre.webp` | /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | PRE: Bezmetalni most; makro osmeha, bez očiju i lica | **nedostaje** |
-| `ba-protetika-03-posle.webp` | /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | POSLE: Bezmetalni most; makro osmeha, bez očiju i lica | **nedostaje** |
-| `ba-protetika-04-pre.webp` | /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | PRE: Kompletna rekonstrukcija zagrižaja; makro osmeha, bez očiju i lica | **nedostaje** |
-| `ba-protetika-04-posle.webp` | /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | POSLE: Kompletna rekonstrukcija zagrižaja; makro osmeha, bez očiju i lica | **nedostaje** |
-| `ba-implanti-01-pre.webp` | /usluge/implanti/, /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | PRE: Jedan zub u estetskoj zoni (implant + bezmetalna krunica); makro osmeha, bez očiju i lica | **nedostaje** |
-| `ba-implanti-01-posle.webp` | /usluge/implanti/, /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | POSLE: Jedan zub u estetskoj zoni (implant + bezmetalna krunica); makro osmeha, bez očiju i lica | **nedostaje** |
-| `ba-implanti-02-pre.webp` | /usluge/implanti/, /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | PRE: Fiksni rad All-on-4 / All-on-6; makro osmeha, bez očiju i lica | **nedostaje** |
-| `ba-implanti-02-posle.webp` | /usluge/implanti/, /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | POSLE: Fiksni rad All-on-4 / All-on-6; makro osmeha, bez očiju i lica | **nedostaje** |
-| `ba-izbeljivanje-01-pre.webp` | /usluge/izbeljivanje/, /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | PRE: Pre i posle ordinacijskog izbeljivanja (opciono); makro osmeha, bez očiju i lica | **nedostaje** |
-| `ba-izbeljivanje-01-posle.webp` | /usluge/izbeljivanje/, /rezultati/ | 3:2, 1200×800 (par identičnog kadra) | POSLE: Pre i posle ordinacijskog izbeljivanja (opciono); makro osmeha, bez očiju i lica | **nedostaje** |
+| Fajl | Stranica | Dimenzije | Šta prikazuje |
+|---|---|---|---|
+| `logo.webp` (+ `logo.png` kao rezerva) | sve (header, footer) | 168×96 | Logo „Dental Studio Mijušković“ |
+| `og-cover.jpg` (+ `.webp`) | og:image / twitter:image; JSON-LD `image` na `/usluge/implanti/` | 1200×630 | Logo na #0B3B46 + doktor |
+| `hero.webp` | `/` hero; `/o-nama/` galerija ordinacije | 1200×1500 | Dr Mijušković sa lupama pri radu |
+| `doctor-portrait.webp` | `/` Specijalista; `/o-nama/` hero | 900×1125 | Doktor u mantilu pri radu |
+| `doctor-konsultacija.webp` | `/o-nama/` Kako radimo | 1440×810 | Doktor pokazuje rendgenski snimak |
+| `tim.webp` | `/o-nama/` Tim; `/` galerija ordinacije | 900×600 | Doktor sa asistentkinjom |
+| `detalj-preciznost.webp` | `/o-nama/` Preciznost; `/usluge/implanti/` Zašto kod nas; `/` galerija ordinacije | 900×1125 | Rad sa lupama, keramički rad na modelu |
+| **`ordinacija-prijem.webp`** *(novo)* | `/` galerija (glavna, visoka); `/o-nama/` galerija (glavna); `/kontakt/` hero | 387×516 (3:4) | Hodnik i čekaonica sa logom na zidu, fotelje, recepcija |
+| `usluga-lumineeri.webp` | `/`, `/usluge/`, `/usluge/lumineeri/` hero | 956×717 | Osmeh sa lumineerima |
+| `usluga-protetika.webp` | `/`, `/usluge/`, `/usluge/protetika/` hero | 1600×1200 | Bezmetalne krunice, makro |
+| **`usluga-implanti.svg`** *(ilustracija)* | `/`, `/usluge/`, `/usluge/implanti/` hero | viewBox 1600×1200 (4:3, centar bezbedan za 3:4 isečak) | Linijska ilustracija implanta, abatmenta i krunice |
+| `usluga-izbeljivanje.webp` | `/`, `/usluge/`, `/usluge/izbeljivanje/` hero; `/o-nama/` galerija ordinacije | 1265×949 | Lampa za ordinacijsko izbeljivanje |
+| **`detalj-fasete.svg`** *(ilustracija)* | `/usluge/lumineeri/` Uvod | viewBox 1200×1500 (4:5) | Prednji zubi i tanka faseta pre postavljanja |
+| **`detalj-boja.svg`** *(ilustracija)* | `/usluge/protetika/` Zašto specijalista; `/usluge/izbeljivanje/` Uvod | viewBox 1200×1500 (4:5) | Ključ boja (A1–C1), odabrana nijansa |
+| `ba-lumineeri-01…05-pre/-posle.webp` | `/` (01), `/usluge/lumineeri/` (01, 02), `/rezultati/` (01–05) | ~800×534 | Pre/posle lumineera |
+| `ba-protetika-01…02-pre/-posle.webp` | `/` (01), `/usluge/protetika/` (01, 02), `/rezultati/` (01–02) | ~800×534 | Pre/posle krunica |
 
-Dodatni fajl koji postoji, a sajt ga ne koristi direktno: `logo.png` (izvor/rezerva logotipa).
+## Uklonjeno iz Mape slika (nema i neće biti fotografija)
+
+| Bivše mesto | Zamena |
+|---|---|
+| `ordinacija-stolica`, `ordinacija-prostor`, `ordinacija-sterilizacija` | Galerije su smanjene na 3 kadra: `ordinacija-prijem` + postojeći radni kadrovi |
+| `ba-implanti-01/02` | Uklonjeni sa `/rezultati/` (i tab „Implanti“ u filteru). Na `/usluge/implanti/` sekcija „Pre i posle“ je zamenjena sekcijom „Konsultacija: prvi korak“ sa CTA |
+| `ba-izbeljivanje-01` | Uklonjen sa `/rezultati/` (i tab „Izbeljivanje“). Sekcija „Pre i posle“ na `/usluge/izbeljivanje/` je uklonjena |
+| `ba-lumineeri-06`, `ba-protetika-03/04` | Slučajevi uklonjeni sa `/rezultati/` (sada 7 slučajeva: 5 lumineera, 2 protetike) |

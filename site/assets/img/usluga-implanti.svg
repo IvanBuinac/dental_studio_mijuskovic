@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="t">
+  <title id="t">Ilustracija: zubni implant sa krunicom</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#EEF7F6"/></linearGradient>
+    <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#2DD4BF" stop-opacity=".22"/><stop offset="1" stop-color="#2DD4BF" stop-opacity="0"/></radialGradient>
+    <linearGradient id="crown" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#EEF7F6"/></linearGradient>
+    <linearGradient id="ti" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#D4E2E0"/><stop offset=".45" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D4E2E0"/></linearGradient>
+  </defs>
+  <rect width="1600" height="1200" fill="url(#bg)"/>
+  <circle cx="800" cy="610" r="520" fill="url(#glow)"/>
+  <g fill="none" stroke="#D4E2E0" stroke-width="2">
+    <circle cx="800" cy="610" r="430"/>
+    <circle cx="800" cy="610" r="500" stroke-dasharray="2 14" stroke-linecap="round"/>
+  </g>
+  <!-- bone / gingiva -->
+  <path d="M470 660 C590 625 690 612 800 628 C910 612 1010 625 1130 660 L1130 1020 Q1130 1060 1090 1060 L510 1060 Q470 1060 470 1020 Z" fill="#2DD4BF" fill-opacity=".10"/>
+  <path d="M470 660 C590 625 690 612 800 628 C910 612 1010 625 1130 660" fill="none" stroke="#0D9488" stroke-width="5" stroke-linecap="round"/>
+  <!-- axis -->
+  <line x1="800" y1="190" x2="800" y2="1090" stroke="#0D9488" stroke-width="2" stroke-dasharray="10 12" opacity=".55"/>
+  <g stroke="#0B3B46" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+    <!-- fixture -->
+    <path d="M722 660 L878 660 L852 985 Q800 1045 748 985 Z" fill="url(#ti)"/>
+    <g fill="none" stroke-width="5">
+      <path d="M727 712 L873 688"/><path d="M730 752 L870 728"/><path d="M733 792 L867 768"/>
+      <path d="M736 832 L864 808"/><path d="M739 872 L861 848"/><path d="M742 912 L858 888"/><path d="M748 950 L854 928"/>
+    </g>
+    <!-- abutment -->
+    <path d="M752 575 L848 575 L836 662 L764 662 Z" fill="#FFFFFF"/>
+    <!-- crown -->
+    <path d="M655 548 C636 478 628 392 648 328 C664 280 706 258 742 272 C766 282 784 288 800 283 C816 288 834 282 858 272 C894 258 936 280 952 328 C972 392 964 478 945 548 C900 578 700 578 655 548 Z" fill="url(#crown)"/>
+  </g>
+  <path d="M700 350 C704 318 724 302 748 308" fill="none" stroke="#2DD4BF" stroke-width="7" stroke-linecap="round"/>
+  <g fill="#2DD4BF"><circle cx="1050" cy="300" r="7"/><circle cx="560" cy="880" r="5"/><circle cx="1010" cy="940" r="4"/></g>
+</svg>
