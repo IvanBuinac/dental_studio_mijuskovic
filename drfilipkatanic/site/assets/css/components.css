@@ -1,0 +1,417 @@
+/* ==========================================================================
+   dr Filip Katanić — components.css
+   Dugmad, potpisni sistem (.seal / .frame--halo / .badge), header/nav/menu,
+   sticky-bar, cta-band, footer, faq, steps, venue(-card), credential,
+   blog-card, oblast-card, illo, lightbox.
+   Pravilo brand.md 5 / structure.md 0.1: SVE zaobljeno, NIKAD kosa linija/dijagonala.
+   ========================================================================== */
+
+/* ---------- Dugmad (structure.md 2.5) ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5em;
+  font-family: var(--font-body); font-weight: 500; text-transform: uppercase;
+  font-size: .8rem; letter-spacing: .1em;
+  padding: 16px 32px; border-radius: var(--radius-pill);
+  background: var(--color-primary); color: var(--color-text-on-primary);
+  border: 1px solid var(--color-primary);
+  text-decoration: none; min-height: 44px;
+  transition: background-color .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease);
+}
+.btn:hover { background: var(--color-primary-light); border-color: var(--color-primary-light); }
+.on-dark .btn:not(.btn--ghost):not(.btn--gold) { background: var(--color-surface); color: var(--color-primary); border-color: var(--color-surface); }
+.on-dark .btn:not(.btn--ghost):not(.btn--gold):hover { background: var(--color-accent-tint); }
+
+.btn--gold {
+  background: var(--color-accent-decorative); color: var(--color-primary); border-color: var(--color-accent-decorative);
+}
+.btn--gold:hover { background: #d9c19c; border-color: #d9c19c; }
+
+.btn--ghost {
+  background: transparent; color: var(--color-primary); border-color: var(--color-primary);
+}
+.btn--ghost:hover { background: var(--color-primary); color: var(--color-text-on-primary); }
+.on-dark .btn--ghost {
+  color: var(--color-text-on-dark); border-color: var(--color-border-on-dark);
+}
+.on-dark .btn--ghost:hover { background: rgba(251,247,240,.1); }
+.btn--ghost-dark { background: transparent; color: var(--color-text-on-dark); border-color: rgba(251,247,240,.4); }
+.btn--ghost-dark:hover { background: rgba(251,247,240,.1); }
+
+.btn--sm { padding: 10px 22px; font-size: .72rem; min-height: 38px; }
+
+/* ---------- .seal — FK pecat (potpis A, structure.md 0.1.A) ---------- */
+.seal {
+  width: 40px; height: 40px; color: var(--color-primary);
+  flex-shrink: 0;
+}
+.seal text { font-family: var(--font-heading); }
+.on-dark .seal, .seal--on-dark { color: var(--color-accent-decorative); }
+.seal--sm { width: 28px; height: 28px; }
+.seal--lg { width: 64px; height: 64px; }
+.seal--dekor { opacity: .06; }
+
+/* ---------- .frame--halo — zaobljeni zlatni ram (potpis B, structure.md 0.1.B) ---------- */
+.frame {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-primary-tint);
+}
+.frame img { width: 100%; height: 100%; object-fit: cover; }
+.frame--halo::after {
+  content: "";
+  position: absolute; inset: 9px;
+  border: 1px solid var(--color-accent-decorative);
+  border-radius: calc(var(--radius-lg) - 6px);
+  pointer-events: none;
+}
+.frame--portrait { aspect-ratio: 4 / 5; }
+.frame--wide { aspect-ratio: 3 / 2; }
+.frame--square { aspect-ratio: 1 / 1; }
+
+/* ---------- KRITICNI KROP-PRESETI (structure.md 0.2) ----------
+   hero.webp i konferencija-02.webp imaju utisnut tekst
+   "Specijalista ginekologije i akušerstva" / "Ob/Gyn Specialist" u samu sliku.
+   Ove dve klase su JEDINI dozvoljeni nacin prikaza tih fajlova — nikad puna
+   slika, nikad object-fit:contain, nikad bez ove klase na <img>.
+   build.py --lint proverava da svaki <img src=".../hero.webp"> i
+   <img src=".../konferencija-02.webp"> ima odgovarajucu klasu na TAGU.
+   NE MENJATI aspect-ratio/object-position bez ponovne vizuelne provere na
+   320 / 768 / 1440px da tekst fizicki ne upada nazad u kadar. */
+.crop-hero {
+  /* hero.webp je 1487x1874 (odnos ~0.793, skoro identican standardnom 4:5
+     portretu) — tekst "Specijalista..." pocinje na ~69% visine. Standardni
+     .frame--portrait (4:5) NE bi dovoljno sekao (isti odnos = skoro bez kropa),
+     zato ovaj preset namerno koristi siri 4:3 kontejner: cover-fit tada seče
+     donjih ~40% i prikazuje samo gornjih ~59-60% originala — sigurna margina
+     pre teksta na 69%. */
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: 50% 8%;
+}
+.crop-konferencija02 {
+  /* konferencija-02.webp je 900x1187 (odnos ~0.758). Tekst "Ob/Gyn Specialist"
+     je NA SLAJDU, gore levo (x ~17-32% sirine), u istoj visinskoj zoni kao
+     govornikova glava — zato vertikalni krop (siri kontejner) NE pomaze, mora
+     se seci SIRINA (levo). Ovaj preset koristi uzak, portretni kontejner
+     (odnos ~0.43) pomeren udesno (object-position-x 82%) sto ostavlja vidljiv
+     prozor priblizno x 36%-93% originala — govornik ostaje u kadru, tekst na
+     slajdu (x<32%) je fizicki van kadra na svim sirinama. */
+  aspect-ratio: 3 / 7;
+  object-fit: cover;
+  object-position: 82% 42%;
+}
+
+/* ---------- .badge — oval pill-bedz (potpis C, structure.md 0.1.C) ---------- */
+.badge {
+  display: inline-flex; align-items: center; gap: .5em;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  border-radius: var(--radius-pill);
+  padding: 6px 16px;
+  font-family: var(--font-body); font-weight: 600; text-transform: uppercase;
+  font-size: .7rem; letter-spacing: .12em;
+  background: var(--color-surface);
+}
+.on-dark .badge, .badge--on-dark {
+  border-color: var(--color-accent-decorative); color: var(--color-accent-decorative);
+  background: transparent;
+}
+.badge--sm { padding: 3px 12px; font-size: .62rem; }
+.badge__ico { width: 14px; height: 14px; flex-shrink: 0; }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--hdr);
+  background: var(--color-bg);
+  border-bottom: 1px solid transparent;
+  transition: border-color .2s var(--ease);
+}
+.site-header.is-scrolled { border-bottom-color: var(--color-border); }
+.site-header__in { display: flex; align-items: center; justify-content: space-between; height: 100%; gap: 16px; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--color-primary); }
+.brand__txt { display: flex; flex-direction: column; line-height: 1.2; }
+.brand__name { font-family: var(--font-heading); font-weight: 500; font-size: 1.2rem; }
+.brand__sub { display: none; font-family: var(--font-body); font-weight: 500; font-size: .625rem; letter-spacing: .2em; text-transform: uppercase; color: var(--color-text-muted); }
+@media (min-width: 480px) { .brand__sub { display: block; } }
+
+.nav { display: none; }
+.nav__list { display: flex; align-items: center; gap: 28px; }
+.nav__link {
+  font-family: var(--font-body); font-weight: 500; text-transform: uppercase;
+  font-size: .75rem; letter-spacing: .12em; color: var(--color-text);
+  text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
+  padding-block: 4px; position: relative;
+}
+.nav__link[aria-current] { color: var(--color-primary); }
+.nav__link[aria-current]::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -8px; height: 1px; background: var(--color-primary);
+}
+.nav__link:hover { color: var(--color-primary-light); }
+.chev { width: 10px; height: 6px; margin-top: 1px; }
+.has-sub { position: relative; }
+.sub {
+  position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%);
+  min-width: 320px; background: var(--color-surface); border-radius: var(--radius-lg);
+  border: 1px solid var(--color-accent-decorative);
+  box-shadow: var(--shadow-soft);
+  padding: 10px; opacity: 0; visibility: hidden; transition: opacity .18s var(--ease);
+}
+.has-sub:hover .sub, .has-sub:focus-within .sub, .has-sub.is-open .sub { opacity: 1; visibility: visible; }
+.sub li a { display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; border-radius: var(--radius-md); text-decoration: none; color: var(--color-text); }
+.sub li a:hover { background: var(--color-accent-tint); }
+.sub li a strong { font-family: var(--font-heading); font-weight: 500; font-size: 1rem; color: var(--color-primary); }
+.sub li a span:last-child { font-size: .8rem; color: var(--color-text-muted); }
+.sub .badge--sm { margin-bottom: 2px; }
+
+.site-header__act { display: flex; align-items: center; gap: 12px; }
+.hdr-cta { display: none; }
+.hdr-tel {
+  width: 40px; height: 40px; border-radius: 50%; display: none; align-items: center; justify-content: center;
+  color: var(--color-primary); border: 1px solid var(--color-border);
+}
+.hdr-tel .i { width: 18px; height: 18px; fill: currentColor; }
+@media (min-width: 400px) { .hdr-tel { display: inline-flex; } }
+.burger { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; flex-direction: column; gap: 5px; }
+.burger span { width: 22px; height: 2px; background: var(--color-primary); border-radius: 2px; }
+
+@media (min-width: 1024px) {
+  .nav { display: block; }
+  .hdr-cta { display: inline-flex; }
+  .burger { display: none; }
+}
+
+/* Mobilni full-screen meni (navy, structure.md 2.1) */
+.menu {
+  position: fixed; inset: 0; z-index: 150;
+  background: var(--color-primary); color: var(--color-text-on-dark);
+  opacity: 0; visibility: hidden; transition: opacity .24s var(--ease);
+  overflow-y: auto;
+}
+.menu.is-open { opacity: 1; visibility: visible; }
+.menu__in { padding-block: calc(var(--hdr) + 32px) 48px; display: flex; flex-direction: column; gap: 32px; min-height: 100%; }
+.menu__list > li { border-bottom: 1px solid var(--color-border-on-dark); }
+.menu__list > li > a, .menu__acc {
+  display: flex; align-items: center; justify-content: space-between; width: 100%;
+  font-family: var(--font-heading); font-size: 1.75rem; padding-block: 16px; text-decoration: none; color: var(--color-text-on-dark);
+}
+.menu__plus { width: 16px; height: 16px; position: relative; }
+.menu__plus::before, .menu__plus::after { content: ""; position: absolute; background: currentColor; }
+.menu__plus::before { left: 0; right: 0; top: 50%; height: 1px; }
+.menu__plus::after { top: 0; bottom: 0; left: 50%; width: 1px; transition: transform .2s var(--ease); }
+.menu__acc[aria-expanded="true"] .menu__plus::after { transform: scaleY(0); }
+.menu__sub { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .25s var(--ease); }
+.menu__acc[aria-expanded="true"] + .menu__sub { grid-template-rows: 1fr; }
+.menu__sub > div, .menu__sub { overflow: hidden; }
+.menu__sub li a { display: block; padding: 10px 0 10px 16px; font-size: 1.05rem; text-decoration: none; color: var(--color-text-on-dark); opacity: .85; }
+.menu__foot { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; margin-top: auto; }
+.menu__addr { font-size: .85rem; color: var(--color-text-on-dark); opacity: .75; }
+body.menu-open { overflow: hidden; }
+
+/* ---------- Sticky bar (mobilni, structure.md 2.2) ---------- */
+.sticky-bar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 90;
+  display: flex; gap: 10px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  background: var(--color-primary); border-top: 1px solid var(--color-border-on-dark);
+  transform: translateY(100%); transition: transform .25s var(--ease);
+}
+.sticky-bar.is-on { transform: none; }
+.sticky-bar .btn { flex: 1; padding-inline: 12px; font-size: .7rem; }
+@media (min-width: 900px) { .sticky-bar { display: none; } }
+body.has-sticky { padding-bottom: calc(var(--sticky-h) + env(safe-area-inset-bottom)); }
+/* /kontakt/ nema CTA traku pa nema IntersectionObserver okidač — sticky bar je uvek vidljiv (structure.md 3.12) */
+body.force-sticky .sticky-bar { transform: none; }
+@media (max-width: 899px) { body.force-sticky { padding-bottom: calc(var(--sticky-h) + env(safe-area-inset-bottom)); } }
+
+/* ---------- CTA traka (structure.md 2.3) ---------- */
+.cta-band { position: relative; padding-block: 72px; text-align: center; overflow: hidden; }
+@media (min-width: 900px) { .cta-band { padding-block: 120px; } }
+.cta-band__mark { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+.cta-band__mark .seal { width: min(60vw, 420px); height: min(60vw, 420px); opacity: .06; }
+.cta-band__in { position: relative; max-width: 640px; }
+.cta-band__lead { color: var(--color-text-on-dark); opacity: .85; margin-top: .5em; }
+.cta-band__actions { display: flex; flex-direction: column; gap: 12px; justify-content: center; margin-top: 28px; }
+@media (min-width: 480px) { .cta-band__actions { flex-direction: row; } }
+.cta-band__addr { margin-top: 24px; font-size: .85rem; opacity: .75; }
+.cta-band__addr a { text-decoration: underline; }
+.cta-band__sig { margin-top: 20px; font-family: var(--font-heading); font-style: italic; color: var(--color-accent-decorative); font-size: 1.1rem; }
+
+/* ---------- Footer (structure.md 2.4) ---------- */
+.site-footer { position: relative; padding-block: 64px 32px; overflow: hidden; }
+.site-footer__mark { position: absolute; top: 0; right: 0; display: flex; align-items: center; gap: 12px; opacity: .05; transform: translate(10%, -20%); pointer-events: none; }
+.site-footer__mark span { font-family: var(--font-heading); font-size: 8rem; white-space: nowrap; }
+.site-footer__mark .seal { width: 120px; height: 120px; }
+.site-footer__grid { position: relative; display: grid; gap: 40px; }
+@media (min-width: 600px) { .site-footer__grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .site-footer__grid { grid-template-columns: 1.3fr .9fr .9fr 1.1fr; gap: 32px; } }
+.fcol--contact { order: -1; }
+@media (min-width: 600px) { .fcol--contact { order: 0; } }
+.fcol .brand--footer { color: var(--color-text-on-dark); margin-bottom: 12px; }
+.fcol__zvanje { font-size: .85rem; opacity: .8; max-width: 30ch; }
+.fcol__sig { font-family: var(--font-heading); font-style: italic; color: var(--color-accent-decorative); margin-top: 12px; max-width: 28ch; }
+.fcol__h { font-family: var(--font-body); font-weight: 600; text-transform: uppercase; letter-spacing: .1em; font-size: .75rem; color: var(--color-accent-decorative); margin-bottom: 16px; }
+.fcol ul { display: flex; flex-direction: column; gap: 10px; }
+.fcol a { text-decoration: none; opacity: .85; }
+.fcol a:hover { opacity: 1; text-decoration: underline; }
+.fcol address p { margin-bottom: 10px; opacity: .85; }
+.fcol__note { font-size: .8rem; opacity: .65 !important; }
+.site-footer__note { font-size: .8rem; opacity: .6; max-width: 70ch; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--color-border-on-dark); }
+.site-footer__bar { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; margin-top: 20px; font-size: .85rem; opacity: .75; }
+.site-footer__bar a { text-decoration: underline; }
+.totop { display: inline-flex; align-items: center; gap: 6px; }
+
+/* ---------- Credential (structure.md 2.6) ---------- */
+.credential { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; font-family: var(--font-heading); font-style: italic; font-size: 1.15rem; }
+.credential__t { color: inherit; }
+.credential .link { font-family: var(--font-body); font-style: normal; font-size: .85rem; }
+
+/* ---------- Venue / venue-card (structure.md 0.3, 2.6) ---------- */
+.venue { border-block: 1px solid var(--color-border); padding-block: 18px; }
+.venue__in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+.venue__t { font-size: .9rem; color: var(--color-text-muted); }
+
+.venue-card {
+  display: grid; gap: 24px; padding: 32px; border-radius: var(--radius-lg);
+  background: var(--color-primary); color: var(--color-text-on-dark);
+}
+@media (min-width: 600px) { .venue-card { grid-template-columns: 1fr auto; align-items: center; } }
+.venue-card__eyebrow { font-family: var(--font-body); text-transform: uppercase; letter-spacing: .12em; font-size: .75rem; color: var(--color-accent-decorative); margin-bottom: 10px; }
+.venue-card__street { font-family: var(--font-heading); font-size: 1.6rem; margin-bottom: 2px; color: var(--color-text-on-dark); }
+.venue-card__city { color: var(--color-text-on-dark); opacity: .8; margin-bottom: 16px; }
+.venue-map { width: 160px; height: 110px; color: var(--color-accent-decorative); opacity: .8; }
+.venue-map__st { stroke: currentColor; stroke-width: 1; opacity: .5; }
+.venue-map__st--minor { opacity: .3; }
+.venue-map__ring { fill: none; stroke: currentColor; stroke-width: 1.2; }
+.venue-map__dot { fill: currentColor; }
+
+/* ---------- .steps (structure.md 0.1.D / 2.6) — vertikalna hairline, OKRUGLI brojevi ---------- */
+.steps { counter-reset: step; position: relative; display: flex; flex-direction: column; gap: 32px; padding-left: 56px; }
+.steps::before { content: ""; position: absolute; left: 19px; top: 8px; bottom: 8px; width: 1px; background: var(--color-border); }
+.on-dark .steps::before { background: var(--color-border-on-dark); }
+.steps__item { position: relative; }
+.steps__item::before {
+  counter-increment: step; content: counter(step);
+  position: absolute; left: -56px; top: 0; width: 40px; height: 40px;
+  border: 1px solid var(--color-accent); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-heading); color: var(--color-accent); background: var(--color-bg);
+}
+.on-dark .steps__item::before { border-color: var(--color-accent-decorative); color: var(--color-accent-decorative); background: var(--color-primary); }
+.steps__item h3 { margin-bottom: .25em; }
+@media (min-width: 900px) { .steps--cols { grid-template-columns: 1fr 1fr; display: grid; column-gap: 48px; } }
+
+/* ---------- .faq — akordeon (structure.md 2.6) ---------- */
+.faq__item { border-bottom: 1px solid var(--color-border); }
+.on-dark .faq__item { border-bottom-color: var(--color-border-on-dark); }
+.faq__q { margin: 0; }
+.faq__q button {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding-block: 20px; text-align: left; font-family: var(--font-heading); font-size: 1.1rem; font-weight: 500;
+}
+.faq__ico { position: relative; width: 18px; height: 18px; flex-shrink: 0; }
+.faq__ico::before, .faq__ico::after { content: ""; position: absolute; background: var(--color-accent); }
+.on-dark .faq__ico::before, .on-dark .faq__ico::after { background: var(--color-accent-decorative); }
+.faq__ico::before { left: 0; right: 0; top: 50%; height: 1px; }
+.faq__ico::after { top: 0; bottom: 0; left: 50%; width: 1px; transition: transform .2s var(--ease); }
+.faq__item.is-open .faq__ico::after { transform: scaleY(0); }
+.faq__a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .25s var(--ease); color: var(--color-text-muted); }
+.faq__item.is-open .faq__a { grid-template-rows: 1fr; }
+.faq__a > div { overflow: hidden; }
+.faq__a p { padding-bottom: 20px; }
+.on-dark .faq__a { color: rgba(251,247,240,.75); }
+
+/* ---------- .checklist (structure.md 2.6) ---------- */
+.checklist { display: flex; flex-direction: column; gap: 14px; }
+.checklist__item { display: flex; gap: 14px; align-items: flex-start; padding: 16px 20px; border-radius: var(--radius-pill); border: 1px solid var(--color-border); background: var(--color-surface); }
+.checklist__mark { width: 24px; height: 24px; flex-shrink: 0; border-radius: 50%; border: 1px solid var(--color-secondary); color: var(--color-secondary); display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+.checklist__mark svg { width: 12px; height: 12px; }
+.checklist__t { font-weight: 600; color: var(--color-primary); display: block; margin-bottom: 2px; }
+
+/* ---------- .illo — linijske ilustracije (structure.md 2.6, 2.8) ---------- */
+.illo { color: var(--color-accent); }
+.illo__l { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.illo__dot { fill: var(--color-secondary); }
+
+/* ---------- .breadcrumb (structure.md 5, "BreadcrumbList na podstranicama") ---------- */
+.breadcrumb { border-bottom: 1px solid var(--color-border); font-size: .8rem; }
+.breadcrumb__in { padding-block: 14px; }
+.breadcrumb ol { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.breadcrumb li { display: flex; align-items: center; gap: 4px; color: var(--color-text-muted); }
+.breadcrumb li:not(:last-child)::after { content: "/"; margin-left: 4px; color: var(--color-border); }
+.breadcrumb a { color: var(--color-text-muted); text-decoration: none; }
+.breadcrumb a:hover { color: var(--color-primary); text-decoration: underline; }
+.breadcrumb li[aria-current] { color: var(--color-primary); font-weight: 600; }
+
+/* ---------- .oblast-card — hub "Oblasti rada" (structure.md 3.3) ---------- */
+.oblast-card {
+  display: flex; flex-direction: column; gap: 12px; padding: 28px;
+  background: var(--color-surface); border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border); text-decoration: none; color: var(--color-text);
+  transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+.oblast-card:hover { border-color: var(--color-accent-decorative); box-shadow: var(--shadow-card); }
+.oblast-card h3 { margin: 0; }
+.oblast-card p { color: var(--color-text-muted); font-size: .95rem; }
+.oblast-card__link { margin-top: auto; color: var(--color-secondary); font-weight: 600; font-size: .9rem; }
+
+/* ---------- .oblast-row — kompaktna teaser lista (npr. pocetna) ---------- */
+.oblast-row { display: flex; flex-direction: column; gap: 4px; padding: 18px 0; border-bottom: 1px solid var(--color-border); text-decoration: none; color: var(--color-text); }
+.oblast-row:last-child { border-bottom: 0; }
+.oblast-row__top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.oblast-row__top strong { font-family: var(--font-heading); font-size: 1.15rem; color: var(--color-primary); font-weight: 500; }
+.oblast-row p { color: var(--color-text-muted); font-size: .9rem; }
+
+/* ---------- .blog-card (structure.md 3.10) ---------- */
+.blog-card { display: flex; flex-direction: column; gap: 14px; text-decoration: none; color: var(--color-text); }
+.blog-card__frame { margin-bottom: 4px; }
+.blog-card h3 { margin-bottom: .2em; }
+.blog-card p { color: var(--color-text-muted); font-size: .95rem; }
+.blog-card__more { color: var(--color-secondary); font-weight: 600; font-size: .9rem; }
+
+/* ---------- .pair — krop + badge preklop (structure.md 2.6) ---------- */
+.pair { position: relative; text-decoration: none; display: block; }
+.pair__lbl {
+  position: absolute; right: 12px; bottom: 12px;
+  background: var(--color-primary); color: var(--color-text-on-dark);
+  font-size: .65rem; text-transform: uppercase; letter-spacing: .1em; font-weight: 600;
+  padding: 6px 12px; border-radius: var(--radius-pill);
+}
+
+/* ---------- .edu-carousel (structure.md 2.6) ---------- */
+.edu { position: relative; }
+.edu__track {
+  display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
+  padding-bottom: 8px; scrollbar-width: none;
+}
+.edu__track::-webkit-scrollbar { display: none; }
+.edu__card { flex: 0 0 78vw; scroll-snap-align: start; text-decoration: none; color: inherit; }
+@media (min-width: 768px) { .edu__card { flex-basis: 280px; } }
+@media (min-width: 1200px) { .edu__card { flex-basis: 320px; } }
+.edu__card--dark { color: var(--color-text-on-dark); }
+.edu__card h3 { margin-top: 12px; font-size: 1.05rem; }
+.edu__nav { display: flex; gap: 10px; margin-top: 16px; }
+.edu__nav button { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--color-border); display: inline-flex; align-items: center; justify-content: center; }
+@media (hover: none) { .edu__nav { display: none; } }
+
+/* ---------- Lightbox (structure.md 2.6) ---------- */
+.lb {
+  position: fixed; inset: 0; z-index: 300; background: rgba(16, 40, 74, .94);
+  display: none; align-items: center; justify-content: center; padding: 24px;
+}
+.lb.is-open { display: flex; }
+.lb__stage { max-width: min(90vw, 1100px); max-height: 78vh; }
+.lb__img { max-width: 100%; max-height: 78vh; object-fit: contain; border-radius: var(--radius-md); margin-inline: auto; }
+.lb__btn { position: absolute; width: 48px; height: 48px; border-radius: 50%; background: rgba(251,247,240,.08); color: var(--color-text-on-dark); display: flex; align-items: center; justify-content: center; }
+.lb__btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; }
+.lb__close { top: 20px; right: 20px; }
+.lb__close span { position: absolute; width: 18px; height: 2px; background: currentColor; }
+.lb__close span:first-child { transform: rotate(45deg); }
+.lb__close span:last-child { transform: rotate(-45deg); }
+.lb__prev { left: 20px; top: 50%; transform: translateY(-50%); }
+.lb__next { right: 20px; top: 50%; transform: translateY(-50%); }
+.lb.is-single .lb__prev, .lb.is-single .lb__next { display: none; }
+.lb__bar { position: absolute; left: 0; right: 0; bottom: 20px; text-align: center; color: var(--color-text-on-dark); }
+.lb__cap { font-size: .9rem; opacity: .85; }
+.lb__count { font-size: .75rem; opacity: .6; margin-top: 4px; }
+body.lb-open { overflow: hidden; }

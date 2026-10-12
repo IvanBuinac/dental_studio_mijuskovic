@@ -1,0 +1,58 @@
+/* ==========================================================================
+   dr Filip Katanić — tokens.css
+   CSS custom properties izvedene doslovno iz brand.md (odeljci 1-2).
+   Ne menjati boje/fontove ovde bez potvrde u brand.md.
+   ========================================================================== */
+:root {
+  /* Primarna paleta */
+  --color-primary: #10284A;       /* deep navy — strucnost, poverenje */
+  --color-primary-light: #2C4B78; /* hover/active varijanta */
+  --color-primary-tint: #E7ECF2;  /* svetla pozadina sekcija, badge-ovi */
+
+  --color-secondary: #4E6B54;     /* salvija zelena — nada, smirenost */
+  --color-secondary-light: #7A9885;
+  --color-secondary-tint: #E9F0EA;
+
+  --color-accent: #8C7355;            /* sampanj zlato — tekst-bezbedna varijanta */
+  --color-accent-decorative: #C9AD87; /* svetlija, samo za dekor/tamne pozadine */
+  --color-accent-tint: #F3EAD9;
+
+  --color-bg: #FBF7F0;            /* topao krem — glavna pozadina */
+  --color-surface: #FFFFFF;       /* kartice, forme */
+  --color-surface-dark: #10284A;  /* "premium" kartice / istaknuti citati */
+
+  --color-text: #2E2A26;          /* topao ugljen — telo teksta */
+  --color-text-muted: #6B655D;    /* sekundarni tekst, meta info */
+  --color-text-on-dark: #FBF7F0;  /* tekst na tamnoj povrsini */
+  --color-text-on-primary: #FFFFFF;
+
+  --color-border: #E3DCD1;            /* suptilne linije, razdelnici (na kremu) */
+  --color-border-on-dark: rgba(251, 247, 240, .16); /* suptilne linije na navy */
+
+  /* Zaobljenja i senke — "mek" osecaj, ne ostar/klinicki */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+  --shadow-soft: 0 8px 24px rgba(16, 40, 74, 0.08);
+  --shadow-card: 0 4px 16px rgba(46, 42, 38, 0.06);
+
+  /* Tipografija (brand.md 4, opcija A) */
+  --font-heading: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Karla', -apple-system, 'Segoe UI', sans-serif;
+
+  /* Layout */
+  --container: 1200px;
+  --gutter: 16px;
+  --hdr: 64px;
+  --sticky-h: 64px;
+  --sec: 56px;
+
+  /* Animacije (brand.md 5: suptilne, spore, bez bouncy) */
+  --ease: cubic-bezier(.4, 0, .2, 1);
+  --dur: 500ms;
+}
+
+@media (min-width: 768px)  { :root { --gutter: 24px; --sec: 72px; } }
+@media (min-width: 1024px) { :root { --hdr: 76px; --sec: 96px; } }
+@media (min-width: 1280px) { :root { --gutter: 40px; --sec: 120px; } }

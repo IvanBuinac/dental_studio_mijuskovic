@@ -1,0 +1,46 @@
+<footer class="site-footer on-dark">
+  <div class="site-footer__mark" aria-hidden="true">{{> seal}}<span>KATANIĆ</span></div>
+  <div class="container">
+    <div class="site-footer__grid">
+      <div class="fcol fcol--contact">
+        <h2 class="fcol__h">Kontakt / Ustanova</h2>
+        <address>
+          <p>{{g.ferona}}<br>{{g.adresa}}</p>
+          <p><a href="{{g.tel_href}}">{{g.tel}}</a><br><a href="mailto:{{g.email}}">{{g.email}}</a></p>
+          <p class="fcol__note">Kontakt centar ustanove — za zakazivanje pregleda kod dr Filipa Katanića.</p>
+          <p><a href="{{g.ig_url}}" rel="noopener">Instagram {{g.ig_handle}}</a></p>
+        </address>
+      </div>
+      <div class="fcol fcol--brand">
+        <a class="brand brand--footer" href="{{root}}" aria-label="dr Filip Katanić, početna">{{> seal}}<span class="brand__txt"><span class="brand__name">dr Filip Katanić</span></span></a>
+        <p class="fcol__zvanje">Lekar · Master reproduktivne embriologije · Član tima SB Ferona</p>
+        <p class="fcol__sig">{{g.citat}}</p>
+      </div>
+      <div class="fcol fcol--areas">
+        <h2 class="fcol__h">Oblasti rada</h2>
+        <ul>
+          <li><a href="{{root}}oblasti-rada/vantelesna-oplodnja-ivf/">IVF / ICSI</a></li>
+          <li><a href="{{root}}oblasti-rada/zamrzavanje-jajnih-celija/">Zamrzavanje jajnih ćelija</a></li>
+          <li><a href="{{root}}oblasti-rada/pcos-i-neplodnost/">PCOS i neplodnost</a></li>
+          <li><a href="{{root}}oblasti-rada/muski-faktor-neplodnosti/">Muški faktor</a></li>
+          <li><a href="{{root}}oblasti-rada/redovni-ginekoloski-pregledi/">Redovni pregledi</a></li>
+        </ul>
+      </div>
+      <div class="fcol fcol--site">
+        <h2 class="fcol__h">Sajt</h2>
+        <ul>
+          <li><a href="{{root}}o-meni/">O meni</a></li>
+          <li><a href="{{root}}pitanja-i-odgovori/">Pitanja i odgovori</a></li>
+          <li><a href="{{root}}blog/">Blog</a></li>
+          <li><a href="{{root}}mediji-i-predavanja/">Mediji i predavanja</a></li>
+          <li><a href="{{root}}kontakt/">Kontakt</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="site-footer__note">{{g.disclaimer}}</p>
+    <div class="site-footer__bar">
+      <p>&copy; {{year}} dr Filip Katanić &nbsp;·&nbsp; <a href="{{root}}politika-privatnosti/">Politika privatnosti</a></p>
+      <a class="totop" href="#main">Nazad na vrh <span aria-hidden="true">↑</span></a>
+    </div>
+  </div>
+</footer>

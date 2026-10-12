@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /
+
+Sitemap: https://drfilipkatanic.cvijanovic-dent.workers.dev/sitemap.xml

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="sr-Latn-RS" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}}</title>
+{{meta}}
+<meta name="theme-color" content="#10284A">
+<link rel="icon" href="{{root}}favicon.svg" type="image/svg+xml">
+<link rel="icon" href="{{root}}favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="{{root}}favicon-180.png">
+<link rel="manifest" href="{{root}}site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+{{preload}}
+<link rel="stylesheet" href="{{root}}assets/css/tokens.css">
+<link rel="stylesheet" href="{{root}}assets/css/base.css">
+<link rel="stylesheet" href="{{root}}assets/css/components.css">
+<link rel="stylesheet" href="{{root}}assets/css/pages.css">
+<script>document.documentElement.className='js'</script>
+{{jsonld}}
+</head>
+<body class="{{body_class}}">
+<a class="skip" href="#main">Preskoči na sadržaj</a>
+{{> header}}
+<main id="main">
+{{content}}
+</main>
+{{cta}}
+{{> footer}}
+{{> sticky-bar}}
+<script src="{{root}}assets/js/main.js" defer></script>
+<script src="{{root}}assets/js/lightbox.js" defer></script>
+<script src="{{root}}assets/js/carousel.js" defer></script>
+{{scripts}}
+</body>
+</html>

@@ -1,0 +1,57 @@
+---
+title: Kontakt i zakazivanje – dr Filip Katanić, SB Ferona
+description: Zakazivanje pregleda kod dr Filipa Katanića u SB Ferona, Šarplaninska 19, Novi Sad. Telefon +381 21 3000 220, office@ferona.rs.
+cta: none
+body_class: force-sticky
+scripts: map
+nav: kontakt
+---
+<section class="section on-dark reveal" aria-labelledby="hero-h1" id="zakazivanje">
+  <div class="container">
+    <h1 id="hero-h1">Kontakt i zakazivanje</h1>
+    <div class="contact-tiles" style="margin-top:32px;max-width:680px">
+      <a class="contact-tile contact-tile--primary" href="{{g.tel_href}}">
+        <strong>Zakažite u SB Feroni</strong>
+        <span>{{g.tel}} · kontakt centar ustanove</span>
+      </a>
+      <a class="contact-tile" href="{{g.ig_url}}" rel="noopener" target="_blank">
+        <strong>Poruka na Instagramu</strong>
+        <span>Za pitanje pre zakazivanja — neformalni kanal zakazivanja</span>
+      </a>
+    </div>
+    <p class="prose" style="margin-top:28px;color:rgba(251,247,240,.8)">Kontakt centar SB Ferona — za zakazivanje pregleda kod dr Filipa Katanića. Telefon i email pripadaju ustanovi.</p>
+  </div>
+</section>
+
+<section class="section reveal" aria-labelledby="venue-h2">
+  <div class="container" style="display:grid;gap:32px;align-items:start">
+    <div>
+      <h2 id="venue-h2" class="visually-hidden">SB Ferona</h2>
+      {{> venue-card}}
+    </div>
+    <div class="prose">
+      <p><strong>{{g.ferona}}</strong><br>{{g.adresa}}</p>
+      <p><a class="link" href="{{g.tel_href}}">{{g.tel}}</a><br><a class="link" href="mailto:{{g.email}}">{{g.email}}</a></p>
+      <p style="color:var(--color-text-muted);font-size:.9rem">Za pitanja možete pisati i na {{g.email}} (email ustanove).</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface reveal" aria-label="Mapa">
+  <div class="container">
+    <div class="map-embed" data-src="https://www.google.com/maps?q=SB+Ferona+Sarplaninska+19+Novi+Sad&output=embed">
+      <button type="button" class="map-embed__btn" data-map-load
+              data-src="https://www.google.com/maps?q=SB+Ferona+Sarplaninska+19+Novi+Sad&output=embed"
+              data-title="Mapa: SB Ferona, Šarplaninska 19, Novi Sad">Učitaj mapu</button>
+    </div>
+  </div>
+</section>
+
+{{if RADNO_VREME}}
+<section class="section reveal" aria-labelledby="radno-h2">
+  <div class="container">
+    <h2 id="radno-h2">Radno vreme</h2>
+    <p data-flag="radno_vreme"><!-- [POTVRDITI SA KLIJENTOM: radno vreme SB Ferona i/ili termini kod dr Filipa Katanića] --></p>
+  </div>
+</section>
+{{/if}}

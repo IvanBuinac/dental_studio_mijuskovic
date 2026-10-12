@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="sr-Latn-RS" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kit komponenti (interno)</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#10284A">
+<link rel="icon" href="../site/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../site/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../site/favicon-180.png">
+<link rel="manifest" href="../site/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../site/assets/css/tokens.css">
+<link rel="stylesheet" href="../site/assets/css/base.css">
+<link rel="stylesheet" href="../site/assets/css/components.css">
+<link rel="stylesheet" href="../site/assets/css/pages.css">
+<script>document.documentElement.className='js'</script>
+
+</head>
+<body class="">
+<a class="skip" href="#main">Preskoči na sadržaj</a>
+<header class="site-header" id="site-header">
+  <div class="container site-header__in">
+    <a class="brand" href="../site/" aria-label="dr Filip Katanić, početna">
+      <svg class="seal" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle cx="24" cy="24" r="21.5" fill="none" stroke="currentColor" stroke-width="1.4"/><text x="24" y="30" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="16" fill="currentColor">FK</text></svg>
+
+      <span class="brand__txt"><span class="brand__name">dr Filip Katanić</span><span class="brand__sub">Ginekologija · IVF</span></span>
+    </a>
+    <nav class="nav" aria-label="Glavna navigacija">
+      <ul class="nav__list">
+        <li><a class="nav__link" href="../site/o-meni/">O meni</a></li>
+        <li class="has-sub">
+          <button class="nav__link nav__link--sub" type="button" aria-expanded="false" aria-controls="sub-oblasti">Oblasti rada<svg class="chev" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1"/></svg></button>
+          <ul class="sub" id="sub-oblasti">
+            <li><a href="../site/oblasti-rada/vantelesna-oplodnja-ivf/"><span class="badge badge--sm">IVF / ICSI</span><strong>Vantelesna oplodnja</strong><span>Dijagnostika i priprema</span></a></li>
+            <li><a href="../site/oblasti-rada/zamrzavanje-jajnih-celija/"><span class="badge badge--sm">Social freezing</span><strong>Zamrzavanje jajnih ćelija</strong><span>Kada ima smisla</span></a></li>
+            <li><a href="../site/oblasti-rada/pcos-i-neplodnost/"><span class="badge badge--sm">PCOS</span><strong>PCOS i neplodnost</strong><span>Dijagnostika i praćenje</span></a></li>
+            <li><a href="../site/oblasti-rada/muski-faktor-neplodnosti/"><span class="badge badge--sm">Muški faktor</span><strong>Muški faktor neplodnosti</strong><span>Spermogram i dalji koraci</span></a></li>
+            <li><a href="../site/oblasti-rada/redovni-ginekoloski-pregledi/"><span class="badge badge--sm">Redovni pregledi</span><strong>Redovni ginekološki pregledi</strong><span>PAPA test i skrining</span></a></li>
+          </ul>
+        </li>
+        <li><a class="nav__link" href="../site/pitanja-i-odgovori/">Pitanja i odgovori</a></li>
+        <li><a class="nav__link" href="../site/blog/">Blog</a></li>
+        <li><a class="nav__link" href="../site/mediji-i-predavanja/">Mediji i predavanja</a></li>
+        <li><a class="nav__link" href="../site/kontakt/">Kontakt</a></li>
+      </ul>
+    </nav>
+    <div class="site-header__act">
+      <a class="btn hdr-cta" href="../site/kontakt/#zakazivanje">Zakažite u SB Feroni</a>
+      <a class="hdr-tel" href="tel:+381213000220" aria-label="Pozovite +381 21 3000 220"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Otvori meni"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<div class="menu on-dark" id="menu" role="dialog" aria-modal="true" aria-label="Meni">
+  <div class="menu__in container">
+    <ul class="menu__list">
+      <li><a href="../site/o-meni/">O meni</a></li>
+      <li>
+        <button class="menu__acc" type="button" aria-expanded="false" aria-controls="menu-sub">Oblasti rada<span class="menu__plus" aria-hidden="true"></span></button>
+        <ul class="menu__sub" id="menu-sub">
+          <li><a href="../site/oblasti-rada/vantelesna-oplodnja-ivf/">IVF / ICSI</a></li>
+          <li><a href="../site/oblasti-rada/zamrzavanje-jajnih-celija/">Zamrzavanje jajnih ćelija</a></li>
+          <li><a href="../site/oblasti-rada/pcos-i-neplodnost/">PCOS i neplodnost</a></li>
+          <li><a href="../site/oblasti-rada/muski-faktor-neplodnosti/">Muški faktor neplodnosti</a></li>
+          <li><a href="../site/oblasti-rada/redovni-ginekoloski-pregledi/">Redovni ginekološki pregledi</a></li>
+        </ul>
+      </li>
+      <li><a href="../site/pitanja-i-odgovori/">Pitanja i odgovori</a></li>
+      <li><a href="../site/blog/">Blog</a></li>
+      <li><a href="../site/mediji-i-predavanja/">Mediji i predavanja</a></li>
+      <li><a href="../site/kontakt/">Kontakt</a></li>
+    </ul>
+    <div class="menu__foot">
+      <svg class="seal" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle cx="24" cy="24" r="21.5" fill="none" stroke="currentColor" stroke-width="1.4"/><text x="24" y="30" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="16" fill="currentColor">FK</text></svg>
+
+      <a class="btn btn--gold" href="tel:+381213000220">Zakažite u SB Feroni</a>
+      <a class="link" href="https://instagram.com/drfilipkatanic" rel="noopener">Poruka dr Kataniću na Instagramu</a>
+      <p class="menu__addr">SB "Ferona" · Šarplaninska 19, 21000 Novi Sad · +381 21 3000 220</p>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+<!-- Pregled komponenti; gradi se samo sa: python build.py --kit  ->  _preview/index.html (ne ide u site/) -->
+<style>
+  .kit-h { margin: 0 0 24px; padding-top: 24px; border-top: 1px solid var(--color-border); }
+  .kit-h span { font: 600 .75rem var(--font-body); letter-spacing: .2em; text-transform: uppercase; color: var(--color-text-muted); }
+  .kit-sec { padding-block: 56px; }
+  .kit-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  .kit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+  .kit-sw { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
+  .kit-sw div { padding: 44px 10px 10px; font: 500 .6875rem/1.3 var(--font-body); border: 1px solid var(--color-border); }
+</style>
+
+<section class="kit-sec">
+  <div class="container">
+    <p class="eyebrow">Kit komponenti · interno</p>
+    <h1>Tipografija i boje</h1>
+    <p class="hero__lead" style="margin-top:1rem">Fraunces (naslovi) + Karla (telo). Ovo je lokalni pregled komponenti — ne ide u site/.</p>
+    <h2 style="margin-top:2rem">H2 Fraunces 500</h2>
+    <h3 style="margin-top:1rem">H3 Fraunces, sa šđčćž €</h3>
+    <div class="prose" style="margin-top:1rem">
+      <p>Telo teksta Karla, sa <a class="link" href="#">linkom u telu</a> i dijakriticima: šđčćž ŠĐČĆŽ.</p>
+    </div>
+    <div class="kit-sw" style="margin-top:2rem">
+      <div style="background:var(--color-primary);color:#fff">primary</div>
+      <div style="background:var(--color-primary-light);color:#fff">primary-light</div>
+      <div style="background:var(--color-secondary);color:#fff">secondary</div>
+      <div style="background:var(--color-accent);color:#fff">accent</div>
+      <div style="background:var(--color-accent-decorative)">accent-decor</div>
+      <div style="background:var(--color-bg)">bg</div>
+      <div style="background:var(--color-surface)">surface</div>
+      <div style="background:var(--color-text);color:#fff">text</div>
+    </div>
+  </div>
+</section>
+
+<section class="kit-sec section--surface">
+  <div class="container">
+    <p class="kit-h"><span>Dugmad</span></p>
+    <div class="kit-row">
+      <a class="btn" href="#">Zakažite u SB Feroni</a>
+      <a class="btn btn--ghost" href="#">Sekundarno</a>
+      <a class="link" href="#">Tekstualni link</a>
+    </div>
+    <div class="on-dark" style="padding:32px;margin-top:24px;border-radius:var(--radius-lg)">
+      <div class="kit-row">
+        <a class="btn btn--gold" href="#">Zlatno na tamnom</a>
+        <a class="btn btn--ghost-dark" href="#">Outline na tamnom</a>
+        <a class="link link--on-dark" href="#">Link na tamnom</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="kit-sec">
+  <div class="container">
+    <p class="kit-h"><span>.seal (potpis A) · .badge (potpis C)</span></p>
+    <div class="kit-row" style="align-items:flex-end">
+      <svg class="seal" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle cx="24" cy="24" r="21.5" fill="none" stroke="currentColor" stroke-width="1.4"/><text x="24" y="30" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="16" fill="currentColor">FK</text></svg>
+
+      <div style="color:var(--color-primary)"><svg class="illo illo--pregled" viewBox="0 0 220 220" role="img" focusable="false" aria-label="Linijska ilustracija kalendara"><rect class="illo__l" x="40" y="50" width="140" height="130" rx="14"/><path class="illo__l" d="M40 88h140"/><path class="illo__l" d="M76 38v24 M144 38v24"/><path class="illo__l" d="M92 138l16 16 32 -36" stroke="currentColor"/></svg></div>
+    </div>
+    <div class="kit-row" style="margin-top:16px">
+      <span class="badge">IVF / ICSI</span>
+      <span class="badge">Social freezing</span>
+      <span class="badge badge--sm">PCOS</span>
+    </div>
+    <div class="on-dark" style="padding:32px;margin-top:16px;border-radius:var(--radius-lg)">
+      <div class="kit-row">
+        <span class="seal seal--lg" style="color:var(--color-accent-decorative)"></span>
+        <span class="badge">Muški faktor</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="kit-sec section--surface">
+  <div class="container">
+    <p class="kit-h"><span>.frame--halo — varijante (portrait / wide / square)</span></p>
+    <div class="kit-grid">
+      <figure class="frame frame--halo frame--portrait">
+        <img src="../site/assets/img/portret-01.webp" width="900" height="1200" alt="portret-01 (čist, bez teksta) — --portrait 4:5" loading="lazy">
+      </figure>
+      <figure class="frame frame--halo frame--wide">
+        <img src="../site/assets/img/konferencija-03.webp" width="900" height="900" alt="konferencija-03 — --wide 3:2" loading="lazy">
+      </figure>
+      <figure class="frame frame--halo frame--square">
+        <img src="../site/assets/img/edukacija-pcos-01.webp" width="480" height="600" alt="edukacija-pcos-01 — --square 1:1" loading="lazy">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="kit-sec">
+  <div class="container">
+    <p class="kit-h"><span>KRITIČNO — .crop-hero / .crop-konferencija02 (structure.md 0.2)</span></p>
+    <p class="prose">hero.webp i konferencija-02.webp imaju utisnut tekst "Specijalista..."/"Ob/Gyn Specialist" u donjem/levom delu slike. Ispod: SAMO kroz propisane krop-klase — tekst mora biti fizički van kadra.</p>
+    <div class="kit-grid" style="margin-top:24px;max-width:640px">
+      <figure class="frame frame--halo">
+        <img class="crop-hero" src="../site/assets/img/hero.webp" width="1487" height="1874" alt="hero.webp kroz .crop-hero — gornjih ~53% slike" loading="lazy">
+      </figure>
+      <figure class="frame frame--halo">
+        <img class="crop-konferencija02" src="../site/assets/img/konferencija-02.webp" width="900" height="1187" alt="konferencija-02.webp kroz .crop-konferencija02 — uzak krop na govornika" loading="lazy">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="kit-sec section--surface">
+  <div class="container">
+    <p class="kit-h"><span>.credential · .venue · .venue-card</span></p>
+    <p class="credential"><span class="credential__t">Lekar · Master reproduktivne embriologije · Član tima SB Ferona</span> <a class="link" href="../site/o-meni/">O meni →</a></p>
+
+    <div style="margin-top:16px"><div class="venue"><div class="container venue__in"><p class="venue__t">Postupci se sprovode u okviru SB "Ferona", Šarplaninska 19, 21000 Novi Sad.</p><a class="link" href="../site/kontakt/">Kontakt i mapa</a></div></div>
+</div>
+    <div style="margin-top:24px;max-width:520px"><div class="venue-card on-dark">
+  <div class="venue-card__txt">
+    <p class="venue-card__eyebrow">SB "Ferona"</p>
+    <p class="venue-card__street">Šarplaninska 19</p>
+    <p class="venue-card__city">21000 Novi Sad</p>
+    <a class="link link--on-dark" href="https://www.google.com/maps/search/?api=1&amp;query=SB+Ferona+Sarplaninska+19+Novi+Sad" rel="noopener" target="_blank">Otvori u Google mapama</a>
+  </div>
+  <svg class="venue-map" viewBox="0 0 240 150" aria-hidden="true" focusable="false"><line class="venue-map__st" x1="0" y1="112" x2="240" y2="52"/><line class="venue-map__st" x1="70" y1="0" x2="118" y2="150"/><line class="venue-map__st venue-map__st--minor" x1="0" y1="34" x2="240" y2="132"/><circle class="venue-map__ring" cx="102" cy="82" r="13"/><circle class="venue-map__dot" cx="102" cy="82" r="4.5"/></svg>
+</div>
+</div>
+  </div>
+</section>
+
+<section class="kit-sec">
+  <div class="container">
+    <p class="kit-h"><span>.steps</span></p>
+    <ol class="steps" style="max-width:520px">
+      <li class="steps__item"><h3>Prvi razgovor</h3><p>Uvid u dosadašnje nalaze i dogovor oko sledećih koraka.</p></li>
+      <li class="steps__item"><h3>Dijagnostika</h3><p>Analize prema individualnoj proceni.</p></li>
+      <li class="steps__item"><h3>Plan</h3><p>Predlog daljeg toka, uz jasno objašnjenje.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="kit-sec section--surface">
+  <div class="container">
+    <p class="kit-h"><span>.faq akordeon</span></p>
+    <div class="faq reveal"><div class="faq__item is-open"><h3 class="faq__q"><button type="button" aria-expanded="true" aria-controls="f1" id="q1">Primer pitanja jedan?<span class="faq__ico" aria-hidden="true"></span></button></h3><div class="faq__a" id="f1" role="region" aria-labelledby="q1"><div><p>Primer uslovnog odgovora — "može", "individualno", "nije garancija".</p></div></div></div><div class="faq__item"><h3 class="faq__q"><button type="button" aria-expanded="false" aria-controls="f2" id="q2">Primer pitanja dva?<span class="faq__ico" aria-hidden="true"></span></button></h3><div class="faq__a" id="f2" role="region" aria-labelledby="q2"><div><p>Drugi primer odgovora za pregled akordeona.</p></div></div></div></div>
+  </div>
+</section>
+
+<section class="kit-sec">
+  <div class="container">
+    <p class="kit-h"><span>.checklist</span></p>
+    <div class="checklist" style="max-width:480px">
+      <div class="checklist__item"><span class="checklist__mark"><svg viewBox="0 0 24 24"><path d="M4 12l5 5 11-11" fill="none" stroke="currentColor" stroke-width="2"/></svg></span><span><span class="checklist__t">Nalazi analiza</span>Poslednji hormonski nalazi.</span></div>
+      <div class="checklist__item"><span class="checklist__mark"><svg viewBox="0 0 24 24"><path d="M4 12l5 5 11-11" fill="none" stroke="currentColor" stroke-width="2"/></svg></span><span><span class="checklist__t">Spermogram</span>Ako je urađen.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="kit-sec section--surface">
+  <div class="container">
+    <p class="kit-h"><span>.illo — linijske ilustracije</span></p>
+    <div class="kit-row">
+      <svg class="illo illo--spermogram" viewBox="0 0 220 220" role="img" focusable="false" aria-label="Linijska ilustracija epruvete i mikroskopa"><path class="illo__l" d="M90 30h30 M96 30v70c0 22 -14 34 -14 54c0 18 14 30 33 30s33 -12 33 -30c0 -20 -14 -32 -14 -54V30"/><path class="illo__l" d="M96 108h58"/><circle class="illo__dot" cx="115" cy="150" r="4"/><circle class="illo__dot" cx="128" cy="168" r="3"/><path class="illo__l" d="M40 190h50 M46 190v-18a20 20 0 0 1 40 0v18 M66 172v-40 M50 132h32"/></svg>
+      <svg class="illo illo--pregled" viewBox="0 0 220 220" role="img" focusable="false" aria-label="Linijska ilustracija kalendara"><rect class="illo__l" x="40" y="50" width="140" height="130" rx="14"/><path class="illo__l" d="M40 88h140"/><path class="illo__l" d="M76 38v24 M144 38v24"/><path class="illo__l" d="M92 138l16 16 32 -36" stroke="currentColor"/></svg>
+    </div>
+  </div>
+</section>
+
+<section class="kit-sec">
+  <div class="container">
+    <p class="kit-h"><span>.oblast-card / .oblast-row</span></p>
+    <div class="grid-5">
+      <a class="oblast-card" href="#"><span class="badge">IVF / ICSI</span><h3>Vantelesna oplodnja</h3><p>Kratak opis oblasti rada.</p><span class="oblast-card__link">Saznajte više →</span></a>
+      <a class="oblast-card" href="#"><span class="badge">PCOS</span><h3>PCOS i neplodnost</h3><p>Kratak opis oblasti rada.</p><span class="oblast-card__link">Saznajte više →</span></a>
+    </div>
+    <div style="margin-top:24px;max-width:480px">
+      <a class="oblast-row" href="#"><span class="oblast-row__top"><strong>Muški faktor neplodnosti</strong> →</span><p>Spermogram i sledeći koraci.</p></a>
+      <a class="oblast-row" href="#"><span class="oblast-row__top"><strong>Redovni ginekološki pregledi</strong> →</span><p>PAPA test i skrining.</p></a>
+    </div>
+  </div>
+</section>
+
+<section class="kit-sec section--surface">
+  <div class="container">
+    <p class="kit-h"><span>.blog-card</span></p>
+    <div class="grid-3">
+      <a class="blog-card" href="#">
+        <div class="frame frame--halo frame--square blog-card__frame"><img src="../site/assets/img/edukacija-embrioni-01.webp" width="900" height="1200" alt="" loading="lazy"></div>
+        <h3>Koliko jajnih ćelija je potrebno za embrion?</h3>
+        <p>Kratak opis teksta na blogu.</p>
+        <span class="blog-card__more">Pročitajte →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="kit-sec">
+  <div class="container">
+    <p class="kit-h"><span>Lightbox (klik na sliku)</span></p>
+    <div class="kit-grid" style="max-width:420px">
+      <a href="../site/assets/img/konferencija-03.webp" data-lightbox="kit" data-caption="Primer — konferencija-03">
+        <div class="frame frame--halo frame--wide"><img src="../site/assets/img/konferencija-03.webp" width="900" height="900" alt="" loading="lazy"></div>
+      </a>
+      <a href="../site/assets/img/konferencija-04.webp" data-lightbox="kit" data-caption="Primer — konferencija-04">
+        <div class="frame frame--halo frame--wide"><img src="../site/assets/img/konferencija-04.webp" width="480" height="640" alt="" loading="lazy"></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="kit-sec section--surface">
+  <div class="container">
+    <p class="kit-h"><span>.edu-carousel</span></p>
+    <div class="edu">
+      <div class="edu__track">
+        <a class="edu__card" href="#"><div class="frame frame--halo frame--square"><img src="../site/assets/img/edukacija-pcos-01.webp" width="480" height="600" alt="" loading="lazy"></div><h3>Kartica jedan</h3></a>
+        <a class="edu__card edu__card--dark" href="#"><div class="frame frame--halo frame--square"><img src="../site/assets/img/edukacija-simptomi-01.webp" width="480" height="640" alt="" loading="lazy"></div><h3>Kartica dva</h3></a>
+      </div>
+      <div class="edu__nav">
+        <button type="button" data-edu="prev" aria-label="Prethodna">←</button>
+        <button type="button" data-edu="next" aria-label="Sledeća">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer on-dark">
+  <div class="site-footer__mark" aria-hidden="true"><svg class="seal" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle cx="24" cy="24" r="21.5" fill="none" stroke="currentColor" stroke-width="1.4"/><text x="24" y="30" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="16" fill="currentColor">FK</text></svg>
+<span>KATANIĆ</span></div>
+  <div class="container">
+    <div class="site-footer__grid">
+      <div class="fcol fcol--contact">
+        <h2 class="fcol__h">Kontakt / Ustanova</h2>
+        <address>
+          <p>SB "Ferona"<br>Šarplaninska 19, 21000 Novi Sad</p>
+          <p><a href="tel:+381213000220">+381 21 3000 220</a><br><a href="mailto:office@ferona.rs">office@ferona.rs</a></p>
+          <p class="fcol__note">Kontakt centar ustanove — za zakazivanje pregleda kod dr Filipa Katanića.</p>
+          <p><a href="https://instagram.com/drfilipkatanic" rel="noopener">Instagram @drfilipkatanic</a></p>
+        </address>
+      </div>
+      <div class="fcol fcol--brand">
+        <a class="brand brand--footer" href="../site/" aria-label="dr Filip Katanić, početna"><svg class="seal" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle cx="24" cy="24" r="21.5" fill="none" stroke="currentColor" stroke-width="1.4"/><text x="24" y="30" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="16" fill="currentColor">FK</text></svg>
+<span class="brand__txt"><span class="brand__name">dr Filip Katanić</span></span></a>
+        <p class="fcol__zvanje">Lekar · Master reproduktivne embriologije · Član tima SB Ferona</p>
+        <p class="fcol__sig">„Ne možemo kontrolisati baš sve, ali možemo napraviti najbolji plan.“</p>
+      </div>
+      <div class="fcol fcol--areas">
+        <h2 class="fcol__h">Oblasti rada</h2>
+        <ul>
+          <li><a href="../site/oblasti-rada/vantelesna-oplodnja-ivf/">IVF / ICSI</a></li>
+          <li><a href="../site/oblasti-rada/zamrzavanje-jajnih-celija/">Zamrzavanje jajnih ćelija</a></li>
+          <li><a href="../site/oblasti-rada/pcos-i-neplodnost/">PCOS i neplodnost</a></li>
+          <li><a href="../site/oblasti-rada/muski-faktor-neplodnosti/">Muški faktor</a></li>
+          <li><a href="../site/oblasti-rada/redovni-ginekoloski-pregledi/">Redovni pregledi</a></li>
+        </ul>
+      </div>
+      <div class="fcol fcol--site">
+        <h2 class="fcol__h">Sajt</h2>
+        <ul>
+          <li><a href="../site/o-meni/">O meni</a></li>
+          <li><a href="../site/pitanja-i-odgovori/">Pitanja i odgovori</a></li>
+          <li><a href="../site/blog/">Blog</a></li>
+          <li><a href="../site/mediji-i-predavanja/">Mediji i predavanja</a></li>
+          <li><a href="../site/kontakt/">Kontakt</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="site-footer__note">Sadržaj sajta je informativan i edukativan i ne zamenjuje pregled ili konsultaciju lekara. Postupci se sprovode u okviru Specijalne bolnice Ferona. Svaki slučaj se procenjuje individualno.</p>
+    <div class="site-footer__bar">
+      <p>&copy; 2026 dr Filip Katanić &nbsp;·&nbsp; <a href="../site/politika-privatnosti/">Politika privatnosti</a></p>
+      <a class="totop" href="#main">Nazad na vrh <span aria-hidden="true">↑</span></a>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-bar" id="sticky-bar" role="region" aria-label="Brzi kontakt">
+  <a class="btn btn--gold" href="tel:+381213000220">Zakažite u SB Feroni</a>
+  <a class="btn btn--ghost" href="https://instagram.com/drfilipkatanic" rel="noopener">Poruka na Instagramu</a>
+</div>
+
+<script src="../site/assets/js/main.js" defer></script>
+<script src="../site/assets/js/lightbox.js" defer></script>
+<script src="../site/assets/js/carousel.js" defer></script>
+
+</body>
+</html>
