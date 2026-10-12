@@ -1,0 +1,9 @@
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Početna", "item": "{{site_url}}/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "{{site_url}}/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Šta se zaista dešava tokom IVF postupka?", "item": "{{site_url}}/blog/sta-se-zaista-desava-tokom-ivf-postupka/" }
+  ]
+}

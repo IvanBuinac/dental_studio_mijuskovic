@@ -1,0 +1,220 @@
+---
+title: Kit komponenti (interno)
+robots: noindex
+cta: none
+---
+<!-- Pregled komponenti; gradi se samo sa: python build.py --kit  ->  _preview/index.html (ne ide u site/) -->
+<style>
+  .kit-h { margin: 0 0 24px; padding-top: 24px; border-top: 1px solid var(--color-border); }
+  .kit-h span { font: 600 .75rem var(--font-body); letter-spacing: .2em; text-transform: uppercase; color: var(--color-text-muted); }
+  .kit-sec { padding-block: 56px; }
+  .kit-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  .kit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+  .kit-sw { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
+  .kit-sw div { padding: 44px 10px 10px; font: 500 .6875rem/1.3 var(--font-body); border: 1px solid var(--color-border); }
+</style>
+
+<section class="kit-sec">
+  <div class="container">
+    <p class="eyebrow">Kit komponenti · interno</p>
+    <h1>Tipografija i boje</h1>
+    <p class="hero__lead" style="margin-top:1rem">Fraunces (naslovi) + Karla (telo). Ovo je lokalni pregled komponenti — ne ide u site/.</p>
+    <h2 style="margin-top:2rem">H2 Fraunces 500</h2>
+    <h3 style="margin-top:1rem">H3 Fraunces, sa šđčćž €</h3>
+    <div class="prose" style="margin-top:1rem">
+      <p>Telo teksta Karla, sa <a class="link" href="#">linkom u telu</a> i dijakriticima: šđčćž ŠĐČĆŽ.</p>
+    </div>
+    <div class="kit-sw" style="margin-top:2rem">
+      <div style="background:var(--color-primary);color:#fff">primary</div>
+      <div style="background:var(--color-primary-light);color:#fff">primary-light</div>
+      <div style="background:var(--color-secondary);color:#fff">secondary</div>
+      <div style="background:var(--color-accent);color:#fff">accent</div>
+      <div style="background:var(--color-accent-decorative)">accent-decor</div>
+      <div style="background:var(--color-bg)">bg</div>
+      <div style="background:var(--color-surface)">surface</div>
+      <div style="background:var(--color-text);color:#fff">text</div>
+    </div>
+  </div>
+</section>
+
+<section class="kit-sec section--surface">
+  <div class="container">
+    <p class="kit-h"><span>Dugmad</span></p>
+    <div class="kit-row">
+      <a class="btn" href="#">Zakažite u SB Feroni</a>
+      <a class="btn btn--ghost" href="#">Sekundarno</a>
+      <a class="link" href="#">Tekstualni link</a>
+    </div>
+    <div class="on-dark" style="padding:32px;margin-top:24px;border-radius:var(--radius-lg)">
+      <div class="kit-row">
+        <a class="btn btn--gold" href="#">Zlatno na tamnom</a>
+        <a class="btn btn--ghost-dark" href="#">Outline na tamnom</a>
+        <a class="link link--on-dark" href="#">Link na tamnom</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="kit-sec">
+  <div class="container">
+    <p class="kit-h"><span>.seal (potpis A) · .badge (potpis C)</span></p>
+    <div class="kit-row" style="align-items:flex-end">
+      {{> seal}}
+      <div style="color:var(--color-primary)">{{gen:illo_pregled}}</div>
+    </div>
+    <div class="kit-row" style="margin-top:16px">
+      <span class="badge">IVF / ICSI</span>
+      <span class="badge">Social freezing</span>
+      <span class="badge badge--sm">PCOS</span>
+    </div>
+    <div class="on-dark" style="padding:32px;margin-top:16px;border-radius:var(--radius-lg)">
+      <div class="kit-row">
+        <span class="seal seal--lg" style="color:var(--color-accent-decorative)"></span>
+        <span class="badge">Muški faktor</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="kit-sec section--surface">
+  <div class="container">
+    <p class="kit-h"><span>.frame--halo — varijante (portrait / wide / square)</span></p>
+    <div class="kit-grid">
+      <figure class="frame frame--halo frame--portrait">
+        <img src="{{root}}assets/img/portret-01.webp" width="900" height="1200" alt="portret-01 (čist, bez teksta) — --portrait 4:5" loading="lazy">
+      </figure>
+      <figure class="frame frame--halo frame--wide">
+        <img src="{{root}}assets/img/konferencija-03.webp" width="900" height="900" alt="konferencija-03 — --wide 3:2" loading="lazy">
+      </figure>
+      <figure class="frame frame--halo frame--square">
+        <img src="{{root}}assets/img/edukacija-pcos-01.webp" width="480" height="600" alt="edukacija-pcos-01 — --square 1:1" loading="lazy">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="kit-sec">
+  <div class="container">
+    <p class="kit-h"><span>KRITIČNO — .crop-hero / .crop-konferencija02 (structure.md 0.2)</span></p>
+    <p class="prose">hero.webp i konferencija-02.webp imaju utisnut tekst "Specijalista..."/"Ob/Gyn Specialist" u donjem/levom delu slike. Ispod: SAMO kroz propisane krop-klase — tekst mora biti fizički van kadra.</p>
+    <div class="kit-grid" style="margin-top:24px;max-width:640px">
+      <figure class="frame frame--halo">
+        <img class="crop-hero" src="{{root}}assets/img/hero.webp" width="1487" height="1874" alt="hero.webp kroz .crop-hero — gornjih ~53% slike" loading="lazy">
+      </figure>
+      <figure class="frame frame--halo">
+        <img class="crop-konferencija02" src="{{root}}assets/img/konferencija-02.webp" width="900" height="1187" alt="konferencija-02.webp kroz .crop-konferencija02 — uzak krop na govornika" loading="lazy">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="kit-sec section--surface">
+  <div class="container">
+    <p class="kit-h"><span>.credential · .venue · .venue-card</span></p>
+    {{> credential}}
+    <div style="margin-top:16px">{{> venue}}</div>
+    <div style="margin-top:24px;max-width:520px">{{> venue-card}}</div>
+  </div>
+</section>
+
+<section class="kit-sec">
+  <div class="container">
+    <p class="kit-h"><span>.steps</span></p>
+    <ol class="steps" style="max-width:520px">
+      <li class="steps__item"><h3>Prvi razgovor</h3><p>Uvid u dosadašnje nalaze i dogovor oko sledećih koraka.</p></li>
+      <li class="steps__item"><h3>Dijagnostika</h3><p>Analize prema individualnoj proceni.</p></li>
+      <li class="steps__item"><h3>Plan</h3><p>Predlog daljeg toka, uz jasno objašnjenje.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="kit-sec section--surface">
+  <div class="container">
+    <p class="kit-h"><span>.faq akordeon</span></p>
+    {{faq open}}
+    P: Primer pitanja jedan?
+    O: Primer uslovnog odgovora — "može", "individualno", "nije garancija".
+
+    P: Primer pitanja dva?
+    O: Drugi primer odgovora za pregled akordeona.
+    {{/faq}}
+  </div>
+</section>
+
+<section class="kit-sec">
+  <div class="container">
+    <p class="kit-h"><span>.checklist</span></p>
+    <div class="checklist" style="max-width:480px">
+      <div class="checklist__item"><span class="checklist__mark"><svg viewBox="0 0 24 24"><path d="M4 12l5 5 11-11" fill="none" stroke="currentColor" stroke-width="2"/></svg></span><span><span class="checklist__t">Nalazi analiza</span>Poslednji hormonski nalazi.</span></div>
+      <div class="checklist__item"><span class="checklist__mark"><svg viewBox="0 0 24 24"><path d="M4 12l5 5 11-11" fill="none" stroke="currentColor" stroke-width="2"/></svg></span><span><span class="checklist__t">Spermogram</span>Ako je urađen.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="kit-sec section--surface">
+  <div class="container">
+    <p class="kit-h"><span>.illo — linijske ilustracije</span></p>
+    <div class="kit-row">
+      {{gen:illo_spermogram}}
+      {{gen:illo_pregled}}
+    </div>
+  </div>
+</section>
+
+<section class="kit-sec">
+  <div class="container">
+    <p class="kit-h"><span>.oblast-card / .oblast-row</span></p>
+    <div class="grid-5">
+      <a class="oblast-card" href="#"><span class="badge">IVF / ICSI</span><h3>Vantelesna oplodnja</h3><p>Kratak opis oblasti rada.</p><span class="oblast-card__link">Saznajte više →</span></a>
+      <a class="oblast-card" href="#"><span class="badge">PCOS</span><h3>PCOS i neplodnost</h3><p>Kratak opis oblasti rada.</p><span class="oblast-card__link">Saznajte više →</span></a>
+    </div>
+    <div style="margin-top:24px;max-width:480px">
+      <a class="oblast-row" href="#"><span class="oblast-row__top"><strong>Muški faktor neplodnosti</strong> →</span><p>Spermogram i sledeći koraci.</p></a>
+      <a class="oblast-row" href="#"><span class="oblast-row__top"><strong>Redovni ginekološki pregledi</strong> →</span><p>PAPA test i skrining.</p></a>
+    </div>
+  </div>
+</section>
+
+<section class="kit-sec section--surface">
+  <div class="container">
+    <p class="kit-h"><span>.blog-card</span></p>
+    <div class="grid-3">
+      <a class="blog-card" href="#">
+        <div class="frame frame--halo frame--square blog-card__frame"><img src="{{root}}assets/img/edukacija-embrioni-01.webp" width="900" height="1200" alt="" loading="lazy"></div>
+        <h3>Koliko jajnih ćelija je potrebno za embrion?</h3>
+        <p>Kratak opis teksta na blogu.</p>
+        <span class="blog-card__more">Pročitajte →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="kit-sec">
+  <div class="container">
+    <p class="kit-h"><span>Lightbox (klik na sliku)</span></p>
+    <div class="kit-grid" style="max-width:420px">
+      <a href="{{root}}assets/img/konferencija-03.webp" data-lightbox="kit" data-caption="Primer — konferencija-03">
+        <div class="frame frame--halo frame--wide"><img src="{{root}}assets/img/konferencija-03.webp" width="900" height="900" alt="" loading="lazy"></div>
+      </a>
+      <a href="{{root}}assets/img/konferencija-04.webp" data-lightbox="kit" data-caption="Primer — konferencija-04">
+        <div class="frame frame--halo frame--wide"><img src="{{root}}assets/img/konferencija-04.webp" width="480" height="640" alt="" loading="lazy"></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="kit-sec section--surface">
+  <div class="container">
+    <p class="kit-h"><span>.edu-carousel</span></p>
+    <div class="edu">
+      <div class="edu__track">
+        <a class="edu__card" href="#"><div class="frame frame--halo frame--square"><img src="{{root}}assets/img/edukacija-pcos-01.webp" width="480" height="600" alt="" loading="lazy"></div><h3>Kartica jedan</h3></a>
+        <a class="edu__card edu__card--dark" href="#"><div class="frame frame--halo frame--square"><img src="{{root}}assets/img/edukacija-simptomi-01.webp" width="480" height="640" alt="" loading="lazy"></div><h3>Kartica dva</h3></a>
+      </div>
+      <div class="edu__nav">
+        <button type="button" data-edu="prev" aria-label="Prethodna">←</button>
+        <button type="button" data-edu="next" aria-label="Sledeća">→</button>
+      </div>
+    </div>
+  </div>
+</section>

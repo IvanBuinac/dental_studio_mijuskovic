@@ -1,0 +1,9 @@
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Početna", "item": "{{site_url}}/" },
+    { "@type": "ListItem", "position": 2, "name": "Oblasti rada", "item": "{{site_url}}/oblasti-rada/" },
+    { "@type": "ListItem", "position": 3, "name": "Zamrzavanje jajnih ćelija", "item": "{{site_url}}/oblasti-rada/zamrzavanje-jajnih-celija/" }
+  ]
+}
