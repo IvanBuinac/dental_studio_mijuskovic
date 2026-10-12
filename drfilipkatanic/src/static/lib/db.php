@@ -1,8 +1,11 @@
 <?php
 /**
  * SQLite (PDO) konekcija + migracije šeme.
- * Kompatibilno sa starom šemom (appointments/users iz prve verzije): kolone koje fale
- * dodaju se sa ALTER TABLE ADD COLUMN, stari status 'prihvaceno' prelazi u 'potvrdjeno'.
+ * Kompatibilno sa starom šemom (appointments iz prve verzije): kolone koje fale dodaju se sa
+ * ALTER TABLE ADD COLUMN, stari status 'prihvaceno' prelazi u 'potvrdjeno'.
+ * Stara tabela users (sa javno poznatom lozinkom) se više NE koristi — prijava ide preko
+ * jedne admin lozinke (config.php admin_password_hash ili admin/setup.php).
+ * Tabele: appointments, rate_limits, email_log (interni log slanja), settings.
  */
 
 declare(strict_types=1);
@@ -102,21 +105,6 @@ function fk_migrate(PDO $pdo): void
         $pdo->exec('CREATE INDEX IF NOT EXISTS idx_appt_status ON appointments(status, datum_kreiranja)');
         $pdo->exec('CREATE INDEX IF NOT EXISTS idx_appt_email ON appointments(email)');
 
-        $pdo->exec("CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT NOT NULL UNIQUE,
-            password_hash TEXT NOT NULL,
-            full_name TEXT,
-            created_at TEXT NOT NULL DEFAULT (datetime('now','localtime'))
-        )");
-        fk_add_columns($pdo, 'users', [
-            'email'               => 'TEXT',
-            'failed_attempts'     => 'INTEGER NOT NULL DEFAULT 0',
-            'locked_until'        => 'INTEGER',
-            'last_login_at'       => 'TEXT',
-            'password_changed_at' => 'TEXT',
-        ]);
-
         $pdo->exec("CREATE TABLE IF NOT EXISTS rate_limits (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             bucket TEXT NOT NULL,
@@ -139,31 +127,10 @@ function fk_migrate(PDO $pdo): void
         )");
         $pdo->exec('CREATE INDEX IF NOT EXISTS idx_email_appt ON email_log(appointment_id)');
 
-        $pdo->exec("CREATE TABLE IF NOT EXISTS activity_log (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            appointment_id INTEGER,
-            user_id INTEGER,
-            akcija TEXT NOT NULL,
-            detalji TEXT,
-            ip_hash TEXT,
-            created_at TEXT NOT NULL
-        )");
-        $pdo->exec('CREATE INDEX IF NOT EXISTS idx_act_appt ON activity_log(appointment_id)');
-
         $pdo->exec("CREATE TABLE IF NOT EXISTS settings (
             k TEXT PRIMARY KEY,
             v TEXT NOT NULL
         )");
-
-        // Bezbednost: prva verzija je pravila nalog sa javno poznatom lozinkom "Ferona2026!".
-        // Takvi nalozi se brišu (prijava njima više nije moguća) — novi nalog kroz admin/setup.php.
-        $legacy = $pdo->query('SELECT id, password_hash FROM users')->fetchAll();
-        $del = $pdo->prepare('DELETE FROM users WHERE id = ?');
-        foreach ($legacy as $u) {
-            if (password_verify('Ferona2026!', (string) $u['password_hash'])) {
-                $del->execute([$u['id']]);
-            }
-        }
 
         $pdo->exec('PRAGMA user_version = ' . FK_SCHEMA_VERSION);
         $pdo->exec('COMMIT');
@@ -174,6 +141,11 @@ function fk_migrate(PDO $pdo): void
 }
 
 /* ------------------------------------------------------------------ settings / tajna */
+
+function fk_setting_set(string $key, string $value): void
+{
+    db()->prepare('INSERT INTO settings (k, v) VALUES (?, ?) ON CONFLICT(k) DO UPDATE SET v = excluded.v')->execute([$key, $value]);
+}
 
 function fk_setting(string $key): ?string
 {
@@ -232,21 +204,6 @@ function fk_rate_retry_after(string $bucket, string $key, int $windowSeconds): i
     $st->execute([$bucket, $key, time() - $windowSeconds]);
     $oldest = (int) $st->fetchColumn();
     return max(60, $oldest + $windowSeconds - time());
-}
-
-/* ------------------------------------------------------------------ log aktivnosti */
-
-function fk_activity(string $action, ?int $appointmentId = null, array|string|null $details = null, ?int $userId = null): void
-{
-    try {
-        if (is_array($details)) {
-            $details = json_encode($details, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-        }
-        db()->prepare('INSERT INTO activity_log (appointment_id, user_id, akcija, detalji, ip_hash, created_at) VALUES (?, ?, ?, ?, ?, ?)')
-            ->execute([$appointmentId, $userId ?? ($_SESSION['fk_uid'] ?? null), $action, $details, fk_ip_hash(), fk_now()]);
-    } catch (Throwable $e) {
-        app_log('warning', 'activity_log upis nije uspeo: ' . $e->getMessage());
-    }
 }
 
 function fk_appointment(int $id): ?array

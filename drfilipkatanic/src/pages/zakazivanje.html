@@ -1,0 +1,206 @@
+---
+title: Zakažite konsultaciju – dr Filip Katanić | Novi Sad
+description: Pošaljite zahtev za konsultaciju kod dr Filipa Katanića — reproduktivna medicina, IVF i sterilitet. Potvrdu termina dobijate mejlom. Ordinira u Novom Sadu.
+cta: none
+scripts: booking
+nav: zakazivanje
+body_class: page-booking no-sticky
+jsonld: breadcrumb-zakazivanje
+---
+<section class="page-hero" aria-labelledby="hero-h1">
+  <div class="container page-hero__in">
+    <div>
+      <nav class="breadcrumb" aria-label="Putanja"><ol>
+        <li><a href="{{root}}">Početna</a></li>
+        <li aria-current="page">Zakazivanje</li>
+      </ol></nav>
+      <p class="eyebrow eyebrow--line">Zakazivanje</p>
+      <h1 id="hero-h1">Zakažite konsultaciju</h1>
+      <p class="lead">Pošaljite zahtev za termin — javiću Vam se sa potvrdom ili predlogom drugog termina. Popunjavanje traje oko dva minuta.</p>
+      <!-- [POTVRDITI SA KLIJENTOM: ko odgovara na zahteve — lično doktor ili asistent ("javiću" / "javićemo")] -->
+    </div>
+  </div>
+</section>
+
+<div class="container booking">
+  <div class="booking__main">
+    <div class="booking__mobile-info">
+      <details class="side-details">
+        <summary><svg class="i" aria-hidden="true"><use href="#i-info"/></svg>Šta očekivati?<svg class="i" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <div class="side-details__in">
+          <ol class="side-steps" role="list">
+            <li><b>01</b>Analiza dokumentacije</li>
+            <li><b>02</b>Ultrazvučna procena</li>
+            <li><b>03</b>Procena prethodnog odgovora</li>
+            <li><b>04</b>Individualizovana strategija</li>
+            <li><b>05</b>Jasni naredni koraci</li>
+          </ol>
+          <p class="side-info"><svg class="i" aria-hidden="true"><use href="#i-info"/></svg><span>Ovo je zahtev, ne potvrđen termin. Potvrdu dobijate mejlom.</span></p>
+        </div>
+      </details>
+    </div>
+
+    <div class="booking__card" id="booking-card">
+      <noscript><p class="noscript-note">Za slanje forme potreban je JavaScript. Možete nam pisati i na Instagramu <a class="link" href="{{g.ig_url}}">@drfilipkatanic</a>.</p></noscript>
+
+      <form class="booking__form" id="booking-form" action="{{root}}api/zakazi.php" method="post" enctype="multipart/form-data" novalidate data-api="{{root}}api/">
+        <div class="booking__pre">
+          <span>Polja označena <span class="req" aria-hidden="true">*</span> su obavezna.</span>
+          <span class="booking__picked" id="booking-picked" hidden>Izabrano: <span id="booking-picked-l"></span> · <button type="button" id="booking-change">promeni</button></span>
+        </div>
+
+        <div class="summary" id="booking-summary" role="alert" tabindex="-1" hidden></div>
+
+        <input type="hidden" name="csrf_token" id="csrf_token" value="">
+        <input type="hidden" name="ts" id="booking-ts" value="">
+        <div class="hp" aria-hidden="true">
+          <label for="website">Ne popunjavati</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="field">
+          <label for="ime_prezime">Ime i prezime<span class="req" aria-hidden="true">*</span></label>
+          <input class="input" type="text" id="ime_prezime" name="ime_prezime" autocomplete="name" placeholder="npr. Jelena Petrović" required minlength="2" maxlength="100" aria-describedby="err-ime_prezime">
+          <p class="err" id="err-ime_prezime"></p>
+        </div>
+
+        <div class="booking__row booking__row--2">
+          <div class="field">
+            <label for="email">E-mail<span class="req" aria-hidden="true">*</span></label>
+            <input class="input" type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="ime@primer.rs" required maxlength="190" aria-describedby="hint-email err-email">
+            <p class="hint" id="hint-email">Na ovu adresu stiže potvrda termina.</p>
+            <p class="err" id="err-email"></p>
+          </div>
+          <div class="field">
+            <label for="telefon">Telefon<span class="req" aria-hidden="true">*</span></label>
+            <input class="input" type="tel" id="telefon" name="telefon" autocomplete="tel" inputmode="tel" placeholder="06x xxx xxxx" required maxlength="30" aria-describedby="hint-telefon err-telefon">
+            <p class="hint" id="hint-telefon">Za slučaj da je potrebno da Vas kontaktiramo pre potvrde.</p>
+            <p class="err" id="err-telefon"></p>
+          </div>
+        </div>
+
+        <div class="booking__sep" aria-hidden="true"></div>
+
+        <div class="field">
+          <label for="tip_usluge">Usluga<span class="req" aria-hidden="true">*</span></label>
+          <select class="input" id="tip_usluge" name="tip_usluge" required aria-describedby="err-tip_usluge">
+            <option value="" disabled selected>Izaberite…</option>
+            <option value="prva-konsultacija">Prva konsultacija</option>
+            <option value="drugo-misljenje">Drugo mišljenje (analiza dokumentacije)</option>
+            <option value="ivf">Sterilitet i vantelesna oplodnja (IVF/ICSI)</option>
+            <option value="zamrzavanje-jajnih-celija">Zamrzavanje jajnih ćelija</option>
+            <option value="pcos">PCOS i poremećaji ovulacije</option>
+            <option value="muski-faktor">Muški faktor neplodnosti</option>
+            <option value="ginekoloski-pregled">Ginekološki pregled</option>
+            <option value="ostalo">Nešto drugo</option>
+          </select>
+          <p class="err" id="err-tip_usluge"></p>
+        </div>
+
+        <div class="booking__row booking__row--2">
+          <div class="field">
+            <label for="zeljeni_datum">Željeni datum<span class="req" aria-hidden="true">*</span></label>
+            <input class="input" type="date" id="zeljeni_datum" name="zeljeni_datum" required aria-describedby="hint-zeljeni_datum err-zeljeni_datum">
+            <p class="hint" id="hint-zeljeni_datum">Okvirni datum — tačan termin potvrđujemo mejlom.</p>
+            <p class="err" id="err-zeljeni_datum"></p>
+            <!-- [POTVRDITI SA KLIJENTOM: radni dani — da li forma dozvoljava vikend kao željeni datum] -->
+          </div>
+          <fieldset class="field" aria-describedby="err-doba_dana">
+            <legend class="field__legend">Doba dana</legend>
+            <div class="seg">
+              <input type="radio" id="doba-pre" name="doba_dana" value="pre-podne"><label for="doba-pre">Pre podne</label>
+              <input type="radio" id="doba-posle" name="doba_dana" value="posle-podne"><label for="doba-posle">Posle podne</label>
+              <input type="radio" id="doba-sve" name="doba_dana" value="svejedno" checked><label for="doba-sve">Svejedno</label>
+            </div>
+            <p class="err" id="err-doba_dana"></p>
+          </fieldset>
+        </div>
+
+        <div class="field">
+          <label for="napomena">Napomena <span class="opt">(opciono)</span></label>
+          <textarea class="input" id="napomena" name="napomena" rows="4" maxlength="2000" placeholder="Npr. prethodni postupci, AMH, pitanja koja želite da postavite…" aria-describedby="hint-napomena err-napomena"></textarea>
+          <p class="booking__count" id="napomena-count"><span id="napomena-n">0</span> / 2000</p>
+          <p class="visually-hidden" id="napomena-live" aria-live="polite"></p>
+          <p class="hint" id="hint-napomena">Ne morate slati detaljne medicinske podatke — o tome razgovaramo na konsultaciji.</p>
+          <p class="err" id="err-napomena"></p>
+        </div>
+
+        <div class="booking__sep" aria-hidden="true"></div>
+
+        <div class="field">
+          <label class="check" for="saglasnost">
+            <input type="checkbox" id="saglasnost" name="saglasnost" value="1" required aria-describedby="err-saglasnost">
+            <span>Saglasan/na sam da se moji podaci koriste isključivo za zakazivanje konsultacije, u skladu sa <a href="{{root}}politika-privatnosti/" target="_blank" rel="noopener">Politikom privatnosti</a>.<span class="req" aria-hidden="true">*</span></span>
+          </label>
+          <p class="err" id="err-saglasnost"></p>
+        </div>
+
+        <div class="booking__submit">
+          <button class="btn btn--block" type="submit" id="booking-submit"><span class="booking__btn-l">Pošalji zahtev</span><svg class="i i--arr" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <p class="booking__safe"><svg class="i" aria-hidden="true"><use href="#i-lock"/></svg>Podaci se koriste samo za zakazivanje i ne dele se sa trećim licima.</p>
+        </div>
+      </form>
+
+      <div class="success" id="booking-success" role="status" hidden>
+        <div class="success__mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M7 16.5l6 6 12-13"/></svg></div>
+        <h2 tabindex="-1" id="success-h">Hvala, zahtev je primljen.</h2>
+        <p id="success-txt">Ovo još nije potvrđen termin. Potvrdu termina — ili predlog drugog, ako željeni nije slobodan — dobijate mejlom.</p>
+        <p class="success__small">Ako ne vidite poruku u narednih nekoliko minuta, proverite i folder za neželjenu poštu (spam).<span id="success-id-wrap" hidden> · Broj zahteva: <span class="success__id" id="success-id"></span></span></p>
+        <div class="success__act">
+          <a class="btn" href="{{root}}">Nazad na početnu</a>
+          <a class="btn btn--outline" href="{{root}}blog/prva-konsultacija-sta-poneti/">Pročitajte: Prva konsultacija — šta poneti</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="booking__mobile-info" style="margin-top:20px">
+      <p class="venue"><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg><span>SB Ferona, Šarplaninska 19, 21000 Novi Sad</span> <a class="link" href="{{g.maps_url}}" rel="noopener" target="_blank">Otvori u Google mapama</a></p>
+      <a class="booking__ig" href="{{g.ig_url}}" rel="noopener" target="_blank"><svg class="i" aria-hidden="true"><use href="#i-instagram"/></svg>Instagram {{g.ig_handle}}</a>
+    </div>
+  </div>
+
+  <aside class="booking__side" aria-label="Šta očekivati">
+    <div class="side-doc side-hide-m">
+      <img src="{{root}}assets/img/portret-mantil.webp" width="1000" height="1250" loading="lazy" alt="dr Filip Katanić">
+      <div><strong>dr Filip Katanić</strong><span>Reproduktivna medicina</span></div>
+    </div>
+    <div class="side-card side-hide-m">
+      <p class="eyebrow">Šta očekivati</p>
+      <ol class="side-steps" role="list">
+        <li><b>01</b>Analiza dokumentacije</li>
+        <li><b>02</b>Ultrazvučna procena</li>
+        <li><b>03</b>Procena prethodnog odgovora</li>
+        <li><b>04</b>Individualizovana strategija</li>
+        <li><b>05</b>Jasni naredni koraci</li>
+      </ol>
+      <a class="link-arrow" href="{{root}}blog/prva-konsultacija-sta-poneti/">Prva konsultacija — šta poneti <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="side-card side-loc side-hide-m">
+      <p class="eyebrow">Mesto ordiniranja</p>
+      <p><strong>SB Ferona</strong>Šarplaninska 19, 21000 Novi Sad</p>
+      <a class="link-arrow" href="{{g.maps_url}}" rel="noopener" target="_blank">Otvori u Google mapama <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <p class="side-info side-hide-m"><svg class="i" aria-hidden="true"><use href="#i-info"/></svg><span>Ovo je zahtev, ne potvrđen termin. Potvrdu dobijate mejlom.</span></p>
+  </aside>
+</div>
+
+<section class="booking-faq" aria-labelledby="bfaq-h2">
+  <div class="container--narrow">
+    <p class="eyebrow eyebrow--line">Pitanja</p>
+    <h2 id="bfaq-h2">Pitanja o zakazivanju</h2>
+    {{faq}}
+    P: Kada ću dobiti potvrdu termina?
+    O: Zahtev pregledam lično i odgovaram što pre. Potvrdu sa tačnim datumom i vremenom — ili predlog drugog termina — dobijate mejlom.
+
+    P: Šta ako mi željeni datum ne odgovara kasnije?
+    O: Željeni datum je okviran. Ako Vam se planovi promene, samo odgovorite na mejl koji dobijete posle slanja zahteva i dogovorićemo drugi termin.
+
+    P: Da li su mi potrebni nalazi pre zakazivanja?
+    O: Ne. Ako ih imate, ponesite ih — razgovor je tada konkretniji. Ako ih nemate, na konsultaciji dogovaramo koje analize ima smisla uraditi.
+
+    P: Koliko košta konsultacija?
+    O: Cena zavisi od vrste konsultacije i individualnog plana — informaciju dobijate pri potvrdi termina.
+    {{/faq}}
+    <!-- [POTVRDITI SA KLIJENTOM: okvirni rok odgovora na zahtev (npr. "u roku od 1–2 radna dana") i način saopštavanja cene (mejl potvrde ili usmeno)] -->
+  </div>
+</section>

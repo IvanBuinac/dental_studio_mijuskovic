@@ -16,6 +16,7 @@ function fk_default_config(): array
         'db_path'    => FK_ROOT . '/data/appointments.db',
         'app_secret' => '',
         'setup_key'  => '',
+        'admin_password_hash' => '',
         'mail' => [
             'transport'        => 'mail',   // bez config.php: PHP mail()
             'host'             => '',

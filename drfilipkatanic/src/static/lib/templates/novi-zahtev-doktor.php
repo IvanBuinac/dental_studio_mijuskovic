@@ -22,17 +22,17 @@ $rows = [
 $content = em_p('Stigao je novi zahtev preko sajta.')
     . em_rows($rows)
     . em_button($v['admin_link'], 'Otvori zahtev →')
-    . em_small('Iz admin panela možete potvrditi termin ili predložiti drugi — pacijent automatski dobija mejl.<br>Odgovor na ovaj mejl ide direktno pacijentu.');
+    . em_small('U admin panelu kliknite „Potvrdi“ ili „Odbij“ — pacijent automatski dobija mejl.<br>Odgovor na ovaj mejl ide direktno pacijentu.');
 
 $text = "Stigao je novi zahtev preko sajta ({$v['ref']}).\n\n"
     . em_text_rows($rows) . "\n"
     . "Otvori zahtev: {$v['admin_link']}\n\n"
-    . "Iz admin panela možete potvrditi termin ili predložiti drugi — pacijent automatski dobija mejl.\n"
+    . "U admin panelu kliknite „Potvrdi“ ili „Odbij“ — pacijent automatski dobija mejl.\n"
     . "Odgovor na ovaj mejl ide direktno pacijentu.\n";
 
 return [
     'subject'   => 'Novi zahtev ' . $v['ref'] . ' — ' . $v['ime'] . ', ' . $v['usluga'],
-    'preheader' => 'Željeni datum ' . $v['zeljeni'] . ' (' . $v['doba'] . ') · kontakt: ' . $v['kanal'],
+    'preheader' => 'Željeni datum ' . $v['zeljeni'] . ' (' . $v['doba'] . ') · tel. ' . $a['telefon'],
     'eyebrow'   => 'Admin · zahtev ' . $v['ref'],
     'heading'   => 'Novi zahtev za konsultaciju',
     'content'   => $content,

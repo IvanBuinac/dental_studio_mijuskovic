@@ -20,7 +20,7 @@ $rows = [
 
 $content = em_p('Poštovani/a ' . e($v['ime']) . ',')
     . em_p('hvala Vam na poverenju. Vaš zahtev za konsultaciju je primljen i pregledaću ga u najkraćem roku.')
-    . em_note('<strong style="color:' . EM_NAVY . ';">Ovo još nije potvrda termina.</strong> Tačan datum i vreme — ili predlog drugog termina, ako željeni nije slobodan — dobićete u posebnom mejlu. Po potrebi ću Vas kontaktirati i putem kanala koji ste izabrali (' . e($v['kanal']) . ').')
+    . em_note('<strong style="color:' . EM_NAVY . ';">Ovo još nije potvrda termina.</strong> Tačan datum i vreme — ili predlog drugog termina, ako željeni nije slobodan — dobićete u posebnom mejlu. Po potrebi ću Vas kontaktirati' . ($v['kanal'] !== '—' ? ' i putem kanala koji ste izabrali (' . e($v['kanal']) . ')' : ' telefonom ili mejlom') . '.')
     . em_h2('Rezime zahteva')
     . em_rows($rows)
     . em_p('Ako ste nešto pogrešno uneli ili želite da dopunite zahtev, samo odgovorite na ovaj mejl.')
@@ -29,7 +29,7 @@ $content = em_p('Poštovani/a ' . e($v['ime']) . ',')
 
 $text = "Poštovani/a {$v['ime']},\n\n"
     . "hvala Vam na poverenju. Vaš zahtev za konsultaciju je primljen i pregledaću ga u najkraćem roku.\n\n"
-    . "Ovo još nije potvrda termina. Tačan datum i vreme — ili predlog drugog termina, ako željeni nije slobodan — dobićete u posebnom mejlu. Po potrebi ću Vas kontaktirati i putem kanala koji ste izabrali ({$v['kanal']}).\n\n"
+    . "Ovo još nije potvrda termina. Tačan datum i vreme — ili predlog drugog termina, ako željeni nije slobodan — dobićete u posebnom mejlu. Po potrebi ću Vas kontaktirati" . ($v['kanal'] !== '—' ? " i putem kanala koji ste izabrali ({$v['kanal']})" : ' telefonom ili mejlom') . ".\n\n"
     . "REZIME ZAHTEVA\n" . em_text_rows($rows) . "\n"
     . "Ako ste nešto pogrešno uneli ili želite da dopunite zahtev, samo odgovorite na ovaj mejl.\n\n"
     . "Do konsultacije, ako imate prethodne nalaze (hormonske analize, ultrazvuk, spermogram partnera, izveštaje o ranijim postupcima), pripremite ih — razgovor će biti konkretniji. Ako ih nemate, nema problema: zajedno ćemo videti šta ima smisla uraditi.\n"

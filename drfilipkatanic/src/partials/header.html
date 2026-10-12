@@ -1,59 +1,81 @@
 <header class="site-header" id="site-header">
-  <div class="container site-header__in">
+  <div class="site-header__in">
     <a class="brand" href="{{root}}" aria-label="dr Filip Katanić, početna">
       {{> seal}}
-      <span class="brand__txt"><span class="brand__name">dr Filip Katanić</span><span class="brand__sub">Ginekologija · IVF</span></span>
+      <span class="brand__txt"><span class="brand__name">dr Filip Katanić</span><span class="brand__sub">Reproduktivna medicina</span></span>
     </a>
     <nav class="nav" aria-label="Glavna navigacija">
       <ul class="nav__list">
+        <li><a class="nav__link" href="{{root}}"{{cur:home}}>Početna</a></li>
         <li><a class="nav__link" href="{{root}}o-meni/"{{cur:o-meni}}>O meni</a></li>
         <li class="has-sub">
-          <button class="nav__link nav__link--sub" type="button" aria-expanded="false" aria-controls="sub-oblasti"{{cur:oblasti-rada}}>Oblasti rada<svg class="chev" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1"/></svg></button>
-          <ul class="sub" id="sub-oblasti">
-            <li><a href="{{root}}oblasti-rada/vantelesna-oplodnja-ivf/"{{cur:oblasti-rada/vantelesna-oplodnja-ivf}}><span class="badge badge--sm">IVF / ICSI</span><strong>Vantelesna oplodnja</strong><span>Dijagnostika i priprema</span></a></li>
-            <li><a href="{{root}}oblasti-rada/zamrzavanje-jajnih-celija/"{{cur:oblasti-rada/zamrzavanje-jajnih-celija}}><span class="badge badge--sm">Social freezing</span><strong>Zamrzavanje jajnih ćelija</strong><span>Kada ima smisla</span></a></li>
-            <li><a href="{{root}}oblasti-rada/pcos-i-neplodnost/"{{cur:oblasti-rada/pcos-i-neplodnost}}><span class="badge badge--sm">PCOS</span><strong>PCOS i neplodnost</strong><span>Dijagnostika i praćenje</span></a></li>
-            <li><a href="{{root}}oblasti-rada/muski-faktor-neplodnosti/"{{cur:oblasti-rada/muski-faktor-neplodnosti}}><span class="badge badge--sm">Muški faktor</span><strong>Muški faktor neplodnosti</strong><span>Spermogram i dalji koraci</span></a></li>
-            <li><a href="{{root}}oblasti-rada/redovni-ginekoloski-pregledi/"{{cur:oblasti-rada/redovni-ginekoloski-pregledi}}><span class="badge badge--sm">Redovni pregledi</span><strong>Redovni ginekološki pregledi</strong><span>PAPA test i skrining</span></a></li>
-          </ul>
+          <button class="nav__link nav__link--sub" type="button" aria-expanded="false" aria-controls="sub-oblasti"{{cur:oblasti-rada}}>Oblasti rada<svg class="i chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+          <div class="mega" id="sub-oblasti">
+            <div class="mega__col">
+              <p class="mega__eyebrow">Oblasti rada</p>
+              <ul class="mega__list">
+                <li><a href="{{root}}oblasti-rada/vantelesna-oplodnja-ivf/"{{cur:oblasti-rada/vantelesna-oplodnja-ivf}}><svg class="i" aria-hidden="true"><use href="#i-target"/></svg><span><strong>Vantelesna oplodnja (IVF/ICSI)</strong><small>Dijagnostika, plan i vođenje postupka</small></span></a></li>
+                <li><a href="{{root}}oblasti-rada/zamrzavanje-jajnih-celija/"{{cur:oblasti-rada/zamrzavanje-jajnih-celija}}><svg class="i" aria-hidden="true"><use href="#i-sprout"/></svg><span><strong>Zamrzavanje jajnih ćelija</strong><small>Kada ima smisla i šta obuhvata</small></span></a></li>
+                <li><a href="{{root}}oblasti-rada/pcos-i-neplodnost/"{{cur:oblasti-rada/pcos-i-neplodnost}}><svg class="i" aria-hidden="true"><use href="#i-female"/></svg><span><strong>PCOS i neplodnost</strong><small>Dijagnostika i praćenje ovulacije</small></span></a></li>
+                <li><a href="{{root}}oblasti-rada/muski-faktor-neplodnosti/"{{cur:oblasti-rada/muski-faktor-neplodnosti}}><svg class="i" aria-hidden="true"><use href="#i-microscope"/></svg><span><strong>Muški faktor neplodnosti</strong><small>Spermogram i sledeći koraci</small></span></a></li>
+                <li><a href="{{root}}oblasti-rada/redovni-ginekoloski-pregledi/"{{cur:oblasti-rada/redovni-ginekoloski-pregledi}}><svg class="i" aria-hidden="true"><use href="#i-calendar"/></svg><span><strong>Redovni ginekološki pregledi</strong><small>PAPA test i redovna kontrola</small></span></a></li>
+              </ul>
+              <a class="link-arrow mega__all" href="{{root}}oblasti-rada/">Sve oblasti rada <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+            <div class="mega__col mega__col--side">
+              <p class="mega__eyebrow">Korisno</p>
+              <ul class="mega__links">
+                <li><a href="{{root}}pitanja-i-odgovori/"{{cur:pitanja-i-odgovori}}>Pitanja i odgovori <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+                <li><a href="{{root}}mediji-i-predavanja/"{{cur:mediji-i-predavanja}}>Mediji i predavanja <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+                <li><a href="{{root}}blog/prva-konsultacija-sta-poneti/">Prva konsultacija — šta poneti <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+              </ul>
+              <a class="mega__second" href="{{root}}zakazivanje/?usluga=drugo-misljenje"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg><span><strong>Drugo mišljenje</strong><small>Zatražite drugo mišljenje →</small></span></a>
+            </div>
+          </div>
         </li>
-        <li><a class="nav__link" href="{{root}}pitanja-i-odgovori/"{{cur:pitanja-i-odgovori}}>Pitanja i odgovori</a></li>
+        <li><a class="nav__link" href="{{root}}zakazivanje/"{{cur:zakazivanje}}>Konsultacija</a></li>
         <li><a class="nav__link" href="{{root}}blog/"{{cur:blog}}>Blog</a></li>
-        <li><a class="nav__link" href="{{root}}mediji-i-predavanja/"{{cur:mediji-i-predavanja}}>Mediji i predavanja</a></li>
         <li><a class="nav__link" href="{{root}}kontakt/"{{cur:kontakt}}>Kontakt</a></li>
       </ul>
     </nav>
     <div class="site-header__act">
-      <a class="btn hdr-cta" href="{{root}}kontakt/#zakazivanje">Zakažite u SB Feroni</a>
-      <a class="hdr-tel" href="{{g.tel_href}}" aria-label="Pozovite {{g.tel}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a>
-      <button class="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Otvori meni"><span></span><span></span></button>
+      <a class="btn hdr-cta" href="{{root}}zakazivanje/"><span class="hdr-cta__long">Zakaži konsultaciju</span><span class="hdr-cta__short" aria-hidden="true">Zakaži</span></a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Otvori meni"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
-<div class="menu on-dark" id="menu" role="dialog" aria-modal="true" aria-label="Meni">
-  <div class="menu__in container">
+<div class="menu on-navy" id="menu" role="dialog" aria-modal="true" aria-label="Meni" hidden>
+  <div class="menu__bar">
+    <a class="brand brand--menu" href="{{root}}" aria-label="dr Filip Katanić, početna">{{> seal}}<span class="brand__txt"><span class="brand__name">dr Filip Katanić</span></span></a>
+    <button class="menu__close" type="button" aria-label="Zatvori meni"><svg class="i" aria-hidden="true"><use href="#i-close"/></svg></button>
+  </div>
+  <div class="menu__in">
     <ul class="menu__list">
-      <li><a href="{{root}}o-meni/">O meni</a></li>
+      <li><a href="{{root}}"{{cur:home}}>Početna</a></li>
+      <li><a href="{{root}}o-meni/"{{cur:o-meni}}>O meni</a></li>
       <li>
-        <button class="menu__acc" type="button" aria-expanded="false" aria-controls="menu-sub">Oblasti rada<span class="menu__plus" aria-hidden="true"></span></button>
+        <button class="menu__acc" type="button" aria-expanded="false" aria-controls="menu-sub">Oblasti rada<svg class="i" aria-hidden="true"><use href="#i-plus"/></svg></button>
         <ul class="menu__sub" id="menu-sub">
-          <li><a href="{{root}}oblasti-rada/vantelesna-oplodnja-ivf/">IVF / ICSI</a></li>
+          <li><a href="{{root}}oblasti-rada/vantelesna-oplodnja-ivf/">Vantelesna oplodnja (IVF/ICSI)</a></li>
           <li><a href="{{root}}oblasti-rada/zamrzavanje-jajnih-celija/">Zamrzavanje jajnih ćelija</a></li>
           <li><a href="{{root}}oblasti-rada/pcos-i-neplodnost/">PCOS i neplodnost</a></li>
           <li><a href="{{root}}oblasti-rada/muski-faktor-neplodnosti/">Muški faktor neplodnosti</a></li>
           <li><a href="{{root}}oblasti-rada/redovni-ginekoloski-pregledi/">Redovni ginekološki pregledi</a></li>
+          <li><a href="{{root}}oblasti-rada/">Sve oblasti rada</a></li>
         </ul>
       </li>
+      <li><a href="{{root}}zakazivanje/"{{cur:zakazivanje}}>Konsultacija</a></li>
+      <li><a href="{{root}}blog/"{{cur:blog}}>Blog</a></li>
+      <li><a href="{{root}}kontakt/"{{cur:kontakt}}>Kontakt</a></li>
+    </ul>
+    <ul class="menu__secondary">
       <li><a href="{{root}}pitanja-i-odgovori/">Pitanja i odgovori</a></li>
-      <li><a href="{{root}}blog/">Blog</a></li>
       <li><a href="{{root}}mediji-i-predavanja/">Mediji i predavanja</a></li>
-      <li><a href="{{root}}kontakt/">Kontakt</a></li>
     </ul>
     <div class="menu__foot">
-      {{> seal}}
-      <a class="btn btn--gold" href="{{g.tel_href}}">Zakažite u SB Feroni</a>
-      <a class="link" href="{{g.ig_url}}" rel="noopener">Poruka dr Kataniću na Instagramu</a>
-      <p class="menu__addr">{{g.ferona}} · {{g.adresa}} · {{g.tel}}</p>
+      <a class="btn btn--gold btn--block" href="{{root}}zakazivanje/">Zakaži konsultaciju <svg class="i i--arr" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="menu__ig" href="{{g.ig_url}}" rel="noopener" target="_blank"><svg class="i" aria-hidden="true"><use href="#i-instagram"/></svg>Instagram {{g.ig_handle}}</a>
+      <p class="menu__addr"><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg>{{g.ordinira}}</p>
     </div>
   </div>
 </div>

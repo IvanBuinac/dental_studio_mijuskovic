@@ -35,8 +35,15 @@ return [
     // Generisanje: php -r "echo bin2hex(random_bytes(32)), PHP_EOL;"
     'app_secret' => '',
 
-    // Opciono: ako je postavljeno, admin/setup.php traži ovaj ključ pri pravljenju
-    // prvog naloga (zaštita ako sajt bude javan pre nego što napravite nalog).
+    // ADMIN LOZINKA — dva načina (izaberite jedan):
+    //  a) ostavite prazno i jednom otvorite  /admin/setup.php  (lozinka se čuva u bazi, stranica se zatim sama gasi), ili
+    //  b) upišite hash lozinke ovde. Hash se pravi komandom:
+    //       php -r "echo password_hash('VASA-LOZINKA', PASSWORD_DEFAULT), PHP_EOL;"
+    //     Kad je postavljen ovde, ima prednost nad setup.php. Promena hash-a odjavljuje sve uređaje.
+    'admin_password_hash' => '',
+
+    // Opciono: ako je postavljeno, admin/setup.php traži ovaj ključ (zaštita ako sajt
+    // bude javan pre nego što postavite lozinku).
     'setup_key' => '',
 
     'mail' => [
@@ -84,7 +91,7 @@ return [
         'map_url' => 'https://www.google.com/maps/search/?api=1&query=SB+Ferona+Sarplaninska+19+Novi+Sad',
     ],
 
-    // Admin sesija
+    // Admin sesija ("Zapamti me" drži prijavu 30 dana)
     'admin' => [
         'idle_minutes'     => 120,       // automatska odjava posle neaktivnosti
         'max_login_fails'  => 5,         // pogrešnih pokušaja pre zaključavanja

@@ -3,8 +3,9 @@
  * POST api/zakazi.php — prijem zahteva za konsultaciju (ugovor: brief-v2.md, sekcija 4).
  *
  * Polja (multipart/form-data ili x-www-form-urlencoded):
- *   csrf_token*, ime_prezime*, email*, telefon*, kontakt_kanal*, tip_usluge*, zeljeni_datum* (YYYY-MM-DD),
- *   doba_dana, partner_ime, dokumentacija_status, napomena (≤2000), saglasnost* (=1),
+ *   csrf_token*, ime_prezime*, email*, telefon*, tip_usluge*, zeljeni_datum* (YYYY-MM-DD), saglasnost* (=1)
+ *   opciono: doba_dana, napomena (≤2000), kontakt_kanal, partner_ime, dokumentacija_status
+ *   (opciona polja sa nepoznatom vrednošću se tiho ignorišu),
  *   website (honeypot — mora biti prazno), ts (opciono: Date.now() u trenutku prikaza forme)
  *
  * Odgovori:
@@ -103,11 +104,10 @@ if ($telRaw === '') {
     $errors['telefon'] = 'Broj telefona nije ispravan — unesite 6 do 20 cifara.';
 }
 
+// opciono (ako stigne nepoznata vrednost — ignoriše se)
 $kanal = fk_clean_line($in('kontakt_kanal'));
-if ($kanal === '') {
-    $errors['kontakt_kanal'] = 'Izaberite način kontakta.';
-} elseif (!isset($enums['kontakt_kanal'][$kanal])) {
-    $errors['kontakt_kanal'] = 'Izaberite način kontakta.';
+if (!isset($enums['kontakt_kanal'][$kanal])) {
+    $kanal = '';
 }
 
 $usluga = fk_clean_line($in('tip_usluge'));
@@ -134,20 +134,15 @@ if ($datum === '') {
 }
 
 $doba = fk_clean_line($in('doba_dana'));
-if ($doba === '') {
+if (!isset($enums['doba_dana'][$doba])) {
     $doba = 'svejedno';
-} elseif (!isset($enums['doba_dana'][$doba])) {
-    $errors['doba_dana'] = 'Izaberite jednu od ponuđenih opcija.';
 }
 
-$partner = fk_clean_line($in('partner_ime'));
-if (fk_len($partner) > 100) {
-    $errors['partner_ime'] = 'Ime partnera može imati najviše 100 znakova.';
-}
+$partner = mb_substr(fk_clean_line($in('partner_ime')), 0, 100);
 
 $dok = fk_clean_line($in('dokumentacija_status'));
-if ($dok !== '' && !isset($enums['dokumentacija_status'][$dok])) {
-    $errors['dokumentacija_status'] = 'Izaberite jednu od ponuđenih opcija.';
+if (!isset($enums['dokumentacija_status'][$dok])) {
+    $dok = '';
 }
 
 $napomena = fk_clean_text($in('napomena'));
@@ -189,7 +184,6 @@ $st->execute([
 ]);
 $id = (int) $pdo->lastInsertId();
 fk_rate_hit('zakazi_ok', $ipKey);
-fk_activity('kreiran', $id, ['izvor' => 'sajt']);
 
 $appointment = fk_appointment($id);
 $payload = (string) json_encode(['ok' => true, 'id' => $id], JSON_UNESCAPED_UNICODE);

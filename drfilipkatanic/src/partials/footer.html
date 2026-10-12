@@ -1,46 +1,53 @@
-<footer class="site-footer on-dark">
-  <div class="site-footer__mark" aria-hidden="true">{{> seal}}<span>KATANIĆ</span></div>
+<footer class="site-footer on-navy">
   <div class="container">
-    <div class="site-footer__grid">
-      <div class="fcol fcol--contact">
-        <h2 class="fcol__h">Kontakt / Ustanova</h2>
-        <address>
-          <p>{{g.ferona}}<br>{{g.adresa}}</p>
-          <p><a href="{{g.tel_href}}">{{g.tel}}</a><br><a href="mailto:{{g.email}}">{{g.email}}</a></p>
-          <p class="fcol__note">Kontakt centar ustanove — za zakazivanje pregleda kod dr Filipa Katanića.</p>
-          <p><a href="{{g.ig_url}}" rel="noopener">Instagram {{g.ig_handle}}</a></p>
-        </address>
-      </div>
-      <div class="fcol fcol--brand">
-        <a class="brand brand--footer" href="{{root}}" aria-label="dr Filip Katanić, početna">{{> seal}}<span class="brand__txt"><span class="brand__name">dr Filip Katanić</span></span></a>
-        <p class="fcol__zvanje">Lekar · Master reproduktivne embriologije · Član tima SB Ferona</p>
-        <p class="fcol__sig">{{g.citat}}</p>
-      </div>
-      <div class="fcol fcol--areas">
-        <h2 class="fcol__h">Oblasti rada</h2>
+    <div class="site-footer__top">
+      <a class="site-footer__brand" href="{{root}}" aria-label="dr Filip Katanić, početna">
+        <img src="{{root}}assets/img/logo-znak-providni.png" width="440" height="440" alt="" loading="lazy">
+        <span><span class="site-footer__name">dr Filip Katanić</span><span class="site-footer__sub">Reproduktivna medicina</span></span>
+      </a>
+      <ul class="site-footer__contact" aria-label="Kontakt">
+        {{if HAS_TEL}}<li><a href="{{g.tel_href}}"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg>{{g.tel}}</a></li>{{/if}}
+        {{if HAS_EMAIL}}<li><a href="mailto:{{g.email}}"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg>{{g.email}}</a></li>{{/if}}
+        <!-- [POTVRDITI SA KLIJENTOM: lični telefon i mejl za sajt — upisati u src/data/site.json; dok su prazni, ne prikazuju se] -->
+        <li><a href="{{root}}zakazivanje/"><svg class="i" aria-hidden="true"><use href="#i-calendar"/></svg>Zakaži online</a></li>
+        <li><a href="{{g.ig_url}}" rel="noopener" target="_blank"><svg class="i" aria-hidden="true"><use href="#i-instagram"/></svg>{{g.ig_handle}}</a></li>
+        <li><a href="{{g.maps_url}}" rel="noopener" target="_blank"><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg>Ordinira u SB Ferona, Šarplaninska 19, Novi Sad</a></li>
+      </ul>
+    </div>
+    <div class="site-footer__cols">
+      <details class="fcol" open>
+        <summary class="fcol__h">Oblasti rada<svg class="i" aria-hidden="true"><use href="#i-plus"/></svg></summary>
         <ul>
-          <li><a href="{{root}}oblasti-rada/vantelesna-oplodnja-ivf/">IVF / ICSI</a></li>
+          <li><a href="{{root}}oblasti-rada/vantelesna-oplodnja-ivf/">Vantelesna oplodnja (IVF/ICSI)</a></li>
           <li><a href="{{root}}oblasti-rada/zamrzavanje-jajnih-celija/">Zamrzavanje jajnih ćelija</a></li>
           <li><a href="{{root}}oblasti-rada/pcos-i-neplodnost/">PCOS i neplodnost</a></li>
-          <li><a href="{{root}}oblasti-rada/muski-faktor-neplodnosti/">Muški faktor</a></li>
-          <li><a href="{{root}}oblasti-rada/redovni-ginekoloski-pregledi/">Redovni pregledi</a></li>
+          <li><a href="{{root}}oblasti-rada/muski-faktor-neplodnosti/">Muški faktor neplodnosti</a></li>
+          <li><a href="{{root}}oblasti-rada/redovni-ginekoloski-pregledi/">Redovni ginekološki pregledi</a></li>
         </ul>
-      </div>
-      <div class="fcol fcol--site">
-        <h2 class="fcol__h">Sajt</h2>
+      </details>
+      <details class="fcol" open>
+        <summary class="fcol__h">Sajt<svg class="i" aria-hidden="true"><use href="#i-plus"/></svg></summary>
         <ul>
           <li><a href="{{root}}o-meni/">O meni</a></li>
-          <li><a href="{{root}}pitanja-i-odgovori/">Pitanja i odgovori</a></li>
+          <li><a href="{{root}}zakazivanje/">Konsultacija</a></li>
           <li><a href="{{root}}blog/">Blog</a></li>
+          <li><a href="{{root}}pitanja-i-odgovori/">Pitanja i odgovori</a></li>
           <li><a href="{{root}}mediji-i-predavanja/">Mediji i predavanja</a></li>
           <li><a href="{{root}}kontakt/">Kontakt</a></li>
         </ul>
+      </details>
+      <div class="fcol fcol--book">
+        <p class="fcol__h fcol__h--static">Zakazivanje</p>
+        <a class="link-arrow" href="{{root}}zakazivanje/">Zakaži konsultaciju <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <p class="fcol__quote">{{g.citat}}</p>
+        <p class="fcol__tag">Reproduktivna medicina · IVF · Klinička istraživanja</p>
       </div>
     </div>
     <p class="site-footer__note">{{g.disclaimer}}</p>
     <div class="site-footer__bar">
-      <p>&copy; {{year}} dr Filip Katanić &nbsp;·&nbsp; <a href="{{root}}politika-privatnosti/">Politika privatnosti</a></p>
-      <a class="totop" href="#main">Nazad na vrh <span aria-hidden="true">↑</span></a>
+      <p>&copy; {{year}} dr Filip Katanić <span aria-hidden="true">·</span> <a href="{{root}}politika-privatnosti/">Politika privatnosti</a></p>
+      <a class="totop" href="#main">Nazad na vrh <svg class="i" aria-hidden="true"><use href="#i-up"/></svg></a>
     </div>
   </div>
+  <span class="site-footer__wm" aria-hidden="true">KATANIĆ</span>
 </footer>

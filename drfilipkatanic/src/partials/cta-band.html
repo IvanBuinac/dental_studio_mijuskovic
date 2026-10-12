@@ -1,13 +1,14 @@
-<section class="cta-band on-dark" id="cta-band" aria-labelledby="cta-title">
-  <div class="cta-band__mark">{{> seal}}</div>
-  <div class="cta-band__in container">
-    <h2 id="cta-title">{{cta_title}}</h2>
-    <p class="cta-band__lead">{{cta_text}}</p>
-    <div class="cta-band__actions">
-      <a class="btn btn--gold" href="{{root}}kontakt/#zakazivanje">Zakažite u SB Feroni</a>
-      <a class="btn btn--ghost-dark" href="{{g.ig_url}}" rel="noopener">Poruka na Instagramu</a>
+<section class="cta-band" id="cta-band" aria-labelledby="cta-title">
+  <div class="container cta-band__in">
+    <div class="cta-band__mark"><img src="{{root}}assets/img/logo-znak-krem.png" width="440" height="440" alt="" loading="lazy"></div>
+    <div class="cta-band__txt">
+      <h2 id="cta-title">{{cta_title}}</h2>
+      <p>{{cta_text}}</p>
     </div>
-    <p class="cta-band__addr"><a href="{{g.tel_href}}">{{g.tel}}</a> &nbsp;·&nbsp; {{g.ferona}}, {{g.adresa}}</p>
-    <p class="cta-band__sig">{{g.citat}}</p>
+    <div class="cta-band__act">
+      <a class="btn" href="{{root}}zakazivanje/">Zakaži konsultaciju <svg class="i i--arr" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <p class="cta-band__ig">ili pišite na Instagramu <a href="{{g.ig_url}}" rel="noopener" target="_blank">{{g.ig_handle}}</a></p>
+    </div>
   </div>
+  <svg class="cta-band__deco" viewBox="0 0 160 220" aria-hidden="true" focusable="false"><path d="M84 218C80 160 78 110 92 40"/><path d="M90 60c-14-6-24-18-26-34 14 4 24 16 26 34z"/><path d="M88 92c14-8 30-10 44-4-12 10-28 12-44 4z"/><path d="M84 124c-16-4-28-14-34-30 16 2 28 14 34 30z"/><path d="M83 156c14-8 30-10 44-4-12 10-28 12-44 4z"/><path d="M92 40c4-14 12-26 24-34-2 14-10 26-24 34z"/></svg>
 </section>

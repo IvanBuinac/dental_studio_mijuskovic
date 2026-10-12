@@ -1,0 +1,11 @@
+# Backend zakazivanja — tajne i lokalni podaci se nikad ne commit-uju
+src/static/config.php
+site/config.php
+fk-config.php
+src/static/data/*
+site/data/*
+!src/static/data/.htaccess
+!site/data/.htaccess
+*.db
+*.sqlite
+*.log

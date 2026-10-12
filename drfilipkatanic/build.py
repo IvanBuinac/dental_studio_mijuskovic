@@ -59,11 +59,11 @@ PREVIEW = ROOT / "_preview"
 # ---------------------------------------------------------------- konfiguracija
 SITE_URL = "https://drfilipkatanic.cvijanovic-dent.workers.dev"    # demo; zameniti kad klijent odabere pravi domen (seo.md, otvoreno pitanje 6)
 DEMO = True                      # demo verzija: noindex svuda + Disallow u robots.txt; False pri objavi na pravom domenu
-DEFAULT_OG = "assets/img/og-image.jpg"  # 1200x630, generise build (make_assets) — tipografska navy/krem karta, NE fotografija
+DEFAULT_OG = "assets/img/og-image-v2.jpg"  # 1200x630, v2 kompozicija (krem + znak + portret) iz src/static/assets/img/
 
 # Build flagovi (structure.md 1): sve "samo uz potvrdu" je iza flaga, ne obrisano.
-TITULA_SPECIJALISTA = False        # NIKAD True dok klijent pismeno ne potvrdi (seo.md 0.1) — lint pada BEZ OBZIRA na flag
-STATUS_ZAPOSLENJA_POTVRDJEN = False  # dok False: samo "clan tima SB Ferona", nikad "zaposlen/vlasnik"
+TITULA_SPECIJALISTA = True         # brief-v2 §3: titula je dozvoljena (IG bio + odobrena referenca); uz svaku pojavu HTML komentar [POTVRDITI SA KLIJENTOM: pismena potvrda titule pre objave]
+STATUS_ZAPOSLENJA_POTVRDJEN = False  # dok False: samo neutralno "Ordinira u SB Ferona", nikad "zaposlen/vlasnik"
 RADNO_VREME = False                # sekcija na /kontakt/ hidden dok se ne potvrdi
 CENOVNIK = False                   # nema cenovnika nigde; flag postoji samo da spreci slucajno dodavanje
 ALUMNI_NOVISAD = False             # "Medicinski fakultet Novi Sad" van schema alumniOf i van vidljivog teksta kao cinjenica dok se ne potvrdi
@@ -77,17 +77,21 @@ FLAGS = {
     "RADNO_VREME": RADNO_VREME, "CENOVNIK": CENOVNIK, "ALUMNI_NOVISAD": ALUMNI_NOVISAD,
     "GALERIJA_PROSTORA": GALERIJA_PROSTORA, "TESTIMONIALS": TESTIMONIALS, "BLOG_EXPANDED": BLOG_EXPANDED,
     "GBP_SEPARATE": GBP_SEPARATE,
+    # HAS_TEL / HAS_EMAIL se racunaju u main() iz site.json (prazno = ne prikazuje se; brief-v2 §3)
+    "HAS_TEL": False, "HAS_EMAIL": False,
 }
 
-NAV_KEYS = {"o-meni", "oblasti-rada", "pitanja-i-odgovori", "blog", "mediji-i-predavanja", "kontakt"}
+NAV_KEYS = {"o-meni", "oblasti-rada", "pitanja-i-odgovori", "blog", "mediji-i-predavanja", "kontakt", "zakazivanje"}
 
 DEFAULTS = {
     "title": "dr Filip Katanić",
     "description": "",
     "body_class": "",
-    "cta_title": "Sledeći korak je razgovor",
-    "cta_text": "Za zakazivanje pregleda obratite se kontakt centru SB Ferona — ustanove u kojoj dr Filip Katanić radi.",
+    "cta_title": "Zakažite konsultaciju i napravimo plan koji je pravi za Vas.",
+    "cta_text": "Individualna konsultacija, jasni koraci i plan koji odgovara Vašoj situaciji.",
     "preload": "",
+    "preload_mobile": "",
+    "usluga": "",
     "robots": "",
     "scripts": "",
     "jsonld": "",
@@ -321,6 +325,8 @@ def build_page(page: Path, kit=False):
     cur_url = url_path
 
     def cur(key):
+        if key == "home":
+            return ' aria-current="page"' if cur_url == "/" else ""
         if "/" in key:
             return ' aria-current="page"' if cur_url == f"/{key}/" else ""
         if key != nav_key:
@@ -331,10 +337,16 @@ def build_page(page: Path, kit=False):
         f'<script src="{{{{root}}}}assets/js/{s.strip()}.js" defer></script>\n'
         for s in v["scripts"].split(",") if s.strip()
     )
-    preload = (
-        f'<link rel="preload" as="image" href="{{{{root}}}}{v["preload"]}" fetchpriority="high">'
-        if v["preload"] else ""
-    )
+    # preload hero slike; uz preload_mobile se emituju dve varijante sa media upitima (<picture> na telefonu)
+    if v["preload"] and v["preload_mobile"]:
+        preload = (
+            f'<link rel="preload" as="image" href="{{{{root}}}}{v["preload_mobile"]}" media="(max-width: 767px)" fetchpriority="high">' + NL
+            + f'<link rel="preload" as="image" href="{{{{root}}}}{v["preload"]}" media="(min-width: 768px)" fetchpriority="high">'
+        )
+    elif v["preload"]:
+        preload = f'<link rel="preload" as="image" href="{{{{root}}}}{v["preload"]}" fetchpriority="high">'
+    else:
+        preload = ""
     jsonld_parts = []
     for name in [x.strip() for x in v["jsonld"].split(",") if x.strip()]:
         if name == "auto-faq":
@@ -375,6 +387,7 @@ def build_page(page: Path, kit=False):
         "year": str(date.today().year),
         "cta_title": html.escape(v["cta_title"]),
         "cta_text": html.escape(v["cta_text"]),
+        "usluga_q": ("?usluga=" + v["usluga"]) if v["usluga"] else "",
     }
 
     def var(m):
@@ -411,55 +424,27 @@ def make_sitemap_robots():
         + '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + NL + body + "</urlset>" + NL,
         encoding="utf-8", newline=NL)
     (OUT / "robots.txt").write_text(
-        "User-agent: *" + NL + ("Disallow: /" if DEMO else "Allow: /") + NL + NL + "Sitemap: " + SITE_URL + "/sitemap.xml" + NL,
+        "User-agent: *" + NL + ("Disallow: /" if DEMO else "Allow: /" + NL + "Disallow: /admin/" + NL + "Disallow: /api/") + NL + NL
+        + "Sitemap: " + SITE_URL + "/sitemap.xml" + NL,
         encoding="utf-8", newline=NL)
     print(f"  sitemap.xml ({len(urls)} URL), robots.txt ({'Disallow' if DEMO else 'Allow'})")
 
 
 def make_assets():
-    """favicon.ico, favicon-32.png, favicon-180.png (FK pecat, programatski, brand.md 8) i
-    assets/img/og-image.jpg (1200x630, navy/krem tipografska karta, NE fotografija — seo.md 6.5).
-    Trazi Pillow; bez njega se preskace uz upozorenje. favicon.svg je vec u src/static (kopiran 1:1)."""
+    """Favicon v2 (brief-v2 / manifest v2): favicon-32.png i favicon-180.png su kopije gotovih
+    favicon-v2-*.png iz src/static/assets/img/; favicon.ico se pravi iz favicon-v2-512.png (Pillow, opciono).
+    OG slika je gotova og-image-v2.jpg (DEFAULT_OG) — build je vise ne generise."""
+    img = SRC / "static" / "assets" / "img"
+    for size in ("32", "180"):
+        src = img / f"favicon-v2-{size}.png"
+        if src.exists():
+            shutil.copy2(src, OUT / f"favicon-{size}.png")
     try:
-        from PIL import Image, ImageDraw, ImageFont
-    except ImportError:
-        print("  ! Pillow nije instaliran: preskacem favicon/og-image (pip install pillow)")
-        return
-    img_dir = OUT / "assets" / "img"
-    img_dir.mkdir(parents=True, exist_ok=True)
-    CREAM, NAVY, GOLD = (251, 247, 240), (16, 40, 74), (201, 173, 135)
-
-    def font(size, italic=False):
-        names = (["georgiai.ttf", "georgia.ttf"] if italic else ["georgia.ttf"])
-        for n in names:
-            try:
-                return ImageFont.truetype(str(Path("C:/Windows/Fonts") / n), size)
-            except OSError:
-                continue
-        return ImageFont.load_default()
-
-    # favicon: krug (krem) + tanka navy linija + "FK" (echo favicon.svg)
-    fav = Image.new("RGB", (256, 256), CREAM)
-    d = ImageDraw.Draw(fav)
-    d.ellipse((10, 10, 246, 246), outline=NAVY, width=7)
-    f = font(96)
-    tb = d.textbbox((0, 0), "FK", font=f)
-    d.text(((256 - (tb[2] - tb[0])) / 2 - tb[0], (256 - (tb[3] - tb[1])) / 2 - tb[1] - 6), "FK", font=f, fill=NAVY)
-    fav.resize((32, 32), Image.LANCZOS).save(OUT / "favicon-32.png")
-    fav.resize((180, 180), Image.LANCZOS).save(OUT / "favicon-180.png")
-    fav.resize((48, 48), Image.LANCZOS).save(OUT / "favicon.ico")
-
-    # og-image: navy karta, krem tekst, tanka zlatna linija (frame--halo eho), BEZ fotografije/teksta sa "specijalista"
-    W, H = 1200, 630
-    og = Image.new("RGB", (W, H), NAVY)
-    d = ImageDraw.Draw(og)
-    d.rectangle((40, 40, W - 40, H - 40), outline=GOLD, width=2)
-    f1 = font(64)
-    f2 = font(26)
-    d.text((88, 250), "dr Filip Katanić", font=f1, fill=CREAM)
-    d.text((90, 336), "GINEKOLOGIJA  ·  IVF  ·  NOVI SAD", font=f2, fill=GOLD)
-    og.save(img_dir / "og-image.jpg", quality=88, optimize=True)
-    print("  favicon.ico, favicon-32.png, favicon-180.png, assets/img/og-image.jpg")
+        from PIL import Image
+        Image.open(img / "favicon-v2-512.png").save(OUT / "favicon.ico", sizes=[(16, 16), (32, 32), (48, 48)])
+        print("  favicon-32.png, favicon-180.png, favicon.ico (v2)")
+    except Exception as e:   # Pillow nije obavezan
+        print(f"  ! favicon.ico preskocen ({e.__class__.__name__}); favicon-32/180.png kopirani")
 
 
 # ---------------------------------------------------------------- lint
@@ -471,8 +456,14 @@ CROP_REQUIRED = {
 
 # (regex nad tekstom bez dijakritika i malim slovima, opis) — structure.md 1 (Build lint), doslovno + task FAZA1
 LINT_ALWAYS = [
-    (r"specijalist", "titula: 'specijalista/specijalistkinja' (seo.md 0.1 — nepotvrdjeno, NIKAD dok klijent ne potvrdi)"),
-    (r"specialist", "titula (eng.): 'specialist'"),
+    # brief-v2 §3: blokada titule "specijalista" je UKLONJENA (titula dozvoljena uz [POTVRDITI] komentar).
+    # brief-v2 §1.2: lični sajt — Ferona nikad kao brend/kontakt sajta
+    (r"zakazite u sb feroni|zakazite u feroni", "CTA 'Zakažite u SB Feroni' (brief-v2: lični brend — CTA je 'Zakaži konsultaciju')"),
+    (r"kontakt centr\w* (sb )?ferona|kontakt centar ustanove", "Ferona kontakt centar kao kontakt sajta (brief-v2 §1.2)"),
+    (r"office@ferona", "Ferona mejl kao kontakt sajta (brief-v2 §1.2)"),
+    (r"3000\s?220|213000220", "Ferona telefon kao kontakt sajta (brief-v2 §1.2)"),
+    (r"clan tima (sb |specijalne bolnice )?ferona|u okviru tima (sb |specijalne bolnice )?ferona", "Ferona kao identitet ('član tima') — samo 'Ordinira u SB Ferona' (brief-v2)"),
+    (r"63\s?102\s?2442|631022442", "nepotvrdjen WhatsApp/Viber broj +381 63 102 2442 (structure-v2 §2.13)"),
     (r"najbolj(?!i plan\b)", "superlativ 'najbolj*' (izuzetak: odobreni citat 'najbolji plan', structure.md 1)"),
     (r"aggregaterating", "'aggregateRating' (schema, zabranjeno — Google ocena se ne prikazuje, seo.md 0.5)"),
     (r"5:00.{0,3}23:45", "nepouzdano radno vreme 'whatclinic' (5:00-23:45)"),
@@ -567,8 +558,9 @@ def lint() -> int:
             warns.append(f"{rel}: pominje 'radno vreme' — proveriti da je iza {{if RADNO_VREME}} (flag je False)")
         if not TESTIMONIALS and re.search(r"testimonijal|iskustv\w* pacijent", n):
             warns.append(f"{rel}: pominje testimonijale — komponenta ne sme postojati dok TESTIMONIALS=False")
-        if TITULA_SPECIJALISTA:
-            errors.append(f"{rel}: TITULA_SPECIJALISTA=True — zabranjeno dok klijent pismeno ne potvrdi (seo.md 0.1)")
+        # titula je dozvoljena (brief-v2 §3), ali svaka vidljiva pojava mora imati [POTVRDITI] komentar na stranici
+        if "specijalist" in n and "pismena potvrda titule" not in raw:
+            errors.append(f"{rel}: titula 'specijalista' bez HTML komentara [POTVRDITI SA KLIJENTOM: pismena potvrda titule pre objave] (brief-v2 §3)")
 
         if len(re.findall(r"<h1[\s>]", raw_nc)) != 1:
             errors.append(f"{rel}: broj H1 != 1 ({len(re.findall(r'<h1[\\s>]', raw_nc))})")
@@ -576,15 +568,13 @@ def lint() -> int:
             errors.append(f"{rel}: neresen placeholder")
         for m in re.finditer(r'\balt="([^"]*)"', raw_nc):
             alt_n = norm(m.group(1))
-            if "specijalist" in alt_n or "specialist" in alt_n:
-                errors.append(f"{rel}: alt tekst sadrzi 'specijalista/specialist': {m.group(1)!r}")
+            if "ferona" in alt_n:
+                warns.append(f"{rel}: alt tekst pominje Feronu (lični sajt, brief-v2): {m.group(1)!r}")
             if len(m.group(1)) > 160:
                 warns.append(f"{rel}: predugacak alt ({len(m.group(1))} zn.)")
         if "[POTVRDITI" in raw:
             warns.append(f"{rel}: {raw.count('[POTVRDITI')} x [POTVRDITI SA KLIJENTOM] u komentarima")
 
-    if TITULA_SPECIJALISTA:
-        errors.append("build.py: TITULA_SPECIJALISTA=True u kodu — vratiti na False (seo.md 0.1)")
     if DEMO:
         warns.append("DEMO=True (noindex + Disallow); pri objavi DEMO=False i pravi SITE_URL")
     if "DOMEN.rs" in SITE_URL:
@@ -604,6 +594,8 @@ def main():
     kit = "--kit" in sys.argv
     do_lint = "--lint" in sys.argv
     SITE_DATA.update({k: html.escape(v, quote=False) for k, v in load_json("site.json").items()})
+    FLAGS["HAS_TEL"] = bool(SITE_DATA.get("tel", "").strip())
+    FLAGS["HAS_EMAIL"] = bool(SITE_DATA.get("email", "").strip())
     if kit:
         FLAGS = {k: True for k in FLAGS}   # kit prikazuje sve (i sto je iza flagova)
         print("Kit (svi flagovi ukljuceni):")
