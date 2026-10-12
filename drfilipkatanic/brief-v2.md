@@ -34,3 +34,8 @@ Ovo je nadogradnja postojećeg sajta (src/ → build.py → site/). Svi agenti �
 - Odgovor: `200 {"ok":true,"id":N}` ili `4xx {"ok":false,"error":"poruka na srpskom","fields":{"email":"..."}}`; `429` kod rate limita.
 - Admin: `/admin/` (login), lista zahteva sa filterima (novo/potvrđeno/odbijeno/otkazano), detalji, akcije **Potvrdi** (sa poljima: potvrđen datum, vreme, poruka pacijentu) i **Odbij** (sa razlogom / predlogom drugog termina) → mejl pacijentu. Na novi zahtev — mejl obaveštenje doktoru.
 - Hosting: običan deljeni PHP hosting (PHP 8.x, SQLite/PDO). Bez Composer-a. Mejl preko SMTP-a (konfiguracija u `config.php` van webroot-a ili zaštićeno), fallback na `mail()`.
+
+## 5. IZMENA (2026-10-12, korisnik): backend PROST — samo zakazivanje
+- Admin: jedna stranica, lista zahteva (Novi / Potvrđeni / Odbijeni), dugmad **Potvrdi** (datum+vreme, opciona poruka) i **Odbij** (opcioni razlog) → automatski mejl pacijentu. Bez CSV izvoza, istorije, ponovnog slanja, otkazivanja, više korisnika, promene lozinke iz UI-a.
+- Forma: Ime i prezime*, Email*, Telefon*, Usluga*, Željeni datum*, Doba dana, Napomena, Saglasnost*. Izbačeno: partner_ime, kontakt_kanal, dokumentacija_status (API ih prihvata ako stignu, ali nisu obavezna).
+- Bezbednost ostaje (nevidljiva za doktora).
