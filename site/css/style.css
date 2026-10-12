@@ -183,7 +183,9 @@ button { font: inherit; }
 .site-header__inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 
 .brand { display: inline-flex; align-items: center; text-decoration: none; color: inherit; min-height: 44px; }
-.brand__logo { height: 44px; width: auto; }
+.brand__logo { height: 52px; width: auto; }
+.site-header.is-scrolled .brand__logo { height: 46px; }
+.site-footer .brand__logo { height: 64px; }
 .brand__word { display: inline-grid; grid-template-columns: auto auto; column-gap: 8px; align-items: center; line-height: 1; }
 .brand__word::before {
   content: ""; grid-row: 1 / span 2; width: 6px; height: 6px; border-radius: 50%;
@@ -482,6 +484,7 @@ a.shade-tab:focus-visible .shade-tab__tooth { outline: 2px solid var(--c-mint); 
 .steps__num { position: absolute; left: 0; top: -6px; font-size: 34px; font-weight: 700; color: var(--c-mint); letter-spacing: -0.03em; line-height: 1; }
 .steps h3 { font-size: 19px; margin-bottom: 6px; }
 .steps p { color: var(--c-muted); margin: 0; }
+.steps .steps__solo { color: var(--c-text); font-size: 18px; font-weight: 500; padding-top: 4px; }
 
 /* FAQ */
 .faq { border-top: 1px solid var(--c-border); }
@@ -530,6 +533,7 @@ a.shade-tab:focus-visible .shade-tab__tooth { outline: 2px solid var(--c-mint); 
 .on-dark { background: var(--c-primary); color: rgba(255,255,255,.86); }
 .on-dark h2, .on-dark h3 { color: #fff; }
 .on-dark a:not(.btn) { color: var(--c-mint); }
+.on-dark .lead { color: rgba(255,255,255,.86); }
 .dark-feature { position: relative; overflow: hidden; }
 .dark-feature::after {
   content: ""; position: absolute; width: 520px; height: 520px; right: -200px; top: -220px; border-radius: 50%;

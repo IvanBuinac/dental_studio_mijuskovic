@@ -5,5 +5,5 @@
 4 | seo-analyst | completed (seo.md) | 2026-10-12
 5 | site-architect | completed | 2026-10-12
 6 | copywriter | completed | 2026-10-12
-7 | developer | running | 2026-10-12
-8 | qa-reviewer | pending | N/A
+7 | developer | completed | 2026-10-12
+8 | qa-reviewer | running | 2026-10-12

@@ -1,0 +1,6 @@
+# DEMO verzija: indeksiranje zabranjeno dok klijent ne prihvati sajt.
+# Pri objavi: obrisati "Disallow: /", staviti "Allow: /" i otkomentarisati Sitemap liniju (sa pravim domenom).
+User-agent: *
+Disallow: /
+
+# Sitemap: https://dentalstudiomijuskovic.example/sitemap.xml
