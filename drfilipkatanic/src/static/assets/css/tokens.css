@@ -41,7 +41,7 @@
   --grad-cta:        linear-gradient(90deg, var(--c-cream-2) 0%, #EFE7DA 100%);
 
   /* ---- Fontovi ---- */
-  --ff-serif: 'Cormorant Garamond', 'EB Garamond', Garamond, 'Times New Roman', serif;
+  --ff-serif: 'EB Garamond', Garamond, 'Times New Roman', serif;  /* v2.1: zamenio Cormorant (kvačica na č/ž previsoko) */
   --ff-sans:  'Mulish', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --fw-regular: 400;
   --fw-medium:  500;
@@ -49,18 +49,18 @@
   --fw-bold:    700;
 
   /* ---- Tipografska skala (fluid, 360px -> 1280px) ---- */
-  --fs-h1:   clamp(2.5rem,  1.72rem + 3.48vw, 4.5rem);    /* 40 -> 72 */
-  --fs-h2:   clamp(2rem,    1.61rem + 1.74vw, 3rem);      /* 32 -> 48 */
-  --fs-h3:   clamp(1.625rem,1.38rem + 1.09vw, 2.25rem);   /* 26 -> 36 */
-  --fs-h4:   clamp(1.375rem,1.23rem + 0.65vw, 1.75rem);   /* 22 -> 28 */
-  --fs-h5:   clamp(1.25rem, 1.15rem + 0.43vw, 1.5rem);    /* 20 -> 24 (naslov kartice) */
-  --fs-h6:   clamp(1.125rem,1.08rem + 0.22vw, 1.25rem);   /* 18 -> 20 */
+  --fs-h1:   clamp(2.25rem, 1.55rem + 3.13vw, 4.05rem);   /* 36 -> 65 (EB Garamond, ~-10%) */
+  --fs-h2:   clamp(1.8rem,  1.45rem + 1.57vw, 2.7rem);    /* 29 -> 43 */
+  --fs-h3:   clamp(1.46rem, 1.24rem + .98vw, 2.03rem);    /* 23 -> 32 */
+  --fs-h4:   clamp(1.24rem, 1.11rem + .59vw, 1.58rem);    /* 20 -> 25 */
+  --fs-h5:   clamp(1.15rem, 1.06rem + .4vw, 1.38rem);     /* 18 -> 22 (naslov kartice) */
+  --fs-h6:   clamp(1.05rem, 1rem + .2vw, 1.15rem);        /* 17 -> 18 */
   --fs-lead: clamp(1.0625rem,1rem + 0.27vw, 1.25rem);     /* 17 -> 20 */
   --fs-body: 1rem;                                        /* 16 */
   --fs-sm:   0.875rem;                                    /* 14 */
   --fs-xs:   0.8125rem;                                   /* 13 */
   --fs-eyebrow: 0.75rem;                                  /* 12, verzal */
-  --fs-num:  clamp(2rem, 1.6rem + 1.7vw, 3rem);           /* "01–05" u koracima */
+  --fs-num:  clamp(1.8rem, 1.44rem + 1.53vw, 2.7rem);           /* "01–05" u koracima */
 
   --lh-tight:   1.1;    /* H1–H2 */
   --lh-heading: 1.2;    /* H3–H6 */

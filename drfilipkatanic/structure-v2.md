@@ -169,7 +169,7 @@ Tako "Pitanja i odgovori" i "Mediji i predavanja" ostaju dostupni iz menija (sek
 ### 2.0 Globalna pravila za početnu (i ceo sajt)
 
 **Tipografija** (usklađivanje sa referencom):
-- Naslovi: klasičan serif visokog kontrasta. Preporuka: **Cormorant Garamond** 500/600 (Google Fonts) za H1/H2 i naslove kartica ≥ 20px; Fraunces ostaje fallback ako developer proceni da je promena prevelika — ali referenca jasno traži "Garamond" osećaj, ne Fraunces "soft" osećaj. Telo: Karla ostaje (ili Jost — ne obavezno).
+- Naslovi: klasičan serif visokog kontrasta. Preporuka: **EB Garamond** 500 (Google Fonts; zamenio Cormorant Garamond zbog loše kvačice na č/ž — vidi brand.md v2.3) za H1/H2 i naslove kartica ≥ 20px; Fraunces ostaje fallback ako developer proceni da je promena prevelika — ali referenca jasno traži "Garamond" osećaj, ne Fraunces "soft" osećaj. Telo: Karla ostaje (ili Jost — ne obavezno).
 - Skala (clamp): H1 hero `clamp(44px, 7vw, 84px)` / line-height 1.02 / letter-spacing -0.01em; H2 `clamp(30px, 4vw, 44px)` / 1.15; H3 kartice 20–22px / 1.25; telo 16–17px / 1.65; eyebrow 12px, uppercase, letter-spacing .18em, zlatna `--color-accent` (#8C7355, tekst-bezbedna), 600.
 - **Eyebrow motiv:** svaki eyebrow centriranih sekcija ima tanke zlatne linije levo i desno (`— MOJ PRISTUP —`, linije 32px, 1px). To je deo potpisnog sistema (§7).
 
@@ -1024,7 +1024,7 @@ Posle akcije: toast "Potvrđeno — mejl poslat pacijentu." ili "Sačuvano, ali 
 
 **"Zlatni okvir" — FK monogram u kvadratnom zlatnom okviru i sistem tankih zlatnih linija koji iz njega proizlazi.**
 
-1. **Monogram (header, CTA traka, footer, admin, favicon):** serif "FK" (Cormorant, ligatura F i K se blago preklapaju — K-ova dijagonala dodiruje F-ovu horizontalu) unutar **kvadrata** 44×44 sa 1px zlatnom ivicom i **odsečenim donjim desnim uglom** (mali 6px dijagonalni rez — "otvoren" okvir, kao korak napred). Implementacija: novi `partials/seal.html` (SVG, `currentColor` za slova, zlatna za okvir). Na navy: krem slova + zlatni okvir. Zamenjuje sadašnji krug.
+1. **Monogram (header, CTA traka, footer, admin, favicon):** serif "FK" (EB Garamond, ligatura F i K se blago preklapaju — K-ova dijagonala dodiruje F-ovu horizontalu) unutar **kvadrata** 44×44 sa 1px zlatnom ivicom i **odsečenim donjim desnim uglom** (mali 6px dijagonalni rez — "otvoren" okvir, kao korak napred). Implementacija: novi `partials/seal.html` (SVG, `currentColor` za slova, zlatna za okvir). Na navy: krem slova + zlatni okvir. Zamenjuje sadašnji krug.
 2. **Zlatni offset okvir oko fotografija doktora:** svaka velika fotografija (hero na podstranicama, O meni) ima 1px zlatnu liniju pomerenu 16px dole-desno iza slike, sa istim odsečenim uglom. Na telefonu se zamenjuje kratkom zlatnom linijom ispod slike.
 3. **Eyebrow sa linijama** (`── MOJ PRISTUP ──`) i **zlatna linija aktivne stavke menija** — isti 1px zlatni potez.
 4. **Logo znak (ruke + beba + FK srce)** se koristi štedljivo — samo CTA traka, footer i admin login — da ostane emotivni pečat, a monogram je "radni" znak.

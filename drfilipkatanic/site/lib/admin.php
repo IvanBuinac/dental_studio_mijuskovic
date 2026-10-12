@@ -46,8 +46,8 @@ function fk_admin_boot(): void
             http_response_code(500);
             header('Content-Type: text/html; charset=utf-8');
         }
-        echo '<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Greška</title>'
-            . '<body style="font-family:sans-serif;padding:2rem;background:#FBF8F3;color:#12223D">'
+        echo '<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Greška</title><link rel="stylesheet" href="admin.css">'
+            . '<body><main class="wrap">'
             . '<h1>Došlo je do greške</h1><p>Pokušajte ponovo. <a href="index.php">Nazad na zahteve</a></p>';
     });
 
@@ -60,7 +60,7 @@ function fk_admin_boot(): void
         $url = $uri . (str_contains($uri, '?') ? '&' : '?') . '_b=1';
         header('Content-Type: text/html; charset=utf-8');
         echo '<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=' . e($url) . '">'
-            . '<title>Preusmeravanje…</title><p style="font-family:sans-serif">Preusmeravanje… <a href="' . e($url) . '">nastavi</a></p>';
+            . '<title>Preusmeravanje…</title><p>Preusmeravanje… <a href="' . e($url) . '">nastavi</a></p>';
         exit;
     }
 
@@ -240,7 +240,7 @@ function fk_admin_header(string $title, bool $auth = false): void
 <title><?= e($title) ?></title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Mulish:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Mulish:wght@400;600;700&display=swap">
 <link rel="stylesheet" href="admin.css?v=4">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <script src="admin.js?v=4" defer></script>

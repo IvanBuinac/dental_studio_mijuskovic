@@ -180,7 +180,7 @@
       var b = d.createElement('strong'); b.textContent = email; t.appendChild(b); t.appendChild(d.createTextNode('.'));
     }
     if (id) {
-      d.getElementById('success-id').textContent = '#' + id;
+      d.getElementById('success-id').textContent = '#' + ('000' + id).slice(-Math.max(4, String(id).length)); // isto kao u mejlu (#0001)
       d.getElementById('success-id-wrap').hidden = false;
     }
     success.hidden = false;

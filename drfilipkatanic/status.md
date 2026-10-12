@@ -9,7 +9,7 @@
 | 5 | site-architect | v2 u toku | structure-v2.md + /zakazivanje/ + admin UX |
 | 6 | copywriter | v2 ceka | licni brend umesto Ferone, tekstovi za zakazivanje |
 | 7 | developer | backend u toku / frontend ceka | PHP zakazivanje, admin, mejlovi (brief-v2.md par. 4) |
-| 8 | qa-reviewer | ceka | |
+| 8 | qa-reviewer | zavrseno (v2) | qa.md — SPREMNO; EB Garamond umesto Cormorant |
 | 9 | outreach-writer | ceka | |
 
 Brief za doradu: brief-v2.md (2026-10-12)

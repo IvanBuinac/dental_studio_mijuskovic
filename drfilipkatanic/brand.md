@@ -76,20 +76,23 @@
 Referenca: naslovi su klasičan Garamond-tip serif, visokog kontrasta, srednje težine, sa malom x-visinom i elegantnim "ć" (H1 "dr Filip Katanić", "Ne postoji univerzalni IVF protokol."); zlatni podnaslov hero-a je isti serif u semibold-u. Telo, meni i dugmad su čist, topao sans sa jednospratnim "g" i otvorenim oblicima.
 
 **Izbor (zamenjuje v1 Fraunces + Karla):**
-- **Naslovi:** **Cormorant Garamond** — 500 (H1–H3), 600 (H4–H6, podnaslovi, kartice), 500 italic (citati, istaknuta rečenica). Najbliži referenci (Garamond kostur, visok kontrast, uske kapitale); Fraunces je "mekši"/zaobljeniji i deluje manje premium-klasično od reference.
+- **Naslovi:** **EB Garamond** — 500 (H1–H6, podnaslovi, kartice), 400 (sitniji serifni tekst), 400 italic (citati, istaknuta rečenica). Klasičan Garamond kostur, visok kontrast — najbliži referenci.
+
+> **Zamena fonta (QA, 2026-10-12):** prvobitni izbor Cormorant Garamond je odbačen — crta kvačicu na č/ž previsoko i odvojeno (izgleda kao zasebno "v" iznad slova), što je na srpskom sajtu neprihvatljivo. EB Garamond ima ispravne dijakritike (č ć š ž đ), isti Garamond karakter i nešto veću x-visinu, pa su fluidne veličine naslova smanjene ~10% a težine spuštene (600 → 500, italic 500 → 400).
+
 - **Telo / UI:** **Mulish** — 400 (telo), 500 (meni, labele), 600 (dugmad, eyebrow), 700 (retko, jaki naglasci). Topao humanist-geometrijski sans, jednospratno "g", odlična čitljivost na telefonu i dobro "sedi" uz Garamond.
 
 **Srpska latinica:** provereno direktno sa `fonts.googleapis.com/css2` (2026-10-12) — obe familije serviraju `latin-ext` subset sa `unicode-range: U+0100-02BA…`, koji pokriva č (U+010D), ć (U+0107), š (U+0161), ž (U+017E), đ (U+0111) i velika slova (Č Ć Š Ž Đ). Google Fonts automatski učitava samo potrebne subsete.
 
-**Napomena za Cormorant:** mala x-visina → nikad ispod ~20px i ne za telo teksta; težina 300/400 je pretanka na ekranu (koristiti 500+). Za naslove kartica na mobilnom minimum `1.25rem`.
+**Napomena za EB Garamond:** ne za telo teksta; naslovi kartica na mobilnom minimum ~`1.1rem`; 500 je dovoljno za H1/H2 (600 deluje preteško u odnosu na referencu).
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
 ```
 
-Fallback: `'Cormorant Garamond', 'EB Garamond', Garamond, 'Times New Roman', serif` / `'Mulish', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif`.
+Fallback: `'EB Garamond', Garamond, 'Times New Roman', serif` / `'Mulish', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif`.
 
 ### v2.4 Tokens — gotov blok za zamenu `src/static/assets/css/tokens.css`
 
@@ -139,7 +142,7 @@ Sadrži i **kompatibilne alijase** v1 imena (`--color-primary`, `--font-heading`
   --grad-cta:        linear-gradient(90deg, var(--c-cream-2) 0%, #EFE7DA 100%);
 
   /* ---- Fontovi ---- */
-  --ff-serif: 'Cormorant Garamond', 'EB Garamond', Garamond, 'Times New Roman', serif;
+  --ff-serif: 'EB Garamond', Garamond, 'Times New Roman', serif;
   --ff-sans:  'Mulish', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --fw-regular: 400;
   --fw-medium:  500;
@@ -308,7 +311,7 @@ Logo: navy kvadrat (`#0D2444`), zlatni krug sa šakama i bebom, zlatno srce sa "
 
 - **Pun logo (znak + script):** samo na **tamnoj** pozadini identičnoj `--c-navy-deep #0D2444` — footer, CTA "pečat" blok na navy, OG/share slika (1200×630 navy sa logom centriranim), Instagram/print. Minimalna širina **160px** (ispod toga script "Dr Filip Katanić" postaje nečitak); preporučeno 200–240px u footeru. Zaštitna zona = visina srca "FK" sa svih strana. Za oštrinu: izrezati prazne margine (crop ≈ 160,170,870,790) i izvesti WebP 2× (npr. 480px za prikaz 240px).
 - **Samo znak (krug sa šakama/bebom + FK srce):** avatar, favicon izvor, dekorativni pečat. Minimalno **48px** na ekranu; ispod toga (favicon 16/32px, header mobilni) detalji šaka/bebe se gube → koristiti **FK monogram** (zlatno "FK" u tankom zlatnom kvadratu/krugu, kao na referenci u headeru i CTA traci) — to je dozvoljena pojednostavljena varijanta loga.
-- **Header:** NE ubacivati PNG sa navy kvadratom na belu/krem pozadinu (izgleda kao nalepnica). Koristiti kombinaciju referenca-stila: FK monogram u zlatnom kvadratnom okviru (`--c-gold`, 1px, 44px) + tipografski naziv "dr Filip Katanić" (Cormorant 600) / "Reproduktivna medicina". Monogram treba izraditi kao SVG (zlato `--c-gold-text` na svetlom za kontrast, `--c-gold-light` na navy). [POTVRDITI SA KLIJENTOM: da li postoji vektorski (SVG/AI) zvanični logo — ako postoji, koristiti ga umesto PNG-a i izvesti varijantu na providnoj pozadini.]
+- **Header:** NE ubacivati PNG sa navy kvadratom na belu/krem pozadinu (izgleda kao nalepnica). Koristiti kombinaciju referenca-stila: FK monogram u zlatnom kvadratnom okviru (`--c-gold`, 1px, 44px) + tipografski naziv "dr Filip Katanić" (EB Garamond 500) / "Reproduktivna medicina". Monogram treba izraditi kao SVG (zlato `--c-gold-text` na svetlom za kontrast, `--c-gold-light` na navy). [POTVRDITI SA KLIJENTOM: da li postoji vektorski (SVG/AI) zvanični logo — ako postoji, koristiti ga umesto PNG-a i izvesti varijantu na providnoj pozadini.]
 - **Na svetloj pozadini:** pun logo samo unutar navy pločice (`--c-navy-deep`, `--r-lg`, padding ≥ 24px) — nikad sam znak sa belim script-om direktno na krem (bela na kremu je nevidljiva). Za svetle površine koristi se monogram ili tipografski potpis u navy.
 - **Na tamnoj pozadini:** pun logo ili znak direktno; ako je pozadina `--c-navy` (`#12223D`) umesto `#0D2444`, razlika je vidljiva na velikim ekranima → stavljati logo samo na `--c-navy-deep` ili ga izvesti sa providnom pozadinom.
 - **Favicon / apple-touch-icon:** FK srce ili FK monogram zlatno (`#D4B068`) na `#0D2444`, 32/180/512px.

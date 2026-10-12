@@ -1,7 +1,7 @@
 /* ==========================================================================
    Zakazivanja — admin · dr Filip Katanić
    Brend (brand.md v2): krem pozadina, navy, šampanj-zlato, serifni naslovi.
-   Fontovi: Cormorant Garamond + Mulish — menjaju se na JEDNOM mestu
+   Fontovi: EB Garamond + Mulish — menjaju se na JEDNOM mestu
    (--font-serif / --font-sans) + Google Fonts link u lib/admin.php.
    Mobile-first: velika dugmad, kartice u jednoj koloni na telefonu.
    ========================================================================== */
@@ -23,7 +23,7 @@
   --no: #9B2C2C;      --no-dark: #7E2222;  --no-bg: #F8E6E4;
   --warn-bg: #FBF0DA;
 
-  --font-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-serif: "EB Garamond", Garamond, Georgia, "Times New Roman", serif;
   --font-sans: "Mulish", -apple-system, "Segoe UI", Roboto, sans-serif;
 
   --r: 6px;
@@ -40,8 +40,8 @@ body {
   margin: 0; background: var(--cream); color: var(--text);
   font: 400 16px/1.55 var(--font-sans); -webkit-font-smoothing: antialiased;
 }
-h1, h2 { font-family: var(--font-serif); color: var(--navy); font-weight: 600; line-height: 1.15; margin: 0 0 .4em; }
-h1 { font-size: clamp(2rem, 7vw, 2.6rem); }
+h1, h2 { font-family: var(--font-serif); color: var(--navy); font-weight: 500; line-height: 1.15; margin: 0 0 .4em; }
+h1 { font-size: clamp(1.8rem, 6.3vw, 2.35rem); }
 p { margin: 0 0 1em; }
 a { color: var(--navy); text-underline-offset: 3px; }
 :focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
@@ -60,10 +60,10 @@ small { font-size: .82em; color: var(--muted); font-weight: 400; }
 .brand__mark, .auth__mark {
   display: inline-grid; place-items: center; width: 40px; height: 40px; flex: 0 0 auto;
   border: 1px solid var(--gold); color: var(--gold-light);
-  font: 600 1.05rem/1 var(--font-serif); letter-spacing: .06em;
+  font: 500 1rem/1 var(--font-serif); letter-spacing: .06em;
 }
 .brand__txt { display: flex; flex-direction: column; line-height: 1.15; }
-.brand__txt strong { font: 600 1.35rem/1.1 var(--font-serif); color: #fff; }
+.brand__txt strong { font: 500 1.22rem/1.1 var(--font-serif); color: #fff; }
 .brand__txt small { color: var(--gold-light); font-size: .66rem; letter-spacing: .18em; text-transform: uppercase; }
 .topbar__right { display: flex; align-items: center; gap: 2px; }
 .topbar__right form { margin: 0; }
@@ -166,13 +166,13 @@ input:focus, textarea:focus { outline: none; border-color: var(--gold); box-shad
 .card:target { box-shadow: 0 0 0 3px var(--gold), var(--shadow); }
 @media (min-width: 760px) { .card { padding: 24px 24px 22px; } }
 .card__head { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
-.card__name { font-size: 1.7rem; margin: 0; overflow-wrap: anywhere; }
+.card__name { font-size: 1.55rem; margin: 0; overflow-wrap: anywhere; }
 .card__service { margin: 2px 0 0; color: var(--gold-text); font-weight: 700; font-size: .9rem; }
 .card__when { flex: 0 0 auto; font-size: .8rem; color: var(--muted); padding-top: 6px; }
 
 .slot { margin: 16px 0 12px; padding: 14px 16px; background: var(--cream); border-left: 3px solid var(--gold); border-radius: 0 var(--r) var(--r) 0; display: grid; gap: 2px; }
 .slot__label { font-size: .7rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-text); }
-.slot strong { font: 600 1.4rem/1.2 var(--font-serif); color: var(--navy); }
+.slot strong { font: 500 1.28rem/1.2 var(--font-serif); color: var(--navy); }
 .slot span:last-child { color: var(--muted); font-size: .9rem; }
 .slot--ok { background: var(--ok-bg); border-left-color: var(--ok); }
 .slot--ok .slot__label { color: var(--ok-dark); }
@@ -208,7 +208,7 @@ input:focus, textarea:focus { outline: none; border-color: var(--gold); box-shad
 .bigbtn--no { background: #fff; color: var(--no); border: 2px solid var(--no); }
 .bigbtn--no:hover { background: var(--no-bg); }
 .decide__item[open] > .bigbtn { border-radius: var(--r) var(--r) 0 0; }
-.decide__item[open] > .bigbtn::after { content: "  ✕"; font-size: .9rem; opacity: .8; }
+.decide__item[open] > .bigbtn::after { content: "✕"; margin-left: 10px; font-size: .9rem; opacity: .8; }
 .decide__item > .form { padding: 16px 14px 16px; border: 1px solid var(--line); border-top: 0; border-radius: 0 0 var(--r) var(--r); background: var(--cream); }
 .decide__item--ok[open] > .form { border-color: var(--ok); }
 .decide__item--no[open] > .form { border-color: var(--no); }

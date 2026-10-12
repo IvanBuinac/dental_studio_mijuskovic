@@ -5,6 +5,7 @@
 
 Options -Indexes
 DirectoryIndex index.html index.php
+ErrorDocument 404 /404.html
 
 # Konfiguracija, baza, logovi, dokumentacija i skriveni fajlovi — nikad preko weba
 <FilesMatch "(^config.*\.php$|^fk-config\.php$|\.(db|sqlite|sqlite3|db-journal|db-wal|db-shm|log|md|eml|bak|sample|dist|ini)$|^\.)">

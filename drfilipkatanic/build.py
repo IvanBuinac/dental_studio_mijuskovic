@@ -491,6 +491,8 @@ def lint() -> int:
     errors, warns = [], []
     for f in sorted(OUT.rglob("*.html")):
         rel = f.relative_to(OUT).as_posix()
+        if rel.startswith("data/"):      # runtime folder PHP-a (prazan data/index.html, sesije) — nije stranica
+            continue
         raw = read(f)
         raw_nc = re.sub(r"<!--.*?-->", "", raw, flags=re.S)   # komentari koji objasnjavaju krop-pravilo (0.2) su izuzeti
         n = norm(raw_nc)

@@ -18,7 +18,7 @@
 @media (prefers-reduced-motion: reduce) { .hero__media img { animation: none; } }
 .hero__in { position: relative; z-index: 1; width: min(100% - 2 * var(--gutter), 1200px); margin: -72px auto 0; padding-bottom: 44px; }
 .hero h1 { font-size: clamp(2.75rem, 1.6rem + 5vw, 5.25rem); line-height: 1; letter-spacing: -.012em; }
-.hero__sub { margin-top: 14px; font: 600 clamp(1.15rem, 1rem + .7vw, 1.55rem)/1.35 var(--ff-serif); color: var(--c-gold-text); }
+.hero__sub { margin-top: 14px; font: 500 clamp(1.15rem, 1rem + .7vw, 1.55rem)/1.35 var(--ff-serif); color: var(--c-gold-text); }
 .hero__sub span { color: var(--c-gold); margin-inline: .2em; }
 .hero__lead { margin-top: 18px; font-size: clamp(1rem, .95rem + .3vw, 1.125rem); line-height: 1.65; color: var(--c-text-muted); max-width: 46ch; }
 .hero__loc { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: .875rem; color: var(--c-text-muted); }
@@ -80,7 +80,7 @@
   padding: 32px 22px 26px; box-shadow: var(--sh-card);
 }
 .when-card > .i { font-size: 44px; color: var(--c-gold-icon); margin-bottom: 18px; }
-.when-card h3 { font-size: 1.35rem; line-height: 1.22; max-width: 18ch; }
+.when-card h3 { font-size: 1.22rem; line-height: 1.22; max-width: 18ch; }
 .when-card p { margin-top: 10px; font-size: .9rem; line-height: 1.55; color: var(--c-text-muted); max-width: 26ch; }
 .when-card__go { margin-top: auto; padding-top: 16px; display: inline-flex; align-items: center; gap: 6px; font-size: .8125rem; font-weight: 700; letter-spacing: .04em; color: var(--c-gold-text); transition: opacity var(--dur) var(--ease); }
 .when-card__go .i { font-size: 16px; }
@@ -101,7 +101,7 @@
 .area-card .icon-ring { width: 52px; height: 52px; }
 .area-card .icon-ring .i { font-size: 26px; }
 .area-card__txt { flex: 1; min-width: 0; }
-.area-card h3 { font-size: 1.25rem; line-height: 1.2; }
+.area-card h3 { font-size: 1.12rem; line-height: 1.2; }
 .area-card p { margin-top: 4px; font-size: .875rem; line-height: 1.5; color: var(--c-text-muted); }
 .area-card__arr { font-size: 20px; color: var(--c-gold-icon); transition: transform var(--dur-fast) var(--ease); }
 .area-card:hover .area-card__arr { transform: translateX(4px); }
@@ -112,7 +112,7 @@
 @media (min-width: 768px) {
   .areas__grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .area-card { padding: 24px; align-items: flex-start; gap: 18px; }
-  .area-card h3 { font-size: 1.35rem; }
+  .area-card h3 { font-size: 1.22rem; }
   .area-card__arr { align-self: center; }
   .areas__more { gap: 4px 0; }
   .areas__more-l { flex-basis: auto; margin-right: 10px; }
@@ -130,12 +130,12 @@
 .process::before { content: ""; position: absolute; left: 22px; top: 23px; bottom: 23px; width: 1px; background: var(--c-gold); transform-origin: top; }
 .process__n {
   position: relative; z-index: 1; width: 46px; height: 46px; display: inline-flex; align-items: center; justify-content: center;
-  border: 1px solid var(--c-gold); border-radius: 50%; background: var(--c-cream); font: 600 1.05rem/1 var(--ff-serif); color: var(--c-navy);
+  border: 1px solid var(--c-gold); border-radius: 50%; background: var(--c-cream); font: 500 0.95rem/1 var(--ff-serif); color: var(--c-navy);
 }
-.process h3 { font-size: 1.3rem; line-height: 1.2; padding-top: 10px; }
+.process h3 { font-size: 1.17rem; line-height: 1.2; padding-top: 10px; }
 .process p { margin-top: 5px; font-size: .9rem; line-height: 1.55; color: var(--c-text-muted); max-width: 40ch; }
 .process-sec__foot { display: grid; gap: 18px; margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--c-border-gold); }
-.process-sec__quote { font: italic 500 1.3rem/1.4 var(--ff-serif); color: var(--c-navy); }
+.process-sec__quote { font: italic 400 1.17rem/1.4 var(--ff-serif); color: var(--c-navy); }
 .process-sec__act { display: grid; gap: 14px; justify-items: start; }
 @media (max-width: 767px) { .process-sec__act .btn { width: 100%; } }
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -152,8 +152,8 @@
     content: ""; position: absolute; top: 34px; right: 10px; width: 34px; height: 12px;
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 16'%3E%3Cpath d='M1 8h45M40 2l6 6-6 6' fill='none' stroke='%23B8955A' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
   }
-  .process__n { width: auto; height: auto; border: 0; border-radius: 0; background: none; justify-content: flex-start; font: 500 2.75rem/1 var(--ff-serif); color: var(--c-navy); }
-  .process h3 { font-size: 1.2rem; padding-top: 12px; max-width: 16ch; }
+  .process__n { width: auto; height: auto; border: 0; border-radius: 0; background: none; justify-content: flex-start; font: 500 2.48rem/1 var(--ff-serif); color: var(--c-navy); }
+  .process h3 { font-size: 1.08rem; padding-top: 12px; max-width: 16ch; }
   .process p { font-size: .85rem; }
   .process-sec__foot { grid-template-columns: 1fr auto; align-items: center; }
   .process-sec__act { grid-auto-flow: column; align-items: center; gap: 28px; }
@@ -169,7 +169,7 @@
 .pillars { display: grid; margin: 28px 0 24px; border-top: 1px solid var(--c-border-gold); }
 .pillars li { display: grid; grid-template-columns: 48px 1fr; gap: 14px; padding: 18px 0; border-bottom: 1px solid var(--c-border); }
 .pillars .i { font-size: 30px; color: var(--c-gold-icon); width: 48px; height: 48px; padding: 9px; border: 1px solid var(--c-border-gold); border-radius: 50%; }
-.pillars h3 { font-size: 1.25rem; }
+.pillars h3 { font-size: 1.12rem; }
 .pillars p { margin-top: 4px; font-size: .875rem; line-height: 1.55; color: var(--c-text-muted); }
 @media (min-width: 768px) {
   .about__fig { margin-inline: 0; max-width: 560px; }
@@ -182,7 +182,7 @@
   .pillars li:first-child { padding-left: 0; }
   .pillars li + li { border-left: 1px solid var(--c-border-gold); }
   .pillars .i { width: 32px; height: 32px; padding: 0; border: 0; border-radius: 0; }
-  .pillars h3 { font-size: 1.15rem; }
+  .pillars h3 { font-size: 1.03rem; }
 }
 @media (min-width: 768px) and (max-width: 1099px) { .about__grid { align-items: start; } }
 
@@ -190,10 +190,10 @@
 .values { position: relative; overflow: hidden; background: var(--c-navy); color: var(--c-on-navy); padding-block: 44px; }
 .values::after {
   content: ""; position: absolute; right: -60px; top: 50%; width: 320px; height: 320px; transform: translateY(-50%);
-  background: url("../img/logo-znak-providni.png") center / contain no-repeat; opacity: .05; pointer-events: none;
+  background: url("../img/logo-znak-providni.webp") center / contain no-repeat; opacity: .05; pointer-events: none;
 }
 .values__list { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(2, 1fr); }
-.values__list li { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; padding: 20px 10px; font: 500 1.15rem/1.25 var(--ff-serif); color: var(--c-on-navy); }
+.values__list li { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; padding: 20px 10px; font: 500 1.03rem/1.25 var(--ff-serif); color: var(--c-on-navy); }
 .values__list li:nth-child(odd):not(:last-child) { border-right: var(--line-on-navy); }
 .values__list li:nth-child(-n+4) { border-bottom: var(--line-on-navy); }
 .values__list li:last-child { grid-column: 1 / -1; }
@@ -234,7 +234,7 @@
 .post-card__img img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: 50% 12%; transition: transform 700ms var(--ease); }
 .post-card:hover .post-card__img img { transform: scale(1.04); }
 .post-card__body { display: flex; flex-direction: column; flex: 1; padding: 20px 20px 18px; }
-.post-card h3 { font-size: 1.35rem; line-height: 1.22; font-weight: 500; }
+.post-card h3 { font-size: 1.22rem; line-height: 1.22; font-weight: 500; }
 .post-card p { margin-top: 8px; font-size: .875rem; line-height: 1.55; color: var(--c-text-muted); }
 .post-card__more { margin-top: auto; padding-top: 14px; display: inline-flex; align-items: center; gap: 8px; color: var(--c-gold-text); font-size: .875rem; font-weight: 600; }
 .post-card__more .i { font-size: 16px; transition: transform var(--dur-fast) var(--ease); }
@@ -251,7 +251,7 @@
   .journal__grid { grid-template-columns: repeat(3, 1fr); }
   .post-card__img { flex-basis: 40%; }
   .post-card p { display: none; }
-  .post-card h3 { font-size: 1.45rem; }
+  .post-card h3 { font-size: 1.3rem; }
 }
 
 /* ============================ ZAKAZIVANJE ============================ */
@@ -303,16 +303,16 @@
 .booking__side { display: grid; gap: 16px; align-content: start; }
 .side-doc { display: flex; align-items: center; gap: 16px; padding: 20px; background: var(--c-white); border: 1px solid var(--c-border); }
 .side-doc img { width: 80px; height: 80px; object-fit: cover; object-position: 50% 12%; border-radius: 50%; border: 1px solid var(--c-gold); padding: 3px; background: var(--c-white); }
-.side-doc strong { display: block; font: 600 1.35rem/1.15 var(--ff-serif); color: var(--c-navy); }
+.side-doc strong { display: block; font: 500 1.22rem/1.15 var(--ff-serif); color: var(--c-navy); }
 .side-doc span { font-size: .8125rem; color: var(--c-text-muted); }
 .side-card { padding: 22px 20px; background: var(--c-white); border: 1px solid var(--c-border); }
 .side-card .eyebrow { margin-bottom: 12px; }
 .side-steps li { display: flex; gap: 12px; align-items: baseline; padding: 8px 0; border-bottom: 1px dashed var(--c-border); font-size: .9rem; color: var(--c-navy); }
 .side-steps li:last-child { border-bottom: 0; }
-.side-steps b { font: 600 1rem/1 var(--ff-serif); color: var(--c-gold-text); min-width: 22px; }
+.side-steps b { font: 500 0.9rem/1 var(--ff-serif); color: var(--c-gold-text); min-width: 22px; }
 .side-card .link-arrow { margin-top: 10px; font-size: .875rem; }
 .side-loc p:not(.eyebrow) { color: var(--c-text); font-size: .9375rem; }
-.side-loc strong { font: 600 1.25rem/1.2 var(--ff-serif); color: var(--c-navy); display: block; }
+.side-loc strong { font: 500 1.12rem/1.2 var(--ff-serif); color: var(--c-navy); display: block; }
 .side-info { display: flex; gap: 12px; padding: 16px 18px; background: var(--c-gold-tint); font-size: .875rem; color: var(--c-navy); line-height: 1.5; }
 .side-info .i { font-size: 22px; color: var(--c-gold-text); margin-top: 1px; }
 .side-details { background: var(--c-white); border: 1px solid var(--c-border); }
@@ -351,7 +351,7 @@
 }
 .contact-main::after {
   content: ""; position: absolute; right: -50px; bottom: -50px; width: 240px; height: 240px;
-  background: url("../img/logo-znak-providni.png") center / contain no-repeat; opacity: .07;
+  background: url("../img/logo-znak-providni.webp") center / contain no-repeat; opacity: .07;
 }
 .contact-main h2 { color: var(--c-on-navy); font-size: clamp(1.9rem, 1.5rem + 1.5vw, 2.6rem); max-width: 16ch; }
 .contact-main p:not(.eyebrow) { margin: 12px 0 24px; color: var(--c-on-navy-muted); max-width: 42ch; }
@@ -361,12 +361,12 @@
 a.channel:hover { border-color: var(--c-border-gold); box-shadow: var(--sh-card); }
 .channel .icon-ring { width: 48px; height: 48px; }
 .channel .icon-ring .i { font-size: 24px; }
-.channel strong { display: block; font: 600 1.25rem/1.2 var(--ff-serif); color: var(--c-navy); }
+.channel strong { display: block; font: 500 1.12rem/1.2 var(--ff-serif); color: var(--c-navy); }
 .channel span span { display: block; margin-top: 3px; font-size: .8125rem; line-height: 1.45; color: var(--c-text-muted); }
 .channel > .i:last-child { margin-left: auto; font-size: 20px; color: var(--c-gold-icon); }
 .loc-grid { display: grid; gap: 16px; }
 .loc-card { padding: 28px 24px; background: var(--c-white); border: 1px solid var(--c-border); border-top: 2px solid var(--c-gold); display: grid; gap: 10px; align-content: start; }
-.loc-card strong { font: 600 1.6rem/1.15 var(--ff-serif); color: var(--c-navy); }
+.loc-card strong { font: 500 1.44rem/1.15 var(--ff-serif); color: var(--c-navy); }
 .loc-card p { color: var(--c-text-muted); }
 .urgent { margin-top: 28px; font-size: .8125rem; color: var(--c-text-muted); display: flex; gap: 8px; align-items: flex-start; }
 .urgent .i { font-size: 18px; color: var(--c-gold-icon); margin-top: 1px; }
@@ -400,7 +400,7 @@ a.channel:hover { border-color: var(--c-border-gold); box-shadow: var(--sh-card)
 .media-cards { display: grid; gap: 16px; }
 @media (min-width: 900px) { .media-cards { grid-template-columns: repeat(3, 1fr); } }
 .media-card { padding: 26px 24px; display: flex; flex-direction: column; gap: 10px; }
-.media-card h3 { font-size: 1.45rem; }
+.media-card h3 { font-size: 1.3rem; }
 .media-card p { color: var(--c-text-muted); font-size: .9375rem; flex: 1; }
 
 /* hub oblasti rada */
@@ -420,7 +420,7 @@ a.channel:hover { border-color: var(--c-border-gold); box-shadow: var(--sh-card)
 /* autor boks */
 .author { display: flex; gap: 18px; align-items: center; margin-top: 48px; padding: 22px; background: var(--c-white); border: 1px solid var(--c-border); border-left: 2px solid var(--c-gold); }
 .author img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; object-position: 50% 15%; flex: none; }
-.author strong { display: block; font: 600 1.25rem/1.2 var(--ff-serif); color: var(--c-navy); }
+.author strong { display: block; font: 500 1.12rem/1.2 var(--ff-serif); color: var(--c-navy); }
 .author span { font-size: .875rem; color: var(--c-text-muted); }
 
 /* 404 */
@@ -429,12 +429,12 @@ a.channel:hover { border-color: var(--c-border-gold); box-shadow: var(--sh-card)
 .nf p:not(.eyebrow) { margin: 16px auto 0; max-width: 52ch; color: var(--c-text-muted); }
 .nf__act { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 28px; }
 
-/* lining brojevi (Cormorant podrazumevano ima old-style cifre; font shorthand ih resetuje) */
+/* lining brojevi (EB Garamond podrazumevano ima old-style cifre; font shorthand ih resetuje) */
 .process__n, .timeline__n, .side-steps b, .success__id { font-variant-numeric: lining-nums; }
 
 /* naslovi kartica kao h2 (hub, blog lista) */
-.area-card h2.area-card__h { font-size: 1.35rem; font-weight: 600; line-height: 1.2; }
-.post-card h2.post-card__h { font-size: 1.4rem; font-weight: 500; line-height: 1.22; }
+.area-card h2.area-card__h { font-size: 1.22rem; font-weight: 500; line-height: 1.2; }
+.post-card h2.post-card__h { font-size: 1.26rem; font-weight: 500; line-height: 1.22; }
 .page-hero__fig--illo { background: var(--c-white); border: 1px solid var(--c-border); padding: 32px; display: flex; align-items: center; justify-content: center; }
 .page-hero__fig--illo .illo { max-width: 200px; }
 .page-hero__fig img { box-shadow: var(--sh-card); }

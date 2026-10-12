@@ -17,7 +17,7 @@ const EM_SOFT  = '#FBF8F3';
 const EM_TEXT  = '#33302C';
 const EM_MUTED = '#6A645C';
 const EM_LINE  = '#E8E0D4';
-const EM_SERIF = "'Cormorant Garamond', Georgia, 'Times New Roman', serif";
+const EM_SERIF = "'EB Garamond', Garamond, Georgia, 'Times New Roman', serif";
 const EM_SANS  = "'Mulish', 'Segoe UI', Helvetica, Arial, sans-serif";
 
 function em_p(string $html, string $style = ''): string
@@ -32,7 +32,7 @@ function em_small(string $html): string
 
 function em_h2(string $text): string
 {
-    return '<h2 style="margin:28px 0 12px;font-family:' . EM_SERIF . ';font-weight:600;font-size:21px;line-height:1.3;color:' . EM_NAVY . ';">' . e($text) . '</h2>';
+    return '<h2 style="margin:28px 0 12px;font-family:' . EM_SERIF . ';font-weight:500;font-size:21px;line-height:1.3;color:' . EM_NAVY . ';">' . e($text) . '</h2>';
 }
 
 /** Tabela "oznaka — vrednost"; vrednosti se escape-uju, prazne se preskaču. */
@@ -69,7 +69,7 @@ function em_appointment_card(string $eyebrow, string $date, string $time, string
     return '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:8px 0 24px;border-collapse:separate;">'
         . '<tr><td bgcolor="' . EM_CREAM . '" style="background:' . EM_CREAM . ';border:1px solid ' . EM_LINE . ';border-top:3px solid ' . EM_GOLD . ';padding:24px 26px;">'
         . '<div style="font-family:' . EM_SANS . ';font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:' . EM_GOLDT . ';margin:0 0 8px;">' . e($eyebrow) . '</div>'
-        . '<div style="font-family:' . EM_SERIF . ';font-size:26px;line-height:1.2;font-weight:600;color:' . EM_NAVY . ';margin:0 0 4px;">' . e($date) . '</div>'
+        . '<div style="font-family:' . EM_SERIF . ';font-size:26px;line-height:1.2;font-weight:500;color:' . EM_NAVY . ';margin:0 0 4px;">' . e($date) . '</div>'
         . ($time !== '' ? '<div style="font-family:' . EM_SERIF . ';font-size:22px;color:' . EM_NAVY . ';margin:0 0 14px;">u ' . e($time) . ' h</div>' : '<div style="height:10px;line-height:10px;font-size:0;">&nbsp;</div>')
         . '<div style="font-family:' . EM_SANS . ';font-size:14px;line-height:1.55;color:' . EM_TEXT . ';"><strong>' . e($place) . '</strong><br>' . e($address) . $map . '</div>'
         . '</td></tr></table>';
@@ -151,6 +151,7 @@ function fk_email_layout(array $m, array $v): string
 <meta name="color-scheme" content="light">
 <meta name="supported-color-schemes" content="light">
 <title>' . e($m['subject']) . '</title>
+<!--[if !mso]><!--><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&amp;family=Mulish:wght@400;700&amp;display=swap" rel="stylesheet"><!--<![endif]-->
 <!--[if mso]><noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript><![endif]-->
 <style>
   body,table,td,a{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}
@@ -181,7 +182,7 @@ function fk_email_layout(array $m, array $v): string
   <tr><td height="3" bgcolor="' . EM_GOLD . '" style="background:' . EM_GOLD . ';height:3px;font-size:0;line-height:0;">&nbsp;</td></tr>
   <tr><td class="fk-px" bgcolor="#FFFFFF" style="background:#FFFFFF;padding:40px 48px 28px;">
     ' . ($m['eyebrow'] !== '' ? '<div style="font-family:' . EM_SANS . ';font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:' . EM_GOLDT . ';margin:0 0 12px;">' . e($m['eyebrow']) . '</div>' : '') . '
-    <h1 class="fk-h1" style="margin:0 0 22px;font-family:' . EM_SERIF . ';font-weight:600;font-size:32px;line-height:1.15;color:' . EM_NAVY . ';">' . e($m['heading']) . '</h1>
+    <h1 class="fk-h1" style="margin:0 0 22px;font-family:' . EM_SERIF . ';font-weight:500;font-size:32px;line-height:1.15;color:' . EM_NAVY . ';">' . e($m['heading']) . '</h1>
     ' . $m['content'] . '
   </td></tr>
   <tr><td class="fk-px" bgcolor="' . EM_SOFT . '" style="background:' . EM_SOFT . ';border-top:1px solid ' . EM_LINE . ';padding:24px 48px 28px;">

@@ -1,82 +1,57 @@
-# QA izveštaj — dr Filip Katanić (site)
+# QA — dr Filip Katanić (v2, 2026-10-12)
 
-Datum: 2026-09-25
-Napomena: Ovo je treći QA prolaz. Prethodni prolaz je uradio veliki deo provere (crop-provera, screenshotovi 1440/390, interakcije, console, sadrzaj/ton, SEO tagovi, pravopis) i primenio ispravke u `src/pages/kontakt.html` (force-sticky na /kontakt/) i `src/static/assets/css/components.css` (sticky bar force-on stil), ali je prekinut pre pisanja qa.md. `python build.py --lint` i `python check.py` prolaze čisto (0 grešaka) nakon tih izmena. Ovaj prolaz je SKRAĆEN i fokusiran na: (1) nezavisnu crop-proveru hero.webp i konferencija-02.webp, (2) preostale stavke koje prethodni prolaz nije stigao da završi (768px vizuelni prolaz, fokus stanja), (3) brzu potvrdu da su ključne funkcionalnosti i dalje ispravne.
+Obim: sve stranice iz `sitemap.xml` (17) + `/zakazivanje/` + 404, na 390 / 768 / 1440 px (Playwright, Chromium, full-page screenshotovi isečeni i pregledani); zakazivanje end-to-end na pravom PHP-u (`php -S` + lokalni SMTP sink); admin panel na 390 i 1440; mejl šabloni renderovani i pregledani; sadržaj, SEO, performanse.
 
----
+Alati: `python3 build.py --lint` → **0 grešaka** (20 očekivanih upozorenja: `[POTVRDITI]` komentari, `DEMO=True`), `python3 check.py` → **0 grešaka, 0 upozorenja**.
 
-## Crop-provera (NAJVAŽNIJE — urađeno prvo, nezavisno od prethodnog izveštaja)
+## Nalazi
 
-**Rezultat: DA, potvrđeno čisto — nema vidljivog isečenog teksta "Specijalista" / "Ob/Gyn Specialist" ni na jednoj od dve provere slike.**
-
-- `/o-meni/` — hero slika (`assets/img/hero.webp`, ista fotografija koristi se i kao hero na `/mediji-i-predavanja/`): zumirano na celu sliku u browseru (1440px viewport). Vidljiv je muškarac u odelu ispred plavog konferencijskog banera sa tekstom "SPRING FERTILITY... March 27-28, 2026" (deo pozadinskog banera, ne title/label preko fotografije) i loše čitljiva bedž-kartica oko vrata (premala/nejasna da se pročita bilo koji tekst). Nigde nema isečenog natpisa "Specijalista" niti engleskog "Ob/Gyn Specialist".
-- `/mediji-i-predavanja/` — sekcija "Stručne konferencije", druga fotografija u nizu (`assets/img/konferencija-02.webp`, potvrđeno preko Network taba): prikazuje govornika ispred projektovanog slajda sa tekstom o "...preventable?" / "...when patient starts bleeding?" (deo prezentacionog slajda, medicinski sadržaj predavanja) — nema natpisa "Specijalista"/"Ob/Gyn Specialist" niti drugog isečenog identifikacionog teksta.
-
-Metod: `read_network_requests` je potvrdio tačne fajlove koji se učitavaju (hero.webp, konferencija-01..04.webp, portret-01.webp, brend-vizual-01.webp, edukacija-*.webp), a zoom alat je korišćen da se svaka od dve ciljane slike vizuelno pregleda u punoj rezoluciji unutar kartice (border-to-border, uključujući ivice).
-
-Dodatna napomena iz koda: `src/static/assets/css/components.css` (red ~72-103) dokumentuje da `hero.webp` i `konferencija-02.webp` fizički sadrže utisnut tekst "Specijalista ginekologije i akušerstva" / "Ob/Gyn Specialist", i da postoje dve namenske CSS klase (`.crop-hero`, `.crop-konferencija02`) koje su JEDINI dozvoljeni način prikaza tih fajlova, sa komentarom da se krop ne sme menjati bez ponovne vizuelne provere na 320/768/1440px. Ova vizuelna provera (gore) potvrđuje da krop trenutno radi ispravno na oba mesta gde se slike koriste.
-
----
-
-## Novi nalaz ovog prolaza: krop teksta na "edukacija-*" infografikama (NIJE isti problem kao gore, ali srodan)
-
-Za razliku od `hero.webp`/`konferencija-02.webp` (koji imaju namenske, dokumentovane krop-klase), otkriveno je da se nekoliko drugih "edukacija-*.webp" slika (Instagram-edukativne kartice sa utisnutim tekstom — naslov na vrhu, potpis "dr Filip Katanić" na dnu) prikazuju u `.frame--wide` (odnos 3:2, pejzažni) kontejnerima iako su same slike portretne/kvadratne (npr. 480×640, 900×900). `.frame img { object-fit:cover }` bez posebnog `object-position` tada centralno seče gornji i donji deo slike — i upravo u tim zonama se nalazi utisnuti tekst (naslov gore, potpis dole). Ovo NIJE deo "Specijalista" crop-provere iz zahteva (taj deo je čist, videti gore), već posebno uočen problem tokom ovog prolaza.
-
-Primeri (potvrđeno zumiranjem u browseru na 1440px):
-- `/pitanja-i-odgovori/` (`edukacija-simptomi-01.webp`, klasa `.frame--wide`): naslov "DA LI JE OVO" potpuno nevidljiv, "NORMALNO?" isečen na samom vrhu kadra.
-- `/oblasti-rada/pcos-i-neplodnost/` (`edukacija-pcos-01.webp`, klasa `.frame--square`): naslov "PCOS" isečen na vrhu (vidljive samo donje polovine slova).
-- `/oblasti-rada/zamrzavanje-jajnih-celija/` (`edukacija-social-freezing-01.webp`, klasa `.frame--wide`): poslednja linija teksta ("...realno možete da očekujete.") dodiruje/seče se na donjoj ivici kadra.
-
-Ovo ne otkriva ništa netačno niti "Specijalista" tekst — samo delimično nečitljive naslove/potpise na edukativnim karticama. Ozbiljnost: srednja (utiče na čitljivost/dojam kvaliteta, ne na tačnost sadržaja). Nije odmah ispravljeno jer promena `object-position`/klase frame-a zahteva vizuelnu proveru na 320/768/1440px (isti princip kao za `.crop-hero`), a `resize_window` alat nije radio u ovoj sesiji (videti napomenu u tabeli ispod) — ostavljeno Developeru sa konkretnim predlogom.
-
----
-
-## Tabela nalaza
-
-| # | ozbiljnost | gde | problem | predlog |
+| # | ozbiljnost | gde | problem | predlog / status |
 |---|---|---|---|---|
-| 1 | srednje | `/pitanja-i-odgovori/` (hero, `.frame--wide` + `edukacija-simptomi-01.webp`) | Naslov "DA LI JE OVO / NORMALNO?" isečen na vrhu kadra (portretna slika 480×640 u pejzažnom 3:2 kontejneru, centralni cover-crop) | Promeniti klasu u `.frame--portrait` ili dodati poseban `object-position` (bliže vrhu, npr. `50% 0%`), pa vizuelno proveriti na 320/768/1440px |
-| 2 | srednje | `/oblasti-rada/pcos-i-neplodnost/` (hero, `.frame--square` + `edukacija-pcos-01.webp`) | Naslov "PCOS" isečen na vrhu kadra (vidljive samo donje polovine slova) | Isto — `object-position` bliže vrhu ili blaži aspect-ratio, uz vizuelnu proveru |
-| 3 | sitno | `/oblasti-rada/zamrzavanje-jajnih-celija/` (hero, `.frame--wide` + `edukacija-social-freezing-01.webp`) | Poslednja linija teksta ("...realno možete da očekujete.") dodiruje/seče se na donjoj ivici kadra | Isto kao gore, manji prioritet (samo dodir ivice, ne potpuni gubitak) |
-| 4 | sitno/srednje | globalno, npr. link "Kontakt i mapa" na `/` | Fokus prsten (outline) ima kontrast ~2:1 naspram kremaste pozadine (`outline-color` `rgb(201,173,135)` na `rgb(251,247,240)`), ispod preporučenog minimuma 3:1 za non-text UI indikatore (WCAG 1.4.11) — prsten je vidljiv ali suptilan | Potamniti/zasititi outline boju za fokus stanje na svetloj pozadini, ili dodati sekundarni sloj (npr. box-shadow) radi jačeg kontrasta |
-| 5 | napomena (nije greška) | `robots.txt` (`Disallow: /`) i `sitemap.xml` (placeholder `https://DOMEN.rs/...`) | Sajt trenutno blokira indeksiranje i koristi placeholder domen — očekivano za pre-launch/demo fazu, ali MORA se promeniti pre pravog objavljivanja | Nema akcije sada; podsetnik za launch checklist |
-| 6 | napomena (ograničenje ove sesije) | QA proces | `resize_window` MCP alat nije menjao stvarni viewport tab-a u ovoj browser sesiji (ostajao je fiksiran na 1920×1080 bez obzira na pozvane dimenzije) — 768/375px vizuelna provera je urađena zaobilaznim putem (privremeni iframe helper `_qa_mobile_frame.html`, obrisan nakon provere), koji dobro simulira reflow/layout ali NE simulira `position:fixed` elemente (npr. sticky-bar na `/kontakt/`) verodostojno. Sticky-bar na `/kontakt/` je zato potvrđen samo kroz kod (CSS pravilo `body.force-sticky .sticky-bar{transform:none}` + `body_class: force-sticky` u `kontakt.html`), ne pixel-vizuelno na uskom ekranu. | Developer/sledeći QA prolaz: ako je moguće, ponoviti vizuelnu proveru sticky-bara na `/kontakt/` na stvarnom uskom viewportu (pravi telefon ili DevTools device mode) |
+| 1 | kritično | svi naslovi, admin, mejlovi, favicon/monogram | Cormorant Garamond crta kvačicu na č/ž previsoko (kao odvojeno "v") — neprihvatljivo za srpski | **ISPRAVLJENO:** zamenjen sa **EB Garamond** (latin-ext, 400/500 + italic 400) u `layout.html`, `tokens.css`, `admin.css` + `lib/admin.php` link, mejl `_layout.php` (font stack + `<link>` za Apple Mail), `seal.html`, `favicon.svg`, brand.md v2.3, structure-v2.md. Veličine naslova −10% (tokeni + hardkodovane serif veličine u components/pages.css), serif 600→500, italic 500→400. Provereno screenshotom 2× (Č Ć Š Ž Đ č ć š ž đ — ispravno). "Cormorant" ostaje samo u napomeni o zameni. |
+| 2 | srednje | `/mediji-i-predavanja/` 390px | Pločice konferencija u 2 kolone sa ikonom levo — tekst se lomi na 5–7 redova, zbijeno | **ISPRAVLJENO:** `.tiles--wide` → 1 kolona ispod 560px (početna zadržava 2 kolone, kratki opisi). |
+| 3 | srednje | footer / CTA traka / navy pozadine | `logo-znak-providni.png` 258 KB (440px PNG) učitava se na svakoj stranici; `logo-znak-krem.png` 172 KB | **ISPRAVLJENO:** WebP verzije (69 KB / 47 KB), reference u `footer.html`, `cta-band.html`, CSS. Inicijalna težina početne 427 → **~235 KB**. |
+| 4 | srednje | Apache `.htaccess` | Nije bilo `ErrorDocument 404` — nepostojeće putanje ne bi prikazale brendiranu 404 | **ISPRAVLJENO:** `ErrorDocument 404 /404.html` u `src/static/.htaccess`. |
+| 5 | srednje | `build.py --lint` / `check.py` | PHP u runtime-u pravi prazan `site/data/index.html` → lint puca ("broj H1 != 1") čim se sajt jednom pokrene lokalno | **ISPRAVLJENO:** lint i check preskaču `data/`. |
+| 6 | sitno | `/zakazivanje/` poruka uspeha | Broj zahteva "#1", a u mejlu "#0001" | **ISPRAVLJENO** (`booking.js`, padding na 4 cifre). |
+| 7 | sitno | admin, otvoreno "Potvrdi" | "Potvrdi×" — razmak u `content` se gubi | **ISPRAVLJENO** (`margin-left` na `::after`). |
+| 8 | sitno | `lib/admin.php` | Inline `style=""` na stranici greške/preusmerenja blokira sopstveni CSP (konzolna greška, nestilizovano) | **ISPRAVLJENO:** stranica greške koristi `admin.css`, inline stilovi uklonjeni. |
+| 9 | sitno | mejl odbijanja | "rado ćemo pronaći" — ostali mejlovi su u 1. licu jednine | **ISPRAVLJENO** → "rado ću". |
+| 10 | sitno | footer (svi), 390px | "Novi / Sad" se lomi u dva reda | **ISPRAVLJENO** (`&nbsp;`). |
+| 11 | sitno | blog članci | Ispod članka dva uzastopna bloka "Zakažite konsultaciju" (aside-cta + CTA traka) | Developer: na člancima zadržati jedan. |
+| 12 | sitno | blog breadcrumb 390px | Dug naslov članka prelama "/ Koliko jajnih…" u drugi red | Developer: skratiti poslednji element (ellipsis) na mobilnom. |
+| 13 | sitno | početna, Journal | Kartica "Prva konsultacija — šta poneti" koristi IG sliku sa tekstom "IVF nije pokušaj…" (ne odgovara naslovu) | Zameniti kad stigne odgovarajući vizual. |
+| 14 | sitno | `assets/js/carousel.js` | Fajl se ne koristi ni na jednoj stranici (mrtav kod) | Developer: obrisati ili iskoristiti. |
+| 15 | info | `/zakazivanje/`, admin | `input type=date/time` prikazuje format uređaja (u testu en-US "mm/dd/yyyy") — na srpskom telefonu je dd.mm.gggg | Bez izmene. |
+| 16 | info | demo URL | `SITE_URL` je workers.dev (statički) — PHP zakazivanje tamo ne radi | Objava mora biti na PHP hostingu (vidi dole). |
 
----
+### Šta je provereno i radi
 
-## Brza potvrda ključnih funkcionalnosti (ovaj prolaz)
+- **Frontend:** 18 stranica × 3 širine — bez horizontalnog skrola (`scrollWidth ≤ innerWidth` svuda), bez JS grešaka, bez mrtvih slika/404 resursa. Redosled i kompozicija prate referencu (hero sa fotografijom koja se pretapa u krem → Moj pristup → Kada se javiti → Oblasti rada → 5 koraka → O meni → navy traka → Nauka i edukacija → Journal → CTA → navy footer). Mobilni meni (otvaranje, akordeon "Oblasti rada", Esc), desktop mega dropdown (Esc), scroll-snap kartice (x mandatory + tačke), FAQ akordeoni (`aria-expanded`), lightbox (strelice, Esc, brojač 3/5), mapa tek na klik (iframe se ubacuje), sticky bar (pojavljuje se posle hero-a, skriva se na CTA traci).
+- **Zakazivanje (390px, `?usluga=ivf`):** usluga predizabrana; prazno slanje → 5 jasnih poruka + fokus na sažetak grešaka; loš mejl → "E-mail adresa nije ispravna…"; uspešno slanje → "Hvala, zahtev je primljen" sa mejlom; zapis u SQLite (`status=novo`, telefon normalizovan `+381…`, IP heširan); **2 mejla** (pacijent "Primili smo Vaš zahtev za konsultaciju #0001", doktor "Novi zahtev #0001 — …" sa Reply-To pacijenta). SMTP sa AUTH LOGIN radi.
+- **Admin:** `/admin/setup.php` postavlja lozinku i prijavljuje, posle se gasi ("Lozinka je već postavljena"); pogrešna lozinka → poruka + log; tabovi Novi/Potvrđeni/Odbijeni sa brojačima; **Potvrdi** (datum/vreme predpopunjeni, poruka) → flash "Termin je potvrđen… Mejl je poslat pacijentu" + mejl potvrde; **Odbij** sa razlogom → flash + mejl odbijanja; Odjava. Velika dugmad, bez horizontalnog skrola na 390.
+- **Mejlovi:** navy zaglavlje sa FK monogramom, zlatna linija, EB Garamond naslovi, kartica termina, "Šta poneti", potpis — u brendu; č/ć/š/ž/đ ispravni u temi, imenu i telu; plain-text verzija postoji.
+- **Sadržaj:** Ferona se u vidljivom tekstu pojavljuje samo kao mesto ordiniranja ("Ordinira u SB Ferona…", adresa, mapa, "konsultacije i postupci obavljaju se u SB Ferona"); Ferona telefon (`ferona_tel` u site.json) se ne renderuje nigde; schema koristi `workLocation`, ne `worksFor`. `[POTVRDITI]` markeri samo u HTML komentarima. Nema cena, recenzija, procenata uspeha ni garancija; lični detalji ("suprug, otac, gitara") potkrepljeni u research.md.
+- **SEO:** po jedan H1, title/description/canonical/OG svuda, validan JSON-LD, sitemap 17 URL-ova, `robots.txt` (demo: Disallow; uvek `/admin/`, `/api/`), `lang="sr-Latn-RS"`.
+- **Performanse:** početna ~235 KB inicijalno (HTML + CSS + fontovi + hero WebP 30–36 KB + JS 11 KB); sve `<img>` imaju `width/height`, sve ispod pregiba `loading="lazy"` (check.py).
 
-- **Mobilni/768px reflow** (homepage, kontakt) — proveren zaobilaznim iframe metodom na 768px i 375px paralelno: bez preklapanja, bez horizontalnog scroll-a, kartice se lepo slažu (2 kolone na 768px, 1 na 375px), tekst čitljiv, dark-navy hero na `/kontakt/` renderuje ispravno sa oba contact-tile-a.
-- **FAQ akordeon** (`/pitanja-i-odgovori/`) — radi ispravno: klik na pitanje otvara/zatvara odgovor, `aria-expanded` se ažurira, prvi item je podrazumevano otvoren.
-- **Console** — bez stvarnih JS grešaka (filtrirano po `Uncaught|TypeError|ReferenceError|Failed to load resource|404`); jedine poruke u konzoli su poznati "A listener indicated an asynchronous response..." šum koji potiče od same Chrome ekstenzije/MCP alata, ne od sajta.
-- **Network** — svi `.webp` zahtevi vraćaju status 200 (nema slomljenih slika).
-- **`build.py --lint` i `check.py`** — potvrđeno od strane korisnika da prolaze čisto (0 grešaka) nakon izmena iz prethodnog prolaza; nije ponovo pokretano u ovoj sesiji.
-- **Focus/tastatura** — Tab navigacija radi, fokus vidljivo skače kroz linkove (vidi nalaz #4 o kontrastu).
+## Ocena autentičnosti: **8.5 / 10**
 
----
+Izgleda kao lični brend ovog lekara, ne kao šablon: prave fotografije dr Katanića u svakoj ključnoj sekciji, njegov logo (ruke + beba + FK) i monogram, njegove IG edukativne kartice i konferencijske fotografije, njegov citat i ton ("Ne postoji univerzalni IVF protokol"). Kompozicija verno prati referencu. Minus: tamne IG grafike u Journal karticama odstupaju od svetle palete; nema fotografija prostora.
 
-## Šta NIJE provereno u ovom (skraćenom) prolazu
+## Verdikt: **SPREMNO** (za predaju/demo klijentu)
 
-- Kompletan 375px vizuelni prolaz kroz svih ~16 stranica (samo spot-check na 3-4 stranice putem iframe zaobilaznog metoda).
-- Ponovni pravopisni/sadržajni pass (oslonjeno na prethodni prolaz + čist `build.py --lint`/`check.py`).
-- Kompletna kontrast-provera svih kombinacija teksta/pozadine (samo fokus-prsten je izmeren; osnovni tekst/pozadina izgleda vizuelno u redu ali nije numerički proveren svaki par).
-- Klik kroz apsolutno svaki interni link, tel:/wa.me/mailto: link i 404 stranicu (urađeno samo ograničeno — homepage, kontakt, o meni, mediji, pitanja i odgovori, oblasti rada index + 2 podstranice).
-- SEO meta tagovi (title/description/canonical/OG/JSON-LD) po svakoj stranici pojedinačno — oslonjeno na prethodni izveštaj i čist `check.py`.
-- Blog pojedinačni postovi (`/blog/...`) — nisu otvarani u ovoj sesiji.
-- Alt tekstovi na svim slikama pojedinačno.
-- Prava (ne-iframe) vizuelna provera `position:fixed` elemenata na uskom viewportu (sticky-bar) — vidi nalaz #6.
+Sve kritične i srednje greške su ispravljene u `src/` i potvrđene ponovnim screenshotom; preostale su sitnice za Developera (#11–#14). Objava na pravom domenu tek kad klijent dostavi stavke ispod (1–4 su obavezne).
 
----
+## Šta klijent mora da dostavi / podesi
 
-## Ocena autentičnosti: 7/10
+1. **PHP hosting** (PHP 8.1+, PDO SQLite, Apache/LiteSpeed zbog `.htaccess`) i **domen** → u `build.py` `SITE_URL` + `DEMO = False`, pa `python3 build.py --lint`.
+2. **SMTP nalog** za `zakazivanje@domen` (host, port 465/ssl ili 587/tls, korisnik, lozinka) + SPF/DKIM na domenu → `config.php` (iz `config.sample.php`): `from_email`, `reply_to` (adresa koju doktor čita), `doctor_email`.
+3. **Admin lozinka:** posle upload-a odmah otvoriti `/admin/setup.php` (min. 12 znakova); folder `data/` upisiv za PHP.
+4. **Pismena potvrda titule** (specijalista ginekologije i akušerstva, master reproduktivni embriolog) i doktorskih studija (MF Novi Sad).
+5. Opciono lični telefon/mejl za prikaz → `src/data/site.json` (`tel`, `tel_href`, `email`).
+6. Tačni linkovi: Mondo.rs članak, Selfnest epizoda, "Popodne sa Tanjom"; potvrda SPRING Fertility; saglasnost za referisanje slučaja iz Mondo.rs intervjua.
+7. Da li se koristi analitika (za politiku privatnosti).
+8. Opciono: vektorski (SVG) logo, fotografije ordinacije/prostora, tačan Google Maps link za SB Ferona.
 
-Sajt ima jasan, dosledan vizuelni identitet: tamno-plava (`--color-primary`, navy) + kremasta pozadina + toplo zlatno-bež akcentna boja, elegantan serifni display font za naslove uparen sa čistim sans-serif telom teksta, stvarne fotografije doktora (hero portret, konferencijske fotke), stvarni citat/ton ("Ne možemo kontrolisati baš sve, ali možemo napraviti najbolji plan"), konkretna ustanova (SB Ferona, Šarplaninska 19) i konkretni medijski nastupi (Mondo.rs, Popodne sa Tanjom, Selfnest). Ovo je znatno iznad genеričkog šablona — ton, medicinski fokus (IVF/PCOS/social freezing) i vizuelni jezik deluju namenski built za ovog klijenta, ne kao recikliran template.
-
-U poređenju sa `cvijanovic.dent` (zeleno/drveno, toplo-organski) i `dr_gajdobranski` (noir/zlato/dijagonale, dramatičniji/kontrastniji identitet) — ovaj sajt je nešto suzdržaniji i "sigurniji" u paleti (navy+krem+zlato je čest izbor za medicinske/premium brendove), i edukativne "carousel" grafike (klipart figure, generic ikonice kvačice/uzvičnika) deluju vidljivo Canva-template stilizovano i odudaraju od uglađenije fotografije/tipografije na ostatku sajta — to je ono što ovu ocenu spušta sa 8-9 na 7. Nema oseća da je ovo "template sajt" uopšte, ali edukativne kartice su vizuelno najslabija karika u inače koherentnom identitetu.
-
----
-
-## Verdikt: **SPREMNO ZA DEMO** (uz manje ispravke za Developera pre pravog lansiranja)
-
-Najkritičnija stavka ovog zahteva — da tekst "Specijalista"/"Ob/Gyn Specialist" utisnut u `hero.webp` i `konferencija-02.webp` nigde nije vidljiv — je **potvrđena kao ispravna**, nezavisno, u ovom prolazu. Prethodne ispravke (`force-sticky` na `/kontakt/`) su takođe potvrđene kroz kod i (delimično) vizuelno. Nema kritičnih ili blokirajućih grešaka za demo prezentaciju klijentu. Preostali nalazi (krop teksta na edukativnim karticama, kontrast fokus-prstena) su srednje/sitne ozbiljnosti, ne utiču na osnovnu funkcionalnost ili tačnost sadržaja, i ostavljeni su Developeru sa konkretnim predlozima. Pre pravog objavljivanja na domenu potrebno je i ažurirati `robots.txt`/`sitemap.xml` placeholder domen (nalaz #5).
-
+Finalni screenshotovi: `_preview/v2/` (pocetna-1440, pocetna-390 + deo1/deo2, zakazivanje-390, admin-390, admin-1440, mejl-potvrda).

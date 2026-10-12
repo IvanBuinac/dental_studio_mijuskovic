@@ -19,7 +19,7 @@ $content = em_p('Poštovani/a ' . e($v['ime']) . ',')
     . em_h2('Kako zakazati drugi termin')
     . em_p('Novi zahtev možete poslati bilo kada, sa drugim željenim datumom:')
     . em_button($v['booking_url'], 'Pošaljite novi zahtev')
-    . em_p('Možete i odgovoriti na ovaj mejl — rado ćemo pronaći termin koji Vam odgovara.')
+    . em_p('Možete i odgovoriti na ovaj mejl — rado ću pronaći termin koji Vam odgovara.')
     . em_signature(false);
 
 $text = "Poštovani/a {$v['ime']},\n\n"
@@ -27,7 +27,7 @@ $text = "Poštovani/a {$v['ime']},\n\n"
     . ($razlog !== '' ? "\nObrazloženje:\n{$razlog}\n" : '')
     . ($imaPredlog ? "\nPredlog drugog termina: {$v['predlog']}, {$adresa}\nAko Vam ovaj termin odgovara, samo odgovorite na ovaj mejl i potvrdiću ga.\n" : '')
     . "\nKako zakazati drugi termin\nNovi zahtev možete poslati bilo kada, sa drugim željenim datumom: {$v['booking_url']}\n"
-    . "Možete i odgovoriti na ovaj mejl — rado ćemo pronaći termin koji Vam odgovara.\n"
+    . "Možete i odgovoriti na ovaj mejl — rado ću pronaći termin koji Vam odgovara.\n"
     . em_text_signature(false);
 
 return [

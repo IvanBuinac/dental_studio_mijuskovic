@@ -31,8 +31,13 @@ def read(p: Path) -> str:
     return p.read_text(encoding="utf-8")
 
 
+def pages():
+    """Sve html stranice u site/, bez runtime foldera data/ (PHP tamo pravi prazan index.html)."""
+    return [f for f in SITE.rglob("*.html") if f.relative_to(SITE).parts[0] != "data"]
+
+
 def check_links(errors, warns):
-    for f in sorted(SITE.rglob("*.html")):
+    for f in sorted(pages()):
         txt = read(f)
         page_dir = f.parent
         for m in re.finditer(r'(?:href|src)="([^"]+)"', txt):
@@ -53,7 +58,7 @@ def check_links(errors, warns):
 
 
 def check_images(errors, warns):
-    for f in sorted(SITE.rglob("*.html")):
+    for f in sorted(pages()):
         txt = read(f)
         for m in re.finditer(r"<img\b[^>]*>", txt):
             tag = m.group(0)
@@ -66,7 +71,7 @@ def check_images(errors, warns):
 
 
 def check_h1(errors):
-    for f in sorted(SITE.rglob("*.html")):
+    for f in sorted(pages()):
         txt = read(f)
         n = len(re.findall(r"<h1[\s>]", txt))
         if n != 1:
@@ -74,7 +79,7 @@ def check_h1(errors):
 
 
 def check_seo_tags(errors, warns):
-    for f in sorted(SITE.rglob("*.html")):
+    for f in sorted(pages()):
         txt = read(f)
         if not re.search(r"<title>.*?</title>", txt, re.S):
             errors.append(f"{f.relative_to(SITE)}: nema <title>")
@@ -86,7 +91,7 @@ def check_seo_tags(errors, warns):
 
 def check_jsonld(errors):
     import json
-    for f in sorted(SITE.rglob("*.html")):
+    for f in sorted(pages()):
         txt = read(f)
         for m in re.finditer(r'<script type="application/ld\+json">(.*?)</script>', txt, re.S):
             try:
@@ -108,7 +113,7 @@ def check_sitemap(errors, warns):
     ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
     urls = tree.getroot().findall("s:url/s:loc", ns)
     n_sitemap = len(urls)
-    html_pages = [f for f in SITE.rglob("*.html") if f.name != "404.html"]
+    html_pages = [f for f in pages() if f.name != "404.html"]
     n_pages = len(html_pages)
     if n_sitemap < n_pages:
         warns.append(f"sitemap.xml ima {n_sitemap} URL-ova, a postoji {n_pages} html stranica (osim 404) — proveriti da li su razlike namerne (npr. noindex)")

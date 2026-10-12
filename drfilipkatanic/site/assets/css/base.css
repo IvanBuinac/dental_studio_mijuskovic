@@ -43,8 +43,8 @@ h1, h2, h3, h4, h5, h6, .process__n, .timeline__n {
 }
 h1 { font-size: var(--fs-h1); line-height: 1.04; }
 h2 { font-size: var(--fs-h2); line-height: var(--lh-tight); }
-h3 { font-size: var(--fs-h5); font-weight: 600; }
-h4, h5, h6 { font-weight: 600; }
+h3 { font-size: var(--fs-h5); font-weight: 500; }
+h4, h5, h6 { font-weight: 500; }
 p { text-wrap: pretty; }
 strong, b { font-weight: 700; }
 
