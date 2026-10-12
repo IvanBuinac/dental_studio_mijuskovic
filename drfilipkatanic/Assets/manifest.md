@@ -32,3 +32,28 @@ Legenda tipa: **a** = čista foto, **b** = foto sa tekstom/citatom, **c** = kart
 - **ivf-proces-karusel** (5 kartica) i **embrioni-karusel** (5 kartica) su dva odvojena edukativna carousel posta o procesu IVF-a i broju jajnih ćelija/embriona — svaka serija treba da se prikaže kao celina (npr. u FAQ/blog članku), ne pojedinačno van konteksta, jer redosled kartica nosi poruku (naslov → objašnjenje → zaključak).
 - **konferencije-krediblitet** (ESHRE + Divčibare) i **bio-save-predavanje** (2 fotke sa istog predavanja) mogu se koristiti pojedinačno ili kao mini-galerija u "O meni"/"Mediji" sekciji.
 - **brend-portret-serija** — obe kartice koriste isti bazni portret dr Katanića (verovatno isti fotošut kao pinovani "Dobrodošli" reel); preporuka da se ne koriste obe na istoj stranici jednu pored druge jer je vizuelno ponavljanje istog lica/kadra.
+
+## v2 — nove fotografije (2026-10-12)
+
+Izvor: fajlovi koje je klijent dostavio u `Assets/Raw/` (IMG_*.jpg, Logo.PNG) — originali sa telefona/od klijenta, nisu skidani sa IG-a. Izlaz: `src/static/assets/img/` (build.py kopira u `site/assets/img/`). Fotografije: WebP q82 (hero q85), Lanczos + blago izoštravanje, blago toplije (krem) ujednačenje tona; nijedna slika nije uvećana preko originala (osim favicon-v2-512, vidi NOTES).
+
+| Fajl | Namena | Alt tekst | Izvor | Dimenzije |
+|---|---|---|---|---|
+| hero-portret.webp | Hero desktop — desna strana, pretapanje u krem | Dr Filip Katanić u belom mantilu sedi u ordinaciji, ruke sklopljene, gleda u kameru | Raw: `IMG_1626.jpg` (814×690, ceo kadar, uklonjena siva crtica-artefakt levo) | 814×690 |
+| hero-portret-mobile.webp | Hero na telefonu (portret kadar 4:5) | Dr Filip Katanić, specijalista ginekologije i akušerstva, u belom mantilu u ordinaciji | Raw: `IMG_4642.jpg` (retuš "Ferona" natpisa), uži kadar | 900×1125 |
+| portret-mantil.webp | Portret — O meni / Konsultacija / Zakazivanje | Portret dr Filipa Katanića u belom mantilu i tamnoj košulji, ozbiljan i smiren pogled | Raw: `IMG_4642.jpg` (retuš "Ferona") | 1000×1250 |
+| portret-mantil-2.webp | Alternativni portret (druga stranica / kartica) | Dr Filip Katanić u belom mantilu, portret u ordinaciji sa sklopljenim rukama | Raw: `IMG_4641.JPG` (retuš "Ferona") | 1000×1250 |
+| o-meni.webp | Sekcija "O meni" (4:5) | Nasmejani dr Filip Katanić za radnim stolom u ordinaciji, u belom mantilu | Raw: `IMG_4647.JPG` | 1000×1250 |
+| o-meni-kvadrat.webp | "O meni" — kvadratna varijanta (bez žutog pulta u prvom planu) | Dr Filip Katanić se osmehuje dok radi za računarom u ordinaciji | Raw: `IMG_4647.JPG` | 1000×1000 |
+| konferencija-panel.webp | Nauka i edukacija / Mediji / Predavanja (4:5) | Dr Filip Katanić govori na panelu stručne konferencije, u tamnoplavom odelu | Raw: `IMG_1740.JPG` | 1000×1250 |
+| konferencija-panel-siroka.webp | Nauka i edukacija — široki baner (16:9) | Dr Filip Katanić kao panelista na stručnom skupu o reproduktivnom zdravlju | Raw: `IMG_1740.JPG` | 1600×900 |
+| logo-full.png | Ceo zvanični logo (navy pozadina) — footer, dokumenti | Logo dr Filip Katanić — ruke koje drže bebu u zlatnom krugu, monogram FK u srcu | Raw: `Logo.PNG` | 512×512 |
+| logo-znak.png / logo-znak.webp | Znak (bedž): navy disk sa zlatnim krugom, providno van kruga — header, CTA pečat | Znak dr Filip Katanić — ruke i beba u zlatnom krugu, monogram FK | Raw: `Logo.PNG` (izdvojen krug) | 440×440 |
+| logo-znak-providni.png | Znak bez navy pozadine (belo + zlato na providnom) — za navy trake/footer | Znak dr Filip Katanić — ruke i beba u zlatnom krugu | Raw: `Logo.PNG` (navy → providno) | 440×440 |
+| logo-znak-krem.png | Znak za svetlu/krem pozadinu (navy linije + zlatni krug, providno) | Znak dr Filip Katanić — ruke i beba u zlatnom krugu | Raw: `Logo.PNG` (prebojeno) | 440×440 |
+| og-image-v2.jpg | Open Graph / deljenje na mrežama | dr Filip Katanić — reproduktivna medicina i IVF, Novi Sad | Kompozicija: krem pozadina + `logo-znak-krem` + tekst + `hero-portret` | 1200×630 |
+| favicon-v2-32.png | Favicon kandidat (32) | — | `logo-znak.png` | 32×32 |
+| favicon-v2-180.png | apple-touch-icon kandidat (neprovidna navy podloga) | — | `logo-znak` na navy kvadratu | 180×180 |
+| favicon-v2-512.png | PWA / velika ikona kandidat | — | `logo-znak.png` (blago uvećan 440→512) | 512×512 |
+
+Preporuka upotrebe: na sajtu prikazivati v2 fotografije gde god se pojavljuje dr Katanić; stari `hero.webp` (sa urezanim citatom) i `portret-01.webp` ostaju kao rezerva. Alt tekstovi ne pominju SB Ferona (sajt je lični sajt doktora). Titula u alt tekstu hero-mobile ("specijalista ginekologije i akušerstva") — [POTVRDITI SA KLIJENTOM], kao i u briefu v2.

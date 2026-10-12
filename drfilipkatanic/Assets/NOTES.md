@@ -27,3 +27,20 @@ Oba originalna fajla ostaju netaknuta u `Assets/Raw/` — nisu obrisana, samo is
   2. Originale u većoj rezoluciji ako su dostupni (trenutne slike su preuzete sa IG-a pa je rezolucija ograničena kompresijom platforme).
   3. Pisanu saglasnost za dve isključene slike (baby foto i porodični kolaž) ukoliko klijent želi da ih ipak koristi.
   4. Potvrdu tačnog statusa zaposlenja u SB "Ferona" i afilijacija pre nego što se konferencijske/institucionalne slike vežu za konkretne tvrdnje o zaposlenju (pomenuto već u research.md kao otvoreno pitanje).
+
+## v2 — obrada novih fotografija (2026-10-12)
+
+Izvorni fajlovi u `Assets/Raw/` nisu menjani; svi izlazi su u `src/static/assets/img/` (postojeće slike nisu brisane niti prepisane).
+
+### Retuš
+- **IMG_4642.jpg i IMG_4641.JPG — uklonjen plavi natpis "Ferona"** (izvezen na tamnoj majici, levo ispod kragne, kod ivice mantila) i sitni roze/crveni delovi znaka uz ivicu mantila. Postupak: maska po boji (plavi/roze pikseli samo u tamnom području majice; beli mantil isključen iz maske), dilatacija, OpenCV inpaint (Telea) uz privremenu neutralizaciju belog mantila da se ispuna uzima samo iz tamne tkanine, pa fini šum za teksturu tkanine. Kropovanje nije bilo opcija jer je natpis na sredini grudi. Rezultat: natpis se ne vidi u izlaznim dimenzijama; ivica mantila na mestu slova "e" ima minimalnu, neprimetnu neravninu. Važi za `hero-portret-mobile.webp`, `portret-mantil.webp`, `portret-mantil-2.webp`.
+- Bežični mikrofon (lavalier) na majici IMG_4641/4642 i bedž/lanyard na IMG_1740 ("Bebologijini krugovi") **nisu** uklanjani — neutralni su (i na referentnom dizajnu se vidi mikrofon). Po želji klijenta mikrofon može da se retušira naknadno.
+- **IMG_1626.jpg** — uklonjena siva isprekidana crtica (artefakt iz izvora, levo ~y 155). Slika je mala (814×690) — nije uvećavana; za veće ekrane hero treba da se prikazuje maks. ~814 px širine ili da se od klijenta traži original veće rezolucije.
+- Sve fotografije: blago toplije ujednačenje (R +~1.8 %, B −~3.5 %, jače u svetlim tonovima → zidovi/mantil ka krem), bez filtera, Lanczos + blagi unsharp.
+- **IMG_4647** ima jarko žut pult u donjem delu kadra; u `o-meni.webp` (4:5) ostaje uzan pojas žutog, `o-meni-kvadrat.webp` je kropovan iznad pulta — za krem/navy paletu preporučen kvadrat ili CSS `object-position: top`.
+- **IMG_1740** — u pozadini je zamućen veliki plakat sa licem žene (reklamni vizual događaja, nije prepoznatljiva osoba) — prihvatljivo; fotografija sa skupa je verovatno delo fotografa organizatora → potvrditi pravo korišćenja.
+
+### Logo
+- Znak (krug) izdvojen iz `Logo.PNG` po zlatnom prstenu. `logo-znak.png/.webp` = navy disk + zlatni prsten, providno van kruga. `logo-znak-providni.png` = navy pretvoren u providnost (color-to-alpha + prag da se ukloni šum/tekstura navy pozadine). `logo-znak-krem.png` = bele linije prebojene u navy #14213D, zlato zadržano (blago tamnije, #B08A46) za kontrast na krem pozadini.
+- Logo je raster 1024 px (verovatno AI/generisan) — znak je ~440 px; `favicon-v2-512.png` je blago uvećan (440→512). Na 32 px detalji bebe se gube — za favicon možda bolje jednostavan "FK" monogram. **Zatražiti od klijenta vektorski logo (SVG/AI/PDF).**
+- `og-image-v2.jpg` je složen sa sistemskim fontovima (FreeSerif / Liberation Sans) jer Fraunces/Karla nisu bili dostupni offline — ako treba identična tipografija sa sajtom, regenerisati sa Fraunces.
