@@ -614,6 +614,11 @@ def main():
     static = SRC / "static"
     if static.exists():
         for f in static.rglob("*"):
+            rel = f.relative_to(static)
+            # backend: nikad ne kopiraj tajne/lokalne podatke (config.php, baza, logovi, test .eml)
+            if f.name in ("config.php", "fk-config.php") or f.suffix in (".db", ".sqlite", ".sqlite3", ".log", ".eml") \
+                    or f.name.endswith(("-journal", "-wal", "-shm")) or rel.parts[:2] == ("data", "mail"):
+                continue
             if f.is_file():
                 dst = OUT / f.relative_to(static)
                 dst.parent.mkdir(parents=True, exist_ok=True)

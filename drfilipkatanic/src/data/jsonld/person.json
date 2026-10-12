@@ -1,15 +1,16 @@
 {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": "{{site_url}}/#dr-filip-katanic",
   "name": "dr Filip Katanić",
   "url": "{{site_url}}/",
-  "image": "{{site_url}}/assets/img/portret-01.webp",
-  "jobTitle": "Lekar",
-  "description": "Doktor medicine, master reproduktivne embriologije, član tima Specijalne bolnice Ferona u Novom Sadu.",
-  "worksFor": {
-    "@type": "MedicalOrganization",
-    "name": "Specijalna bolnica \"Ferona\"",
-    "url": "https://feronaivf.rs/",
+  "image": "{{site_url}}/assets/img/portret-mantil.webp",
+  "jobTitle": "Lekar — reproduktivna medicina",
+  "description": "Reproduktivna medicina, IVF i lečenje steriliteta, Novi Sad.",
+  "knowsAbout": ["Reproduktivna medicina", "Vantelesna oplodnja (IVF/ICSI)", "Sterilitet", "Embriologija", "Zamrzavanje jajnih ćelija", "PCOS"],
+  "workLocation": {
+    "@type": "Place",
+    "name": "SB Ferona",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Šarplaninska 19",

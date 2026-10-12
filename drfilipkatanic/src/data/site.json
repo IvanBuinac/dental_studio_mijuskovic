@@ -1,13 +1,16 @@
 {
-  "tel": "+381 21 3000 220",
-  "tel_href": "tel:+381213000220",
-  "email": "office@ferona.rs",
-  "ferona": "SB \"Ferona\"",
+  "_napomena": "[POTVRDITI SA KLIJENTOM] lični telefon/mejl dr Katanića — prazno = ne prikazuje se nigde na sajtu (build uslov HAS_TEL / HAS_EMAIL). Upisati npr. \"tel\": \"+381 6x xxx xxxx\", \"tel_href\": \"tel:+3816xxxxxxx\", \"email\": \"ime@domen.rs\".",
+  "tel": "",
+  "tel_href": "",
+  "email": "",
+  "ferona": "SB Ferona",
   "adresa": "Šarplaninska 19, 21000 Novi Sad",
+  "lokacija": "SB Ferona, Šarplaninska 19, 21000 Novi Sad",
+  "ordinira": "Ordinira u SB Ferona, Novi Sad",
+  "ferona_tel": "+381 21 3000 220",
   "ig_handle": "@drfilipkatanic",
-  "ig_url": "https://instagram.com/drfilipkatanic",
+  "ig_url": "https://www.instagram.com/drfilipkatanic/",
   "maps_url": "https://www.google.com/maps/search/?api=1&query=SB+Ferona+Sarplaninska+19+Novi+Sad",
   "citat": "„Ne možemo kontrolisati baš sve, ali možemo napraviti najbolji plan.“",
-  "disclaimer": "Sadržaj sajta je informativan i edukativan i ne zamenjuje pregled ili konsultaciju lekara. Postupci se sprovode u okviru Specijalne bolnice Ferona. Svaki slučaj se procenjuje individualno.",
-  "napomena_institucija": "Kontakt centar SB Ferona — za zakazivanje pregleda kod dr Filipa Katanića. Telefon i email pripadaju ustanovi."
+  "disclaimer": "Sadržaj ovog sajta je informativan i edukativan i ne zamenjuje lekarski pregled ni konsultaciju. Svaki slučaj se procenjuje individualno, a nijedan medicinski postupak ne može garantovati ishod. Konsultacije i postupci obavljaju se u SB Ferona, Novi Sad, gde dr Filip Katanić ordinira."
 }

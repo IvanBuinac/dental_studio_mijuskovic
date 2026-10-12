@@ -1,0 +1,31 @@
+# ==========================================================================
+# dr Filip Katanić — Apache podešavanja (deljeni hosting)
+# Backend deo: zaštita konfiguracije/baze/logova + osnovni security headeri.
+# ==========================================================================
+
+Options -Indexes
+DirectoryIndex index.html index.php
+
+# Konfiguracija, baza, logovi, dokumentacija i skriveni fajlovi — nikad preko weba
+<FilesMatch "(^config.*\.php$|^fk-config\.php$|\.(db|sqlite|sqlite3|db-journal|db-wal|db-shm|log|md|eml|bak|sample|dist|ini)$|^\.)">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# Folderi sa internim kodom/podacima (dupla zaštita uz njihove .htaccess fajlove)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(lib|data)(/|$) - [F,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    Header always set X-Frame-Options "SAMEORIGIN"
+</IfModule>
