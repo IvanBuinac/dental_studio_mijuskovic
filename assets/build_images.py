@@ -135,5 +135,13 @@ og.save(os.path.join(OUT, 'og-cover.webp'), 'WEBP', quality=82, method=6)
 og.save(os.path.join(OUT, 'og-cover.jpg'), 'JPEG', quality=85, optimize=True, progressive=True)
 log += [('og-cover.webp', '481386519 + Logo.jpg', og.size), ('og-cover.jpg', '481386519 + Logo.jpg', og.size)]
 
+# ---------- waiting room / reception (client photo, 387x516, small) ----------
+from PIL import ImageFilter
+im = load('images')                          # hallway + waiting room with logo wall, reception desk
+im = crop_ratio(im, 3, 4)                    # already 3:4 -> no crop, never upscaled
+im = im.filter(ImageFilter.UnsharpMask(radius=1.2, percent=60, threshold=2))  # mild sharpening
+im.save(os.path.join(OUT, 'ordinacija-prijem.webp'), 'WEBP', quality=86, method=6)
+log.append(('ordinacija-prijem.webp', os.path.basename(raw('images')), im.size))
+
 for r in log:
     print(*r, sep=' | ')
