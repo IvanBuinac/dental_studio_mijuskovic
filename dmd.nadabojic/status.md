@@ -1,14 +1,20 @@
-# Status: dmd.nadabojic
+# Status: @dmd.nadabojic / Dr Nada Bojić, Hope Dental
 
-| Korak | Agent | Status | Napomena |
-|---|---|---|---|
-| 1 | ig-researcher | u toku | research.md + image-shortlist.md (bez Chrome-a: WebSearch/WebFetch) |
-| 1b | web-research | u toku | web-research.md (Google, Maps, mediji, konkurencija) |
-| 2 | asset-collector | PAUZA — ceka korisnika | korisnik skida slike sa IG-a u assets/raw/ |
-| 3 | brand-analyst | ceka slike | paleta/tipografija se izvlace iz slika i loga |
-| 4 | seo-analyst | ceka research | |
-| 5 | site-architect | ceka | |
-| 6 | copywriter | ceka | |
-| 7 | developer | ceka | |
-| 8 | qa-reviewer | ceka | |
-| 9 | outreach-writer | ceka | |
+| # | Agenta | Status | Datum | Napomena |
+|---|---|---|---|---|
+| 1 | ig-researcher | completed | 2026-10-18 | research.md |
+| 2 | brand-analyst | completed | 2026-10-18 | brand.md |
+| 3 | asset-collector | waiting | N/A | image-shortlist.md (potrebno preuzeti fotografije) |
+| 4 | seo-analyst | completed | 2026-10-18 | seo.md |
+| 5 | site-architect | waiting | N/A | Potrebno preuzeti fotografije |
+| 6 | copywriter | waiting | N/A | Potrebno preuzeti fotografije |
+| 7 | developer | waiting | N/A | Potrebno preuzeti fotografije |
+| 8 | qa-reviewer | waiting | N/A | Potrebno preuzeti fotografije |
+| 9 | outreach-writer | waiting | N/A | Potrebno preuzeti fotografije |
+
+## Napomena
+
+- Pipeline je zaustavljen na koraku slika (asset-collector)
+- Potrebno je proveriti da li ima pisanu saglasnost pacijenata za korišćenje fotografija pre korišćenja u demo sajt
+- Potrebno je proveriti da li su fotografije visoko rezolutivne i profesionalne
+- Potrebno je proveriti da li su fotografije prikladne za korišćenje u demo sajt
